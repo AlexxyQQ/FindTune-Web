@@ -16,26 +16,46 @@ function Listening() {
 
   if (x.className === "listening-btn") {
     x.className += " listening";
-  } else {
-    x.className = "listening-btn";
+    setTimeout(function () {
+      document.getElementById("listening-btn").disabled = false;
+      x.className = "listening-btn";
+    }, 5000);
   }
   if (y.className === "listening-btn-layer1") {
     y.className += " listening";
-  } else {
-    y.className = "listening-btn-layer1";
+    setTimeout(function () {
+      document.getElementById("listening-btn-layer1").disabled = false;
+      y.className = "listening-btn-layer1";
+    }, 5000);
   }
   if (z.className === "listening-btn-layer2") {
     z.className += " listening";
-  } else {
-    z.className = "listening-btn-layer2";
+    setTimeout(function () {
+      document.getElementById("listening-btn-layer2").disabled = false;
+      z.className = "listening-btn-layer2";
+    }, 5000);
   }
   if (a.className === "listening-btn-layer3") {
     document.getElementById("listening-btn-layer3").disabled = true;
     setTimeout(function () {
       document.getElementById("listening-btn-layer3").disabled = false;
       a.className += " listening";
+      a.className = "listening-btn-layer3";
     }, 5000);
   } else {
     a.className = "listening-btn-layer3";
+  }
+}
+
+function smalllsn() {
+  var b = document.getElementById("lb");
+
+  if (b.className === "listening-bars") {
+    b.className += " ras";
+    document.getElementById("rs").disabled = true;
+    setTimeout(function () {
+      document.getElementById("rs").disabled = false;
+      b.className = "listening-bars";
+    }, 5000);
   }
 }

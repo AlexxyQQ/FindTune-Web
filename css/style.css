@@ -442,7 +442,86 @@ body {
   .listening-btn.listening {
     display: none;
   }
+
+  /* Blob */
+  .gooey {
+    position: absolute;
+    z-index: 1;
+    background-image: linear-gradient(120deg, #34f0b1 0%, #d9ff00 100%);
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    width: 150px;
+    height: 144px;
+    animation: morph 3s linear infinite;
+    transform-style: preserve-3d;
+    outline: 1px solid transparent;
+    will-change: border-radius;
+  }
+  .gooey:before,
+  .gooey:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    box-shadow: 5px 5px 89px rgba(0, 255, 200, 0.21);
+    will-change: border-radius, transform, opacity;
+    animation-delay: 200ms;
+    background-image: linear-gradient(
+      120deg,
+      rgba(0, 255, 191, 0.55) 0%,
+      rgba(0, 255, 157, 0.89) 100%
+    );
+  }
+
+  .gooey:before {
+    animation: morph 3s linear infinite;
+    opacity: 0.21;
+    animation-duration: 1.5s;
+  }
+
+  .gooey:after {
+    animation: morph 3s linear infinite;
+    animation-delay: 400ms;
+    opacity: 0.89;
+    line-height: 120px;
+    text-indent: -21px;
+  }
+
+  @keyframes morph {
+    0%,
+    100% {
+      border-radius: 42% 58% 70% 30% / 45% 65% 55% 55%;
+      transform: translate3d(6px, 8px, 12px) rotateZ(0.01deg);
+      transform: scale(0.8);
+    }
+    34% {
+      border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+      transform: translate3d(-6px, 15px, 10px) rotateZ(0.02deg);
+      transform: scale(0.6);
+    }
+    50% {
+      opacity: 0.89;
+      transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+      transform: scale(0.69);
+    }
+    67% {
+      border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+      transform: translate3d(6px, -13px, -15px) rotateZ(0.2deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
   .listening-bars {
+    z-index: 2;
     /* background-color: #16d7a8; */
     display: flex;
     justify-content: space-around;
@@ -589,8 +668,16 @@ body {
   .eight {
     animation: barss1 1.55s infinite ease-in;
   }
-
-  .listening-bars:hover {
+  .rec-small {
+    width: 90%;
+    height: 200px;
+    background-color: cyan;
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .listening-bars.ras {
     width: 90%;
     animation: bargrow 0.7s infinite ease-in;
     animation-direction: alternate;
@@ -612,3 +699,102 @@ body {
   background-color: pink;
   height: 100vh;
 }
+
+/* Signup popup */
+.signup-page {
+  height: 100vh;
+  display: none;
+  /* visibility: hidden; */
+}
+.Asshole {
+  width: 150px;
+  height: 250px;
+  background-color: cyan;
+}
+#Signup:target {
+  display: block;
+  /* visibility: visible; */
+}
+/* 
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+} */
