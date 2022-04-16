@@ -432,7 +432,182 @@ body {
     100% 0%
   );
 }
+.listening-bars {
+  display: none;
+}
+@media (max-width: 900px) {
+  .listening-btn {
+    display: none;
+  }
+  .listening-btn.listening {
+    display: none;
+  }
+  .listening-bars {
+    /* background-color: #16d7a8; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 70%;
+    height: 200px;
+  }
+  .music-bars {
+    display: flex;
+    width: 15px;
+    border-radius: 10px;
+    background-color: yellow;
+  }
+  .one {
+    display: inherit;
+    height: 50px;
+    animation: barss1 1.5s infinite ease-in;
+  }
+  @keyframes barss1 {
+    0% {
+      height: 60px;
+    }
+    25% {
+      margin-bottom: 50px;
+      height: 40px;
+    }
+    50% {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    75% {
+      margin-top: 50px;
+      height: 40px;
+    }
+    100% {
+      height: 60px;
+    }
+  }
+  .two {
+    height: 90px;
+    animation: barss2 1.1s infinite ease-in;
+  }
+  @keyframes barss2 {
+    0% {
+      height: 100px;
+    }
+    25% {
+      margin-bottom: 50px;
+      height: 80px;
+    }
+    50% {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    75% {
+      margin-top: 50px;
+      height: 80px;
+    }
+    100% {
+      height: 100px;
+    }
+  }
+  .three {
+    height: 130px;
+    animation: barss3 0.9s infinite ease-in;
+  }
+  @keyframes barss3 {
+    0% {
+      height: 140px;
+    }
+    25% {
+      margin-bottom: 50px;
+      height: 110px;
+    }
+    50% {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    75% {
+      margin-top: 50px;
+      height: 110px;
+    }
+    100% {
+      height: 140px;
+    }
+  }
+  .four {
+    height: 180px;
+    animation: barss4 0.7s infinite ease-in;
+  }
+  @keyframes barss4 {
+    0% {
+      height: 200px;
+    }
+    25% {
+      margin-bottom: 50px;
+      height: 180px;
+    }
+    50% {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    75% {
+      margin-top: 50px;
+      height: 180px;
+    }
+    100% {
+      height: 200px;
+    }
+  }
+  .five {
+    height: 180px;
+    animation: barss4 0.75s infinite ease-in;
+  }
+  @keyframes barss4 {
+    0% {
+      height: 200px;
+    }
+    25% {
+      margin-bottom: 50px;
+      height: 180px;
+    }
+    50% {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    75% {
+      margin-top: 50px;
+      height: 180px;
+    }
+    100% {
+      height: 200px;
+    }
+  }
+  .six {
+    height: 130px;
+    animation: barss3 0.95s infinite ease-in;
+  }
+  .seven {
+    height: 90px;
+    animation: barss2 1.15s infinite ease-in;
+  }
+  .eight {
+    animation: barss1 1.55s infinite ease-in;
+  }
 
+  .listening-bars:hover {
+    width: 90%;
+    animation: bargrow 0.7s infinite ease-in;
+    animation-direction: alternate;
+  }
+  @keyframes bargrow {
+    from {
+      width: 70%;
+    }
+
+    to {
+      width: 85%;
+    }
+  }
+}
+.btnn {
+  display: block;
+}
 .stuff {
   background-color: pink;
   height: 100vh;
