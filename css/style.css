@@ -32,15 +32,16 @@ body {
   align-items: center;
   margin: 0 auto;
 }
-/* .dimmer {
+.dimmer {
   position: absolute;
   height: 100vh;
   width: 100%;
-  opacity: 1;
+  opacity: 0;
   -webkit-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
   background-color: black;
-} */
+}
+
 .navbar-transform {
   background-color: white;
   width: 100%;
@@ -74,9 +75,7 @@ body {
     margin-right: 20px;
     color: white;
   }
-  .search-area:hover .header {
-    background-color: red;
-  }
+
   .search-box {
     margin: 0 auto;
     width: 150px;
@@ -168,6 +167,7 @@ body {
   .search-box:focus {
     width: 250px;
   }
+
   .search-btn-btn {
     margin: 0 5px;
     border: none;
@@ -246,6 +246,7 @@ body {
     border: none;
     font-size: 14px;
   }
+
   .search-btn-btn {
     margin: 0 5px;
     border: none;
@@ -702,99 +703,31 @@ body {
 
 /* Signup popup */
 .signup-page {
-  height: 100vh;
-  display: none;
-  /* visibility: hidden; */
-}
-.Asshole {
-  width: 150px;
-  height: 250px;
-  background-color: cyan;
-}
-#Signup:target {
-  display: block;
-  /* visibility: visible; */
-}
-/* 
-.box {
-  width: 40%;
-  margin: 0 auto;
-  background: rgba(255,255,255,0.2);
-  padding: 35px;
-  border: 2px solid #fff;
-  border-radius: 20px/50px;
-  background-clip: padding-box;
-  text-align: center;
-}
-
-.button {
-  font-size: 1em;
-  padding: 10px;
-  color: #fff;
-  border: 2px solid #06D85F;
-  border-radius: 20px/50px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-}
-.button:hover {
-  background: #06D85F;
-}
-
-.overlay {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms;
-  visibility: hidden;
-  opacity: 0;
+  z-index: 10;
+  top: 20vh;
+  display: none;
+  width: 100%;
+  height: 75%;
+  background-color: transparent;
 }
-.overlay:target {
-  visibility: visible;
-  opacity: 1;
+.signup-page:target {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
-
-.popup {
-  margin: 70px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  width: 30%;
-  position: relative;
-  transition: all 5s ease-in-out;
+.form {
+  display: flex;
+  background-color: green;
+  border-radius: 50px;
+  height: 100%;
+  width: 50%;
 }
-
-.popup h2 {
-  margin-top: 0;
-  color: #333;
-  font-family: Tahoma, Arial, sans-serif;
+.close-form {
+  /*  */
+  background-color: cyan;
+  width: 50px;
+  height: 50px;
 }
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
-.popup .close:hover {
-  color: #06D85F;
-}
-.popup .content {
-  max-height: 30%;
-  overflow: auto;
-}
-
-@media screen and (max-width: 700px){
-  .box{
-    width: 70%;
-  }
-  .popup{
-    width: 70%;
-  }
-} */
