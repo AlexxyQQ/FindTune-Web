@@ -222,14 +222,14 @@ body {
   }
   .logo-box {
     /* flex: 1 1 100%; */
-    outline: 1px solid pink;
+    /* outline: 1px solid pink; */
     height: 60px;
     width: 60px;
     min-width: 60px;
     margin-left: 20px;
   }
   .logo {
-    outline: 1px solid yellow;
+    /* outline: 1px solid yellow; */
     width: 60px;
     min-width: 60px;
   }
@@ -469,10 +469,14 @@ body {
     border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
     width: 150px;
     height: 144px;
-    animation: morph 3s linear infinite;
     transform-style: preserve-3d;
-    outline: 1px solid transparent;
+    /* outline: 1px solid transparent; */
     will-change: border-radius;
+  }
+  .gooey.listening,
+  .gooey.listening:before,
+  .gooey.listening:after {
+    animation: morph 3s linear infinite;
   }
   .gooey:before,
   .gooey:after {
@@ -495,13 +499,13 @@ body {
   }
 
   .gooey:before {
-    animation: morph 3s linear infinite;
+    /* animation: morph 3s linear infinite; */
     opacity: 0.21;
     animation-duration: 1.5s;
   }
 
   .gooey:after {
-    animation: morph 3s linear infinite;
+    /* animation: morph 3s linear infinite; */
     animation-delay: 400ms;
     opacity: 0.89;
     line-height: 120px;
@@ -557,6 +561,10 @@ body {
   .one {
     display: inherit;
     height: 50px;
+  }
+  .one.listening {
+    display: inherit;
+    height: 50px;
     animation: barss1 1.5s infinite ease-in;
   }
   @keyframes barss1 {
@@ -579,7 +587,11 @@ body {
       height: 60px;
     }
   }
+
   .two {
+    height: 90px;
+  }
+  .two.listening {
     height: 90px;
     animation: barss2 1.1s infinite ease-in;
   }
@@ -605,6 +617,9 @@ body {
   }
   .three {
     height: 130px;
+  }
+  .three.listening {
+    height: 130px;
     animation: barss3 0.9s infinite ease-in;
   }
   @keyframes barss3 {
@@ -628,6 +643,9 @@ body {
     }
   }
   .four {
+    height: 180px;
+  }
+  .four.listening {
     height: 180px;
     animation: barss4 0.7s infinite ease-in;
   }
@@ -653,6 +671,9 @@ body {
   }
   .five {
     height: 180px;
+  }
+  .five.listening {
+    height: 180px;
     animation: barss4 0.75s infinite ease-in;
   }
   @keyframes barss4 {
@@ -677,13 +698,22 @@ body {
   }
   .six {
     height: 130px;
+  }
+  .six.listening {
+    height: 130px;
     animation: barss3 0.95s infinite ease-in;
   }
   .seven {
     height: 90px;
+  }
+  .seven.listening {
+    height: 90px;
     animation: barss2 1.15s infinite ease-in;
   }
   .eight {
+    height: 50px;
+  }
+  .eight.listening {
     animation: barss1 1.55s infinite ease-in;
   }
   .rec-small {
@@ -695,7 +725,7 @@ body {
     opacity: 0;
     cursor: pointer;
   }
-  .listening-bars.ras {
+  .listening-bars.listening {
     width: 90%;
     animation: bargrow 0.7s infinite ease-in;
     animation-direction: alternate;
@@ -748,7 +778,10 @@ body {
   margin-top: 14.5px;
   height: 60px;
   width: 100%;
-  background-color: red;
+  background-color: transparent;
+}
+.ham-window-nav .logo {
+  filter: invert(100%);
 }
 .closing-btn {
   height: 35px;
