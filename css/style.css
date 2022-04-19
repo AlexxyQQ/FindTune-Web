@@ -205,7 +205,7 @@ body {
 }
 @media (max-width: 640px) {
   .logo-box {
-    flex: 1 1 100%;
+    /* flex: 1 1 100%; */
     outline: 1px solid pink;
     height: 60px;
     width: 60px;
@@ -213,7 +213,7 @@ body {
     margin-left: 20px;
   }
   .logo {
-    outline: 1px solid red;
+    outline: 1px solid yellow;
     width: 100%;
   }
   .nav-items {
@@ -229,7 +229,7 @@ body {
     color: red;
   }
   .search-area {
-    float: right;
+    /* float: right; */
     background-color: #26c2ff;
     border-radius: 10px;
     display: flex;
@@ -240,7 +240,7 @@ body {
   .search-box {
     color: white;
     margin: 0 auto;
-    max-width: 150px;
+    max-width: 100px;
     border-radius: 5px;
     background-color: transparent;
     border: none;
@@ -260,8 +260,8 @@ body {
     display: none;
   }
   .hamburger-menu {
-    display: block;
-    padding: 0 20px;
+    display: inline;
+    padding: 0 10px;
     border: none;
     background-color: transparent;
     cursor: pointer;
