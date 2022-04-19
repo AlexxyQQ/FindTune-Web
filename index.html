@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./Script.js"></script>
-    <title>M</title>
+    <title>Muisync</title>
   </head>
   <body>
     <header class="header" id="nav">
@@ -27,7 +27,9 @@
           <img src="./Assets/search-icon.svg" alt="Search" class="search-btn" />
         </button>
       </div>
-      <button class="signin-btn"><a href="#Signup">SignIn</a></button>
+
+      <a href="#Signup" class="signin-btn" onclick="disableScroll()">SignIn</a>
+
       <button class="hamburger-menu">
         <img src="./Assets/bars.svg" alt="Bar" class="bars" />
       </button>
@@ -59,14 +61,14 @@
           <l class="music-bars eight"></l>
         </ul>
         <button class="rec-small" onclick="smalllsn()" id="rs"></button>
-
-        <!-- <a href="http://example.com" class="pulsingButton">Streaming Live</a> -->
       </section>
       <section class="stuff"></section>
     </section>
     <section class="signup-page" id="Signup">
       <div class="form">
-        <a href="#close-form-btn" class="close-form"></a>
+        <div class="circle-close-bg">
+          <a href="" class="close-form" onclick="enableScroll()"></a>
+        </div>
       </div>
     </section>
   </body>
