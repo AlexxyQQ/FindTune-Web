@@ -88,15 +88,43 @@
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
             facilis voluptate reprehenderit, recusandae doloribus maiores.
           </div>
-          <a href="" class="Ham-SignIn-btn">SignIn</a>
+          <div class="Ham-SignIn-btn-box">
+            <a href="" class="Ham-SignIn-btn">SignIn</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="signup-page" id="Signup">
       <div class="form">
-        <div class="circle-close-bg">
-          <a href="" class="close-form" onclick="enableScroll()"></a>
+        <a href="" class="close-form" onclick="enableScroll()"></a>
+        <div class="Login-Signup-Pill">
+          <a class="Login-Btn" onclick="MovingpillLogin()" id="Login-Pill">
+            Login</a
+          >
+          <a class="Signup-Btn" onclick="MovingpillSignup()" id="Signup-Pill">
+            Signup</a
+          >
+          <div class="Selection-pill" id="SP"></div>
+        </div>
+        <div class="Login-Form" id="LPF">
+          <div class="Form-Title">Username</div>
+          <input type="text" class="Textbox Username"></input>
+          <div class="Form-Title">Password</div>
+          <input type="text" class="Textbox Password"></input>
+          <a href="" class="Form-Btn">Login</a>
+
+        </div>
+        <div class="Signup-Form" id="SPF">
+          <div class="Form-Title">Name</div>
+          <input type="text" class="Textbox Name"></input>
+          <div class="Form-Title">Email</div>
+          <input type="text" class="Textbox Email"></input>
+          <div class="Form-Title">Username</div>
+          <input type="text" class="Textbox Username"></input>
+          <div class="Form-Title">Password</div>
+          <input type="text" class="Textbox Password"></input>
+          <a href="" class="Form-Btn">Signup</a>
         </div>
       </div>
     </section>

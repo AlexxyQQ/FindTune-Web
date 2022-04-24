@@ -58,6 +58,27 @@ function smalllsn() {
   }
 }
 
+function MovingpillSignup(params) {
+  var Sp = document.getElementById("SP");
+  var SpF = document.getElementById("SPF");
+  var LpF = document.getElementById("LPF");
+
+  if (Sp.className == "Selection-pill") {
+    Sp.classList.add("move-Signup");
+    SpF.style.display = "flex";
+    LpF.style.display = "none";
+  }
+}
+function MovingpillLogin(params) {
+  var Sp = document.getElementById("SP");
+  var LpF = document.getElementById("LPF");
+  var SpF = document.getElementById("SPF");
+
+  Sp.classList.remove("move-Signup");
+  SpF.style.display = "none";
+  LpF.style.display = "flex";
+}
+
 function disableScroll() {
   // To get the scroll position of current webpage
   TopScroll = window.pageYOffset || document.documentElement.scrollTop;

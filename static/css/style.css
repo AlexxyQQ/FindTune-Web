@@ -274,6 +274,10 @@ body {
   .signin-btn {
     display: none;
   }
+  .signup-page:target {
+    display: none;
+    visibility: hidden;
+  }
   .hamburger-menu {
     display: inline;
     padding: 0 10px;
@@ -717,8 +721,7 @@ body {
   padding: 12px 0px;
 }
 .Ham-SignIn-box {
-  display: grid;
-  grid-template-columns: auto auto;
+  display: flex;
   background-color: #1a1a1a;
   border-radius: 20px;
   width: 90%;
@@ -733,12 +736,11 @@ body {
 }
 
 .Ham-signin-desc {
-  grid-column: 1;
   color: white;
   margin: 0 20px;
 }
+
 .Ham-SignIn-btn {
-  grid-column: 2;
   display: flex;
   color: white;
   border-radius: 10px;
@@ -752,18 +754,13 @@ body {
 }
 @media (max-width: 580px) {
   .Ham-SignIn-box {
-    background-color: red;
+    background-color: #1a1a1a;
     height: 120px;
     align-content: center;
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-  }
-  .Ham-signin-desc {
-    grid-column: 1 / 3;
-  }
-  .Ham-SignIn-btn {
-    grid-column: 1 / 2;
+    align-content: center;
   }
 }
 
@@ -798,19 +795,70 @@ body {
   width: 50%;
   overflow: hidden;
 }
-.circle-close-bg {
-  float: right;
-  height: 130px;
-  width: 130px;
-  margin: -42px -42px;
-  border-radius: 94px;
-  background-color: red;
+.Login-Signup-Pill {
+  background-color: grey;
+  width: 80%;
+  height: 10%;
+  border-radius: 50px;
+  margin: 50px 43px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
 }
+.Selection-pill {
+  position: absolute;
+  z-index: 1;
+  color: black;
+  background-color: white;
+  margin: 0 5px;
+  width: 30%;
+  height: 50px;
+  transform: translateX(15%);
+  border-radius: 50px;
+  transition: all 600ms ease-in-out;
+}
+.Selection-pill.move-Signup {
+  background-color: white;
+  transform: translateX(145%);
+}
+
+.Login-Btn {
+  z-index: 2;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  width: 49%;
+  height: 95%;
+  border-radius: 50px;
+}
+.Signup-Btn {
+  z-index: 2;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  width: 49%;
+  height: 95%;
+  border-radius: 50px;
+  transition: all 500ms ease-in-out;
+}
+
 .close-form {
+  float: right;
   display: block;
   height: 30px;
   width: 30px;
-  margin: 65px 38px;
+  margin: 20px 20px;
   border: none;
   background-color: #008573;
   clip-path: polygon(
@@ -827,4 +875,59 @@ body {
     80% 0%,
     50% 30%
   );
+}
+
+.Login-Form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 70%;
+  border-radius: 30px;
+  background-color: #808080;
+  margin: 0 auto;
+}
+.Form-Title {
+  font-size: 20px;
+  color: white;
+}
+.Textbox {
+  border-radius: 8px;
+  height: 30px;
+  font-size: 20px;
+  border: none;
+  padding: 0px 10px;
+}
+.Form-Btn {
+  margin: 0 auto;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: yellow;
+  width: 110px;
+  height: 40px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.Signup-Form {
+  display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 70%;
+  border-radius: 30px;
+  background-color: #808080;
+  margin: 0 auto;
 }
