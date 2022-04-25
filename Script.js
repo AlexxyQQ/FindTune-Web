@@ -62,6 +62,8 @@ function MovingpillSignup(params) {
   var Sp = document.getElementById("SP");
   var SpF = document.getElementById("SPF");
   var LpF = document.getElementById("LPF");
+  document.getElementById("Login-Pill").style.color = "white";
+  document.getElementById("Signup-Pill").style.color = "black";
 
   if (Sp.className == "Selection-pill") {
     Sp.classList.add("move-Signup");
@@ -73,6 +75,8 @@ function MovingpillLogin(params) {
   var Sp = document.getElementById("SP");
   var LpF = document.getElementById("LPF");
   var SpF = document.getElementById("SPF");
+  document.getElementById("Login-Pill").style.color = "black";
+  document.getElementById("Signup-Pill").style.color = "white";
 
   Sp.classList.remove("move-Signup");
   SpF.style.display = "none";
