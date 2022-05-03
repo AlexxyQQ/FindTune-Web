@@ -964,7 +964,7 @@ body {
 .eye {
   border: none;
   position: absolute;
-  background-color: #b5bac2;
+  background-color: transparent;
   padding: 5px 8px;
   right: 20px;
 }

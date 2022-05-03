@@ -109,25 +109,33 @@ function RevealPassword() {
   if (LpF.style.display != "none") {
     if (document.getElementById("Login-Pass").type == "password") {
       document.getElementById("Login-Pass").type = "text";
+      document.getElementById("eye").classList.remove("fa-eye");
+      document.getElementById("eye").classList.add("fa-eye-slash");
     } else {
       document.getElementById("Login-Pass").type = "password";
+      document.getElementById("eye").classList.add("fa-eye");
+      document.getElementById("eye").classList.remove("fa-eye-slash");
     }
   }
   if (SpF.style.display != "none") {
     if (document.getElementById("Signup-Pass").type == "password") {
       document.getElementById("Signup-Pass").type = "text";
       document.getElementById("Signup-CPass").type = "text";
+      document.getElementById("eye-C").classList.remove("fa-eye");
+      document.getElementById("eye-C").classList.add("fa-eye-slash");
     } else {
       document.getElementById("Signup-Pass").type = "password";
       document.getElementById("Signup-CPass").type = "password";
+      document.getElementById("eye-C").classList.add("fa-eye");
+      document.getElementById("eye-C").classList.remove("fa-eye-slash");
     }
   }
 }
 
-const username = document.getElementById("username");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const password2 = document.getElementById("password2");
+const username = document.getElementById("Signup-Username");
+const email = document.getElementById("Signup-Email");
+const password = document.getElementById("Signup-Password");
+const cpassword = document.getElementById("Signup-CPassword");
 
 //Show input error messages
 function showError(input, message) {
@@ -191,16 +199,18 @@ function getFieldName(input) {
 function checkPasswordMatch(input1, input2) {
   if (input1.value !== input2.value) {
     showError(input2, "Passwords do not match");
+    console.log("MOFO");
   }
 }
 
 //Event Listeners
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  checkRequired([username, email, password, password2]);
-  checkLength(username, 3, 15);
-  checkLength(password, 6, 25);
-  checkEmail(email);
-  checkPasswordMatch(password, password2);
-});
+// document.getElementById("Form-Btn").addEventListener("click", function (e) {
+//   e.preventDefault();
+// });
+function aa() {
+  // checkRequired([username, email, password, cpassword]);
+  // checkLength(username, 3, 15);
+  // checkLength(password, 6, 25);
+  // checkEmail(email);
+  checkPasswordMatch(password, cpassword);
+}

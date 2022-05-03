@@ -11,6 +11,10 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/01c6376a08.js"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="/Script.js"></script>
     <title>Find-Tune</title>
@@ -145,7 +149,11 @@
                 id="Login-Pass"
                 placeholder="*********"
               />
-              <button class="eye" onclick="RevealPassword()">A</button>
+              <button
+                class="eye fa-solid fa-eye"
+                id="eye"
+                onclick="RevealPassword()"
+              ></button>
             </div>
           </div>
           <!--  -->
@@ -156,7 +164,12 @@
           <!--  -->
           <div class="Form-Title">
             Name
-            <input type="text" class="Textbox Name" placeholder="Name" />
+            <input
+              type="text"
+              class="Textbox Name"
+              placeholder="Name"
+              id="Signup-Name"
+            />
           </div>
           <!--  -->
           <div class="Form-Title">
@@ -165,6 +178,7 @@
               type="email"
               class="Textbox Email"
               placeholder="example@email.com"
+              id="Signup-Email"
             />
           </div>
           <!--  -->
@@ -174,6 +188,7 @@
               type="text"
               class="Textbox Username"
               placeholder="AppleMan"
+              id="Signup-Username"
             />
           </div>
           <!--  -->
@@ -185,8 +200,14 @@
                 id="Signup-Pass"
                 class="Textbox Password"
                 placeholder="*********"
+                id="Signup-Password"
               />
-              <button class="eye" onclick="RevealPassword()">A</button>
+              <button
+                onclick="RevealPassword()"
+                class="eye fa-solid fa-eye"
+                id="eye-C"
+                id="Signup-CPassword"
+              ></button>
             </div>
           </div>
           <!--  -->
@@ -200,7 +221,9 @@
             />
           </div>
           <!--  -->
-          <a href="" class="Form-Btn">Signup</a>
+          <button href="#Signup" class="Form-Btn" id="Form-Btn" onclick="aa()">
+            Signup
+          </button>
         </div>
       </div>
     </section>
