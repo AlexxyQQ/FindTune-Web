@@ -4,23 +4,31 @@
   box-sizing: border-box;
 }
 :root {
-  --clr-light: #ffff;
-  --clr-dark: #1b1b1b;
-  --clr-accent: #16d7a8;
-  --clr-main-page: #00ccb1;
+  /* Colors */
+  --clr-light: white;
+  --clr-dark: black;
+  --clr-main-one: #61a1dd;
+  --clr-main-two: #00ccb1;
+  --clr-main-three: wheat;
+
+  --clr-accent-one: #fec28b;
+  --clr-accent-two: #16d7a8;
+  --clr-accent-three: #e5ebf5;
+
+  /* Fonts */
 }
 body {
   font-family: sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.7;
-  color: #777;
-  background-color: var(--clr-main-page);
+  /* color: #777; */
+  background-color: var(--clr-main-two);
 }
 
 /* Nav Bar */
 .header {
-  background-color: var(--clr-main-page);
+  background-color: var(--clr-main-two);
   position: sticky;
   padding: 15px 0;
   top: 0;
@@ -43,10 +51,13 @@ body {
 /* Big Screen */
 @media (min-width: 800px) {
   .logo-box {
-    /* outline: 1px solid green; */
     height: 60px;
     width: 60px;
-    margin: 0 40px;
+    margin: 0 20px;
+  }
+  .logo {
+    width: 60px;
+    min-width: 60px;
   }
   .nav-items {
     flex: auto;
@@ -295,7 +306,7 @@ body {
 /* Listenign Area */
 .main-content {
   height: 80vh;
-  background-color: var(--clr-main-page);
+  background-color: var(--clr-main-two);
   display: flex;
   align-content: center;
   justify-content: center;
@@ -789,79 +800,16 @@ body {
   position: relative;
   background-color: white;
   border-radius: 50px;
-  height: 80%;
+  height: 85%;
   width: 50%;
   overflow: hidden;
 }
-.Login-Signup-Pill {
-  background-color: grey;
-  width: 80%;
-  height: 10%;
-  border-radius: 50px;
-  /* margin: 50px 43px; */
-  margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 20px;
-  display: flex;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: center;
-}
-.Selection-pill {
-  position: absolute;
-  z-index: 1;
-  color: black;
-  background-color: white;
-  margin: 0 5px;
-  width: 30%;
-  height: 50px;
-  transform: translateX(15%);
-  border-radius: 50px;
-  transition: all 600ms ease-in-out;
-}
-.Selection-pill.move-Signup {
-  background-color: white;
-  transform: translateX(145%);
-}
-
-.Login-Btn {
-  z-index: 2;
-  cursor: pointer;
-  color: black;
-  display: flex;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  width: 49%;
-  height: 95%;
-  border-radius: 50px;
-  text-decoration: none;
-}
-.Signup-Btn {
-  z-index: 2;
-  cursor: pointer;
-  color: black;
-  display: flex;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  width: 49%;
-  height: 95%;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: all 500ms ease-in-out;
-}
-
 .close-form {
   position: absolute;
   right: 10px;
   height: 30px;
   width: 30px;
-  margin: 20px 20px;
+  margin: 15px 10px;
   border: none;
   background-color: #008573;
   clip-path: polygon(
@@ -879,36 +827,114 @@ body {
     50% 30%
   );
 }
+.Login-Signup-Pill {
+  background-color: var(--clr-main-three);
+  width: 80%;
+  height: 8%;
+  border-radius: 50px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+}
+.Selection-pill {
+  position: absolute;
+  z-index: 1;
+  color: black;
+  background-color: var(--clr-accent-three);
+  margin: 0 5px;
+  width: 30%;
+  height: 50px;
+  transform: translateX(15%);
+  border-radius: 50px;
+  transition: all 600ms ease-in-out;
+}
+.Selection-pill.move-Signup {
+  background-color: var(--clr-accent-three);
+  transform: translateX(145%);
+}
 
 .Login-Btn {
+  z-index: 2;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  width: 49%;
+  height: 95%;
+  border-radius: 50px;
+  text-decoration: none;
   font-size: 20px;
+  /* font-weight: 600; */
 }
 .Signup-Btn {
+  z-index: 2;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  width: 49%;
+  height: 95%;
+  border-radius: 50px;
   font-size: 20px;
+  text-decoration: none;
+  transition: all 500ms ease-in-out;
 }
+
 .Login-Form {
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: left;
   align-items: left;
-  justify-content: center;
+  justify-content: left;
   width: 90%;
-  height: 75%;
+  height: 70%;
   border-radius: 30px;
-  background-color: wheat;
+  background-color: var(--clr-main-three);
   margin: 0 auto;
   padding: 20px 50px;
+  transition: all 200ms ease-in-out;
 }
+
+.Signup-Form {
+  display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: left;
+  align-items: left;
+  justify-content: left;
+  width: 90%;
+  height: 83%;
+  border-radius: 30px;
+  background-color: var(--clr-main-three);
+  margin: 0 auto;
+  padding: 20px 50px;
+  transition: all 200ms ease-in-out;
+}
+
 .Form-Title {
-  font-size: 25px;
-  color: white;
+  font-size: 20px;
+  color: var(--clr-dark);
   right: 0px;
 }
 
 .Textbox {
   margin: 10px auto;
   width: 100%;
-  height: 60px;
-  background-color: #e5ebf5;
+  height: 47px;
+  background-color: var(--clr-accent-three);
   border: none;
   border-radius: 15px;
   text-indent: 20px;
@@ -919,9 +945,28 @@ body {
   outline: none;
   transition: all 200ms ease-in-out;
 }
+.Signup-Form .Textbox {
+  height: 44px;
+}
 .Textbox:focus {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   font-size: 21px;
+}
+.password-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  align-content: center;
+  flex-direction: row;
+}
+.eye {
+  border: none;
+  position: absolute;
+  background-color: #b5bac2;
+  padding: 5px 8px;
+  right: 20px;
 }
 .Form-Btn {
   margin: 0 auto;
@@ -933,24 +978,11 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: yellow;
+  background-color: var(--clr-accent-three);
   width: 110px;
   height: 50px;
   border-radius: 20px;
+  font-size: 20px;
+  font-weight: 300;
   text-decoration: none;
-}
-
-.Signup-Form {
-  display: none;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: left;
-  align-items: left;
-  justify-content: left;
-  width: 90%;
-  height: 75%;
-  border-radius: 30px;
-  background-color: wheat;
-  margin: 0 auto;
-  padding: 20px 50px;
 }

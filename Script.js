@@ -63,7 +63,10 @@ function MovingpillSignup(params) {
   var SpF = document.getElementById("SPF");
   var LpF = document.getElementById("LPF");
   document.getElementById("Login-Pill").style.color = "white";
+  document.getElementById("Login-Pill").style.fontWeight = "400";
+
   document.getElementById("Signup-Pill").style.color = "black";
+  document.getElementById("Signup-Pill").style.fontWeight = "700";
 
   if (Sp.className == "Selection-pill") {
     Sp.classList.add("move-Signup");
@@ -76,7 +79,10 @@ function MovingpillLogin(params) {
   var LpF = document.getElementById("LPF");
   var SpF = document.getElementById("SPF");
   document.getElementById("Login-Pill").style.color = "black";
+  document.getElementById("Login-Pill").style.fontWeight = "700";
+
   document.getElementById("Signup-Pill").style.color = "white";
+  document.getElementById("Signup-Pill").style.fontWeight = "400";
 
   Sp.classList.remove("move-Signup");
   SpF.style.display = "none";
@@ -95,6 +101,27 @@ function disableScroll() {
 
 function enableScroll() {
   window.onscroll = function () {};
+}
+
+function RevealPassword() {
+  var LpF = document.getElementById("LPF");
+  var SpF = document.getElementById("SPF");
+  if (LpF.style.display != "none") {
+    if (document.getElementById("Login-Pass").type == "password") {
+      document.getElementById("Login-Pass").type = "text";
+    } else {
+      document.getElementById("Login-Pass").type = "password";
+    }
+  }
+  if (SpF.style.display != "none") {
+    if (document.getElementById("Signup-Pass").type == "password") {
+      document.getElementById("Signup-Pass").type = "text";
+      document.getElementById("Signup-CPass").type = "text";
+    } else {
+      document.getElementById("Signup-Pass").type = "password";
+      document.getElementById("Signup-CPass").type = "password";
+    }
+  }
 }
 
 const username = document.getElementById("username");
