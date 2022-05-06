@@ -8,6 +8,10 @@ window.onscroll = function () {
   }
 };
 
+function Themeing() {
+  var TC = document.getElementById("Theme-Changer");
+}
+
 function Listening() {
   var bsl = document.getElementById("big-screen-listening");
   var Rl = document.getElementById("Rotating-logo");

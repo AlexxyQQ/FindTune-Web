@@ -159,9 +159,7 @@ body {
     font-size: 18px;
     font-weight: 600;
   }
-  .nav-items a:hover {
-    color: red;
-  }
+
   .search-area {
     float: right;
     background-color: #26c2ff;
@@ -212,6 +210,14 @@ body {
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
+  }
+  .toggle-theme {
+    width: 80px;
+    height: 50px;
+    font-size: 27px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
   }
   .hamburger-menu {
     display: block;
