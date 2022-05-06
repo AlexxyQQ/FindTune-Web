@@ -14,17 +14,20 @@
       src="https://kit.fontawesome.com/01c6376a08.js"
       crossorigin="anonymous"
     ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='Script.js') }}"
+    ></script>
+    <!-- <script src="Script.js"></script> -->
+    <link rel="stylesheet" href="../static/CSS/style.css" />
 
-    <script src="Script.js"></script>
-    <link rel="stylesheet" href="CSS/style.css" />
-
-    <title>Find-Tune</title>
+    <title>{% block title %}Find-Tune{% endblock %}</title>
   </head>
   <body>
     <header class="header" id="nav">
       <!--  -->
       <div class="logo-box">
-        <img src="Assets/Logo.png" alt="Logo" class="logo" />
+        <img src="../static/Assets/Logo.png" alt="Logo" class="logo" />
       </div>
       <!--  -->
       <div class="nav-items">
@@ -43,16 +46,20 @@
         />
         <!--  -->
         <button class="search-btn-box">
-          <img src="Assets/search-icon.svg" alt="Search" class="search-btn" />
+          <img
+            src="../static/Assets/search-icon.svg"
+            alt="Search"
+            class="search-btn"
+          />
         </button>
       </div>
       <button class="toggle-theme" id="Theme-Changer" onclick="Themeing()">
         &#9728;
       </button>
-      <a href="#Signup" class="signin-btn" onclick="disableScroll()">SignIn</a>
+      <a href="/signup" class="signin-btn" onclick="disableScroll()">SignIn</a>
 
       <a class="hamburger-menu" href="#Ham-window">
-        <img src="Assets/bars.svg" alt="Bar" class="bars" />
+        <img src="../static/Assets/bars.svg" alt="Bar" class="bars" />
       </a>
     </header>
     <section class="home-page">
@@ -63,7 +70,7 @@
           id="big-screen-listening"
         >
           <img
-            src="Assets/Logo.png"
+            src="../static/Assets/Logo.png"
             alt="Logo"
             class="Rotating-logo"
             id="Rotating-logo"
@@ -89,7 +96,7 @@
     <section class="Ham-window" id="Ham-window">
       <div class="ham-window-nav">
         <div class="logo-box">
-          <img src="Assets/search-icon.svg" alt="Logo" class="logo" />
+          <img src="../static/Assets/search-icon.svg" alt="Logo" class="logo" />
         </div>
         <a href="" class="closing-btn"></a>
       </div>
@@ -104,127 +111,15 @@
             facilis voluptate reprehenderit, recusandae doloribus maiores.
           </div>
           <div class="Ham-SignIn-btn-box">
-            <a href="#Signup" class="Ham-SignIn-btn" onclick="disableScroll()"
+            <a href="/signup" class="Ham-SignIn-btn" onclick="disableScroll()"
               >SignIn</a
             >
           </div>
         </div>
       </div>
     </section>
+    {% block LoginSignupPage %}{% endblock %}
 
-    <section class="signup-page" id="Signup">
-      <!--  -->
-      <div class="form">
-        <!--  -->
-        <a href="" class="close-form" onclick="enableScroll()"></a>
-        <!--  -->
-        <div class="Login-Signup-Pill">
-          <a class="Login-Btn" onclick="MovingpillLogin()" id="Login-Pill">
-            Login</a
-          >
-          <a class="Signup-Btn" onclick="MovingpillSignup()" id="Signup-Pill">
-            Signup</a
-          >
-          <div class="Selection-pill" id="SP"></div>
-        </div>
-        <!--  -->
-        <div class="Login-Form" id="LPF">
-          <!--  -->
-          <div class="Form-Title">
-            Username
-            <input
-              type="text"
-              class="Textbox Username"
-              placeholder="email@example.com"
-            />
-          </div>
-          <!--  -->
-          <div class="Form-Title">
-            Password
-            <div class="password-box">
-              <input
-                type="password"
-                class="Textbox Password"
-                id="Login-Pass"
-                placeholder="*********"
-              />
-              <button
-                class="eye fa-solid fa-eye"
-                id="eye"
-                onclick="RevealPassword()"
-              ></button>
-            </div>
-          </div>
-          <!--  -->
-          <a href="" class="Form-Btn">Login</a>
-        </div>
-        <!--  -->
-        <div class="Signup-Form" id="SPF">
-          <!--  -->
-          <div class="Form-Title">
-            Name
-            <input
-              type="text"
-              class="Textbox Name"
-              placeholder="Name"
-              id="Signup-Name"
-            />
-          </div>
-          <!--  -->
-          <div class="Form-Title">
-            Email
-            <input
-              type="email"
-              class="Textbox Email"
-              placeholder="example@email.com"
-              id="Signup-Email"
-            />
-          </div>
-          <!--  -->
-          <div class="Form-Title">
-            Username
-            <input
-              type="text"
-              class="Textbox Username"
-              placeholder="AppleMan"
-              id="Signup-Username"
-            />
-          </div>
-          <!--  -->
-          <div class="Form-Title">
-            Password
-            <div class="password-box">
-              <input
-                type="password"
-                id="Signup-Pass"
-                class="Textbox Password"
-                placeholder="*********"
-                id="Signup-Password"
-              />
-              <button
-                onclick="RevealPassword()"
-                class="eye fa-solid fa-eye"
-                id="eye-C"
-                id="Signup-CPassword"
-              ></button>
-            </div>
-          </div>
-          <!--  -->
-          <div class="Form-Title">
-            Confirm Password
-            <input
-              type="password"
-              id="Signup-CPass"
-              class="Textbox CPassword"
-              placeholder="*********"
-            />
-          </div>
-          <!--  -->
-          <button href="#Signup" class="Form-Btn" id="Form-Btn" onclick="aa()">
-            Signup
-          </button>
-        </div>
-      </div>
-    </section>
+    
   </body>
 </html>

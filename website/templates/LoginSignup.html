@@ -1,0 +1,116 @@
+{% extends "index.html" %} {% block LoginSignupPage %}
+<section class="signup-page" id="Signup">
+  <!--  -->
+  <div class="form">
+    <!--  -->
+    <a href="/" class="close-form" onclick="enableScroll()"></a>
+    <!--  -->
+    <div class="Login-Signup-Pill">
+      <a class="Login-Btn" onclick="MovingpillLogin()" id="Login-Pill">
+        Login</a
+      >
+      <a class="Signup-Btn" onclick="MovingpillSignup()" id="Signup-Pill">
+        Signup</a
+      >
+      <div class="Selection-pill" id="SP"></div>
+    </div>
+    <!--  -->
+    <div class="Login-Form" id="LPF">
+      <!--  -->
+      <div class="Form-Title">
+        Username
+        <input
+          type="text"
+          class="Textbox Username"
+          placeholder="email@example.com"
+        />
+      </div>
+      <!--  -->
+      <div class="Form-Title">
+        Password
+        <div class="password-box">
+          <input
+            type="password"
+            class="Textbox Password"
+            id="Login-Pass"
+            placeholder="*********"
+          />
+          <button
+            class="eye fa-solid fa-eye"
+            id="eye"
+            onclick="RevealPassword()"
+          ></button>
+        </div>
+      </div>
+      <!--  -->
+      <a href="" class="Form-Btn">Login</a>
+    </div>
+    <!--  -->
+    <div class="Signup-Form" id="SPF">
+      <!--  -->
+      <div class="Form-Title">
+        Name
+        <input
+          type="text"
+          class="Textbox Name"
+          placeholder="Name"
+          id="Signup-Name"
+        />
+      </div>
+      <!--  -->
+      <div class="Form-Title">
+        Email
+        <input
+          type="email"
+          class="Textbox Email"
+          placeholder="example@email.com"
+          id="Signup-Email"
+        />
+      </div>
+      <!--  -->
+      <div class="Form-Title">
+        Username
+        <input
+          type="text"
+          class="Textbox Username"
+          placeholder="AppleMan"
+          id="Signup-Username"
+        />
+      </div>
+      <!--  -->
+      <div class="Form-Title">
+        Password
+        <div class="password-box">
+          <input
+            type="password"
+            id="Signup-Pass"
+            class="Textbox Password"
+            placeholder="*********"
+            id="Signup-Password"
+          />
+          <button
+            onclick="RevealPassword()"
+            class="eye fa-solid fa-eye"
+            id="eye-C"
+            id="Signup-CPassword"
+          ></button>
+        </div>
+      </div>
+      <!--  -->
+      <div class="Form-Title">
+        Confirm Password
+        <input
+          type="password"
+          id="Signup-CPass"
+          class="Textbox CPassword"
+          placeholder="*********"
+        />
+      </div>
+      <!--  -->
+      <button href="#Signup" class="Form-Btn" id="Form-Btn" onclick="aa()">
+        Signup
+      </button>
+    </div>
+  </div>
+</section>
+{% endblock %}

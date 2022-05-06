@@ -48,191 +48,8 @@ body {
   width: 100%;
 }
 
-/* Big Screen */
-@media (min-width: 800px) {
-  .logo-box {
-    height: 60px;
-    width: 60px;
-    margin: 0 20px;
-  }
-  .logo {
-    width: 60px;
-    min-width: 60px;
-  }
-  .nav-items {
-    flex: auto;
-  }
-  .nav-items_btn {
-    padding: 0px 10px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    transition: all 0.25s ease-in-out;
-  }
-  .nav-items a:hover {
-    color: #ffff00;
-  }
-  .search-area {
-    float: right;
-    background-color: #26c2ff;
-    border-radius: 10px;
-    display: flex;
-    padding: 0 20px;
-    margin-right: 20px;
-    color: white;
-  }
-
-  .search-box {
-    margin: 0 auto;
-    width: 150px;
-    border-radius: 5px;
-    background-color: transparent;
-    border: none;
-    font-size: 14px;
-    color: white;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-  }
-  .search-box:focus {
-    width: 250px;
-  }
-  .search-btn-box {
-    margin: 0 5px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
-  .search-btn {
-    padding: 10px 10px;
-    width: 40px;
-    transition: all 0.4s ease-in-out;
-  }
-  .search-btn:hover {
-    filter: invert(100%);
-    transform: scale(1.2);
-  }
-  .signin-btn {
-    height: 40px;
-    background-color: #08f;
-    border-radius: 8px;
-    padding: 0 20px;
-    margin: 0 20px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    white-space: nowrap;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
-    color: black;
-  }
-  .signin-btn:hover {
-    background-color: #06f19f;
-  }
-  .hamburger-menu {
-    display: none;
-  }
-}
-
-/* Medium Screen */
-@media (max-width: 1155px) {
-  .logo-box {
-    flex: 1 1 100%;
-    /* outline: 1px solid green; */
-    height: 60px;
-    width: 60px;
-    margin-left: 20px;
-  }
-  .logo {
-    /* outline: 1px solid red; */
-    width: 60px;
-    min-width: 60px;
-  }
-  .nav-items {
-    display: none;
-  }
-  .nav-items_btn {
-    padding: 0px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  .search-area {
-    float: right;
-    background-color: #26c2ff;
-    border-radius: 10px;
-    display: flex;
-    padding: 0 20px;
-    margin-right: 20px;
-    color: white;
-  }
-  .search-box {
-    color: white;
-    margin: 0 auto;
-    width: 150px;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-    border-radius: 5px;
-    background-color: transparent;
-    border: none;
-    font-size: 14px;
-  }
-
-  .search-box:focus {
-    width: 250px;
-  }
-
-  .search-btn-box {
-    margin: 0 5px;
-    border: none;
-    background-color: transparent;
-  }
-  .search-btn {
-    padding: 10px 10px;
-    width: 40px;
-  }
-  .signin-btn {
-    display: none;
-    height: 40px;
-    background-color: #08f;
-    border-radius: 8px;
-    color: #fff;
-    padding: 0 20px;
-    margin: 0 20px;
-    /* display: flex; */
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    white-space: nowrap;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .toggle-theme {
-    width: 80px;
-    height: 50px;
-    font-size: 27px;
-    text-align: center;
-    background-color: transparent;
-    border: none;
-  }
-  .hamburger-menu {
-    display: block;
-    padding: 0 20px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
-  .bars {
-    width: 25px;
-  }
-}
-
 /* Small Screen */
-@media (max-width: 640px) {
+@media (min-width: 100px) and (max-width: 640px) {
   .header {
     width: 100%;
   }
@@ -305,66 +122,6 @@ body {
   .bars {
     width: 25px;
   }
-}
-
-/* Main Content */
-
-/* Listenign Area */
-.main-content {
-  height: 80vh;
-  background-color: var(--clr-main-two);
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-/* Big Screen Listening Button */
-.Listening-circle {
-  width: 150px;
-  height: 150px;
-  border-radius: 150px;
-  border: none;
-  box-shadow: 0 0 0 0 rgba(0, 154, 178, 0.7);
-}
-/* Big Screen Listening Button animated */
-.Listening-circle.listening {
-  animation: pulsing1 1.2s infinite cubic-bezier(0.66, 0, 0, 1);
-  animation-fill-mode: fill;
-  transition: all 500ms ease-out;
-}
-@keyframes pulsing1 {
-  to {
-    box-shadow: 0 0 0 80vh rgba(232, 76, 61, 0);
-  }
-}
-/* Big Screen Listening Button Rotating image*/
-.Rotating-logo {
-  width: 70px;
-}
-/* Big Screen Listening Button Rotating image animated*/
-.Rotating-logo.listening {
-  animation: rotate-image 3s infinite ease-in-out alternate-reverse;
-}
-@keyframes rotate-image {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Hiding Bars on big screen */
-.listening-bars {
-  display: none;
-}
-/* Hiding rec btn on big screen */
-.rec-small {
-  display: none;
-}
-
-/* Cureated for phone and small screen */
-@media (max-width: 900px) {
   .Listening-circle {
     display: none;
   }
@@ -655,6 +412,249 @@ body {
     }
   }
 }
+/* Medi */
+@media (min-width: 641px) and (max-width: 1155px) {
+  .form {
+    width: 70% !important;
+  }
+  .logo-box {
+    flex: 1 1 100%;
+    /* outline: 1px solid green; */
+    height: 60px;
+    width: 60px;
+    margin-left: 20px;
+  }
+  .logo {
+    /* outline: 1px solid red; */
+    width: 60px;
+    min-width: 60px;
+  }
+  .nav-items {
+    display: none;
+  }
+  .nav-items_btn {
+    padding: 0px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .search-area {
+    float: right;
+    background-color: #26c2ff;
+    border-radius: 10px;
+    display: flex;
+    padding: 0 20px;
+    margin-right: 20px;
+    color: white;
+  }
+  .search-box {
+    color: white;
+    margin: 0 auto;
+    width: 150px;
+    -webkit-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+    border-radius: 5px;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+  }
+
+  .search-box:focus {
+    width: 250px;
+  }
+
+  .search-btn-box {
+    margin: 0 5px;
+    border: none;
+    background-color: transparent;
+  }
+  .search-btn {
+    padding: 10px 10px;
+    width: 40px;
+  }
+  .signin-btn {
+    display: none;
+    height: 40px;
+    background-color: #08f;
+    border-radius: 8px;
+    color: #fff;
+    padding: 0 20px;
+    margin: 0 20px;
+    /* display: flex; */
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .toggle-theme {
+    width: 80px;
+    height: 50px;
+    font-size: 27px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+  }
+  .hamburger-menu {
+    display: block;
+    padding: 0 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .bars {
+    width: 25px;
+  }
+}
+@media (min-width: 1156px) {
+  .logo-box {
+    height: 60px;
+    width: 60px;
+    margin: 0 20px;
+  }
+  .logo {
+    width: 60px;
+    min-width: 60px;
+  }
+  .nav-items {
+    flex: auto;
+  }
+  .nav-items_btn {
+    padding: 0px 10px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.25s ease-in-out;
+  }
+  .nav-items a:hover {
+    color: #ffff00;
+  }
+  .search-area {
+    float: right;
+    background-color: #26c2ff;
+    border-radius: 10px;
+    display: flex;
+    padding: 0 20px;
+    margin-right: 20px;
+    color: white;
+  }
+
+  .search-box {
+    margin: 0 auto;
+    width: 150px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    color: white;
+    -webkit-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+  }
+  .search-box:focus {
+    width: 250px;
+  }
+  .search-btn-box {
+    margin: 0 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .search-btn {
+    padding: 10px 10px;
+    width: 40px;
+    transition: all 0.4s ease-in-out;
+  }
+  .search-btn:hover {
+    filter: invert(100%);
+    transform: scale(1.2);
+  }
+  .signin-btn {
+    height: 40px;
+    background-color: #08f;
+    border-radius: 8px;
+    padding: 0 20px;
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    color: black;
+  }
+  .signin-btn:hover {
+    background-color: #06f19f;
+  }
+  .hamburger-menu {
+    display: none;
+  }
+}
+
+/* Main Content */
+
+/* Listenign Area */
+.main-content {
+  height: 80vh;
+  background-color: var(--clr-main-two);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+/* Big Screen Listening Button */
+.Listening-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+  border: none;
+  box-shadow: 0 0 0 0 rgba(0, 154, 178, 0.7);
+}
+/* Big Screen Listening Button animated */
+.Listening-circle.listening {
+  animation: pulsing1 1.2s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation-fill-mode: fill;
+  transition: all 500ms ease-out;
+}
+@keyframes pulsing1 {
+  to {
+    box-shadow: 0 0 0 80vh rgba(232, 76, 61, 0);
+  }
+}
+/* Big Screen Listening Button Rotating image*/
+.Rotating-logo {
+  width: 70px;
+}
+/* Big Screen Listening Button Rotating image animated*/
+.Rotating-logo.listening {
+  animation: rotate-image 3s infinite ease-in-out alternate-reverse;
+}
+@keyframes rotate-image {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hiding Bars on big screen */
+.listening-bars {
+  display: none;
+}
+/* Hiding rec btn on big screen */
+.rec-small {
+  display: none;
+}
+
+/* Cureated for phone and small screen */
+@media (max-width: 640px) {
+}
 .btnn {
   display: block;
 }
@@ -768,17 +768,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 580px) {
-  .Ham-SignIn-box {
-    background-color: #1a1a1a;
-    height: 120px;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-between;
-    align-content: center;
-  }
-}
 
 /* Signup popup */
 .signup-page {
@@ -792,12 +781,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  visibility: hidden;
   transition: opacity 500ms;
-  opacity: 0;
-}
-
-.signup-page:target {
   visibility: visible;
   opacity: 1;
 }
@@ -807,7 +791,7 @@ body {
   background-color: white;
   border-radius: 50px;
   height: 85%;
-  width: 50%;
+  width: 40%;
   overflow: hidden;
 }
 .close-form {
