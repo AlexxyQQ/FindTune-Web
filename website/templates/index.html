@@ -14,16 +14,19 @@
       src="https://kit.fontawesome.com/01c6376a08.js"
       crossorigin="anonymous"
     ></script>
-    <script
+    <!-- <script
       type="text/javascript"
       src="{{ url_for('static', filename='Script.js') }}"
-    ></script>
-    <!-- <script src="Script.js"></script> -->
+    ></script> -->
+    <script src="../static/Script.js"></script>
+    <link rel="stylesheet" href="../static/CSS/Main.css" />
+
     <link rel="stylesheet" href="../static/CSS/style.css" />
 
     <title>{% block title %}Find-Tune{% endblock %}</title>
   </head>
   <body>
+    <!-- {% block header %} -->
     <header class="header" id="nav">
       <!--  -->
       <div class="logo-box">
@@ -62,6 +65,7 @@
         <img src="../static/Assets/bars.svg" alt="Bar" class="bars" />
       </a>
     </header>
+    <!-- {% endblock %} {% block home-page %} -->
     <section class="home-page">
       <section class="main-content">
         <button
@@ -92,7 +96,7 @@
       </section>
       <section class="stuff"></section>
     </section>
-
+    <!-- {% endblock %}{% block Ham-window %} -->
     <section class="Ham-window" id="Ham-window">
       <div class="ham-window-nav">
         <div class="logo-box">
@@ -118,8 +122,6 @@
         </div>
       </div>
     </section>
-    {% block LoginSignupPage %}{% endblock %}
-
-    
+    <!-- {% endblock %} {% block LoginSignupPage %}{% endblock %} -->
   </body>
 </html>

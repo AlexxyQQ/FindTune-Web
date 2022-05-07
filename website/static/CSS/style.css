@@ -1,31 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  /* Colors */
-  --clr-light: white;
-  --clr-dark: black;
-  --clr-main-one: #61a1dd;
-  --clr-main-two: #00ccb1;
-  --clr-main-three: wheat;
-
-  --clr-accent-one: #fec28b;
-  --clr-accent-two: #16d7a8;
-  --clr-accent-three: #e5ebf5;
-
-  /* Fonts */
-}
-body {
-  font-family: sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.7;
-  /* color: #777; */
-  background-color: var(--clr-main-two);
-}
-
 /* Nav Bar */
 .header {
   background-color: var(--clr-main-two);
