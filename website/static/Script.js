@@ -1,10 +1,11 @@
+// Navbar Transform on Scroll
 window.onscroll = function () {
   console.log(window.pageYOffset);
-  var nav = document.getElementById("nav");
+  var nav = document.getElementById("Nav-Bar");
   if (window.pageYOffset > 10) {
-    nav.classList.add("navbar-transform");
+    nav.classList.add("Nav-Bar-Transform");
   } else {
-    nav.classList.remove("navbar-transform");
+    nav.classList.remove("Nav-Bar-Transform");
   }
 };
 

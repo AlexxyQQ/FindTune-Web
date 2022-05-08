@@ -8,24 +8,27 @@
       src="https://kit.fontawesome.com/01c6376a08.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../static/Script.js"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='Script.js') }}"
+    ></script>
     <link rel="stylesheet" href="../static/CSS/Main.css" />
-    <!-- {% block Style %} -->
+    {% block Style %}
     <link rel="stylesheet" href="../static/CSS/Home.css" />
-    <!-- {% endblock %} -->
+    {% endblock %}
 
-    <!-- <title>{% block Title %}Find-Tune{% endblock %}</title> -->
+    <title>{% block Title %}Find-Tune{% endblock %}</title>
   </head>
   <body>
-    <!-- {% block NavBar %} -->
+    {% block NavBar %}
     <header class="Nav-Bar" id="Nav-Bar">
       <div class="Logo-Box">
         <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
       </div>
       <div class="Navbar Nav-Items">
-        <a href="" class="Nav-Items-List Button">Apple</a>
-        <a href="" class="Nav-Items-List Button">Apple2</a>
-        <a href="" class="Nav-Items-List Button">Apple3</a>
+        <a href="" class="Nav-Items-List Button">My Library</a>
+        <a href="" class="Nav-Items-List Button">About</a>
+        <a href="" class="Nav-Items-List Button">Donate</a>
       </div>
       <div class="Search-Area">
         <input
@@ -42,18 +45,32 @@
           />
         </button>
       </div>
-
       <button class="Toggle-Theme Button">
-        <img src="../static/Assets/search-icon.svg" alt="Search" class="Img" />
+        <img
+          src="../static/Assets/moon-solid.svg"
+          alt="Search"
+          class="Img"
+          id="Theme-Toggler-Icon"
+        />
       </button>
-
       <a href="" class="Nav-Bar-Signup Button">SIGNUP</a>
       <a href="" class="Hamburger Button">
         <img src="../static/Assets/bars.svg" alt="Bar" class="Img" />
       </a>
     </header>
-    <!-- {% endblock %} {% block MusicListeningArea %} -->
-    <section class="Listening-Area"></section>
-    <!-- {% endblock %} -->
+    {% endblock %} {% block MusicListeningArea %}
+    <section class="Listening-Area">
+      <button class="Circular-Recorder Button">
+        <div class="Circle-Layer Ellipse-One"></div>
+        <div class="Circle-Layer Ellipse-Two"></div>
+        <div class="Circle-Layer Ellipse-Three"></div>
+        <img
+          src="../static/Assets/Logo.png"
+          alt="Logo"
+          class="Circle-Layer-Logo Logo Img"
+        />
+      </button>
+    </section>
+    {% endblock %}
   </body>
 </html>
