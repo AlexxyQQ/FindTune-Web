@@ -1,0 +1,236 @@
+.LoginSignupPage {
+  position: fixed;
+  z-index: 12;
+  top: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+}
+.LoginSignup__Form {
+  position: relative;
+  background-color: white;
+  border-radius: 50px;
+  height: 85%;
+  width: 700px;
+  overflow: hidden;
+}
+.LoginSignup__Form--Close {
+  position: absolute;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  margin: 15px 10px;
+  border: none;
+  content: url(../Assets/x-solid.svg);
+}
+.LoginSignup__Pill {
+  background-color: var(--clr-main-three);
+  width: 560px;
+  height: 56px;
+  border-radius: 50px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+}
+.LoginSignup__Pill--SelectionPill {
+  position: absolute;
+  z-index: 1;
+  color: black;
+  background-color: var(--clr-accent-three);
+  margin: 0 5px;
+  width: 250px;
+  height: 51px;
+  transform: translateX(0px);
+  border-radius: 50px;
+  transition: all 600ms ease-in-out;
+}
+.LoginSignup__Pill--SelectionPill.Signup {
+  background-color: var(--clr-accent-three);
+  transform: translateX(300px);
+}
+.LoginSignup__Pill--Login {
+  z-index: 2;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  width: 250px;
+  height: 95%;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+}
+.LoginSignup__Pill--Signup {
+  z-index: 2;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  margin-left: 50px;
+  width: 250px;
+  height: 95%;
+  border-radius: 50px;
+  font-size: 20px;
+  text-decoration: none;
+  transition: all 500ms ease-in-out;
+}
+
+.Login-Form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: left;
+  align-items: left;
+  justify-content: left;
+  width: 90%;
+  height: 70%;
+  border-radius: 30px;
+  background-color: var(--clr-main-three);
+  margin: 0 auto;
+  padding: 20px 50px;
+  transition: all 200ms ease-in-out;
+}
+
+.Signup-Form {
+  display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: left;
+  align-items: left;
+  justify-content: left;
+  width: 90%;
+  height: 83%;
+  border-radius: 30px;
+  background-color: var(--clr-main-three);
+  margin: 0 auto;
+  padding: 20px 50px;
+  transition: all 200ms ease-in-out;
+}
+.Form-Title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--clr-dark);
+  right: 0px;
+}
+.Textbox {
+  margin: 10px auto;
+  width: 100%;
+  height: 47px;
+  background-color: var(--clr-accent-three);
+  border: none;
+  border-radius: 15px;
+  text-indent: 20px;
+  color: #19122b;
+  font-size: 20px;
+  font-weight: 500;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 200ms ease-in-out;
+}
+.Submit {
+  margin: 0 auto;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--clr-accent-three);
+  width: 110px;
+  height: 50px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 300;
+}
+.Password-Box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  align-content: center;
+  flex-direction: row;
+}
+.eye {
+  border: none;
+  position: absolute;
+  background-color: transparent;
+  padding: 5px 8px;
+  right: 20px;
+}
+.Textbox:focus {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  font-size: 21px;
+}
+
+/* Small Screen */
+@media (min-width: 100px) and (max-width: 640px) {
+  .LoginSignup__Form {
+    width: 350px;
+  }
+  .LoginSignup__Form--Close {
+    margin-top: 15px;
+    height: 30px;
+    width: 30px;
+    margin: 0 auto;
+    border: none;
+    content: url(../Assets/x-solid.svg);
+  }
+  .LoginSignup__Pill {
+    width: 300px;
+    height: 48px;
+  }
+  .LoginSignup__Pill--SelectionPill {
+    width: 150px;
+    height: 41px;
+  }
+  .LoginSignup__Pill--SelectionPill.Signup {
+    background-color: var(--clr-accent-three);
+    transform: translateX(140px);
+  }
+}
+
+/* Medium Screen */
+@media (min-width: 640px) and (max-width: 1155px) {
+  .LoginSignup__Form {
+    width: 500px;
+  }
+  .LoginSignup__Pill {
+    width: 400px;
+    height: 56px;
+  }
+  .LoginSignup__Pill--SelectionPill {
+    width: 200px;
+    height: 51px;
+  }
+  .LoginSignup__Pill--SelectionPill.Signup {
+    background-color: var(--clr-accent-three);
+    transform: translateX(190px);
+  }
+}
+
+/* Large Screen */
+@media (min-width: 1155px) {
+}

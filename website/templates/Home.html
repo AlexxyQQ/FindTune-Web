@@ -45,7 +45,11 @@
           />
         </button>
       </div>
-      <button class="Toggle-Theme Button">
+      <button
+        class="Toggle-Theme Button"
+        id="Toggle-Theme-Btn"
+        onclick="Themeing()"
+      >
         <img
           src="../static/Assets/moon-solid.svg"
           alt="Search"
@@ -53,24 +57,70 @@
           id="Theme-Toggler-Icon"
         />
       </button>
-      <a href="" class="Nav-Bar-Signup Button">SIGNUP</a>
-      <a href="" class="Hamburger Button">
+      <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
+      <a href="#Hamburger-Window" class="Hamburger Button">
         <img src="../static/Assets/bars.svg" alt="Bar" class="Img" />
       </a>
     </header>
     {% endblock %} {% block MusicListeningArea %}
     <section class="Listening-Area">
-      <button class="Circular-Recorder Button">
-        <div class="Circle-Layer Ellipse-One"></div>
-        <div class="Circle-Layer Ellipse-Two"></div>
-        <div class="Circle-Layer Ellipse-Three"></div>
+      <button
+        class="Circular-Recorder Button"
+        onclick="Listening()"
+        id="Circular-Recorder"
+      >
+        <div class="Circle-Layer Ellipse-One" id="Ellipse-One"></div>
+        <div class="Circle-Layer Ellipse-Two" id="Ellipse-Two"></div>
+        <div class="Circle-Layer Ellipse-Three" id="Ellipse-Three"></div>
         <img
           src="../static/Assets/Logo.png"
           alt="Logo"
           class="Circle-Layer-Logo Logo Img"
+          id="Rotating-Logo"
         />
       </button>
+
+      <div class="Gooey" id="Gooey"></div>
+
+      <ul class="Bar-Recorder" id="Bar-Recorder">
+        <l id="RB-One" class="Recorder-Bar RB-One"></l>
+        <l id="RB-Two" class="Recorder-Bar RB-Two"></l>
+        <l id="RB-Three" class="Recorder-Bar RB-Three"></l>
+        <l id="RB-Four" class="Recorder-Bar RB-Four"></l>
+        <l id="RB-Five" class="Recorder-Bar RB-Five"></l>
+        <l id="RB-Six" class="Recorder-Bar RB-Six"></l>
+        <l id="RB-Seven" class="Recorder-Bar RB-Seven"></l>
+        <l id="RB-Eight" class="Recorder-Bar RB-Eight"></l>
+      </ul>
+      <button
+        class="Small-Record Button"
+        onclick="Listening2()"
+        id="Small-Record-Button"
+      ></button>
     </section>
-    {% endblock %}
+    {% endblock %} {% block HamburgerWindow %}
+    <section class="Hamburger-Window" id="Hamburger-Window">
+      <div class="Hamburger-Window-NavBar">
+        <div class="Logo-Box">
+          <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
+        </div>
+        <a href="" class="Hamburger-Window-Close Button"></a>
+      </div>
+      <div class="Hamburger-Content">
+        <a href="" class="Hamburger-Items-List Button">My Libraries</a>
+        <a href="" class="Hamburger-Items-List Button">About</a>
+        <a href="" class="Hamburger-Items-List Button">Donate</a>
+      </div>
+      <div class="Signin-Box">
+        <div class="Hamburger-Signin-Description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut delectus
+          fuga, repudiandae quod, inventore voluptates, eos totam deleniti ipsam
+          cumque blanditiis error nihil amet quo ipsum itaque eveniet ducimus
+          maiores!
+        </div>
+        <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
+      </div>
+    </section>
+    {% endblock %} {% block LoginSignupPage %} {% endblock %}
   </body>
 </html>

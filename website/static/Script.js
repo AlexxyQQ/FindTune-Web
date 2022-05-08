@@ -10,88 +10,136 @@ window.onscroll = function () {
 };
 
 function Themeing() {
-  var TC = document.getElementById("Theme-Changer");
-}
-
-function Listening() {
-  var bsl = document.getElementById("big-screen-listening");
-  var Rl = document.getElementById("Rotating-logo");
-
-  if (bsl.className == "Listening-circle") {
-    bsl.classList.add("listening");
-    Rl.classList.add("listening");
-
+  var ThemeToggler = document.getElementById("Theme-Toggler-Icon");
+  if (ThemeToggler.className == "Img") {
+    ThemeToggler.classList.add("ThemeChanged");
+    document.getElementById("Toggle-Theme-Btn").disabled = true;
     setTimeout(function () {
-      document.getElementById("big-screen-listenin").disabled = false;
-      bsl.classList.remove("listening");
-    }, 3000);
+      document.getElementById("Toggle-Theme-Btn").disabled = false;
+    }, 2000);
   } else {
-    bsl.classList.remove("listening");
-    Rl.classList.remove("listening");
+    ThemeToggler.classList.remove("ThemeChanged");
+    document.getElementById("Toggle-Theme-Btn").disabled = true;
+    setTimeout(function () {
+      document.getElementById("Toggle-Theme-Btn").disabled = false;
+    }, 2000);
   }
 }
 
-function smalllsn() {
-  var b = document.getElementById("lb");
-
-  if (b.className === "listening-bars") {
-    b.className += " listening";
-    document.getElementById("one").className += " listening";
-    document.getElementById("two").className += " listening";
-    document.getElementById("three").className += " listening";
-    document.getElementById("four").className += " listening";
-    document.getElementById("five").className += " listening";
-    document.getElementById("six").className += " listening";
-    document.getElementById("seven").className += " listening";
-    document.getElementById("eight").className += " listening";
-    document.getElementById("gooey").className += " listening";
-
-    document.getElementById("rs").disabled = true;
+function Listening() {
+  var Circular_Recorder = document.getElementById("Circular-Recorder");
+  var Ellipse_One = document.getElementById("Ellipse-One");
+  var Ellipse_Two = document.getElementById("Ellipse-Two");
+  var Ellipse_Three = document.getElementById("Ellipse-Three");
+  var Rotating_Logo = document.getElementById("Rotating-Logo");
+  console.log(Circular_Recorder.className);
+  if (Circular_Recorder.className == "Circular-Recorder Button") {
+    Ellipse_One.classList.add("Listening");
+    Ellipse_Two.classList.add("Listening");
+    Ellipse_Three.classList.add("Listening");
+    Rotating_Logo.classList.add("Listening");
+    Circular_Recorder.classList.add("Static");
+    document.getElementById("Circular-Recorder").disabled = true;
     setTimeout(function () {
-      document.getElementById("rs").disabled = false;
-      b.className = "listening-bars";
-      document.getElementById("one").className += "one";
-      document.getElementById("two").className += "two";
-      document.getElementById("three").className += "three";
-      document.getElementById("four").className += "four";
-      document.getElementById("five").className += "five";
-      document.getElementById("six").className += "six";
-      document.getElementById("seven").className += "seven";
-      document.getElementById("eight").className += "eight";
-      document.getElementById("gooey").className += "gooey";
+      document.getElementById("Circular-Recorder").disabled = false;
+      Ellipse_One.classList.remove("Listening");
+      Ellipse_Two.classList.remove("Listening");
+      Ellipse_Three.classList.remove("Listening");
+      Rotating_Logo.classList.remove("Listening");
+      Circular_Recorder.classList.remove("Static");
+    }, 8000);
+  }
+}
+
+function Listening2() {
+  var Bar_Recorder = document.getElementById("Bar-Recorder");
+
+  if (Bar_Recorder.className == "Bar-Recorder") {
+    Bar_Recorder.classList.add("Listening");
+    document.getElementById("RB-One").classList.add("Listening");
+    document.getElementById("RB-Two").classList.add("Listening");
+    document.getElementById("RB-Three").classList.add("Listening");
+    document.getElementById("RB-Four").classList.add("Listening");
+    document.getElementById("RB-Five").classList.add("Listening");
+    document.getElementById("RB-Six").classList.add("Listening");
+    document.getElementById("RB-Seven").classList.add("Listening");
+    document.getElementById("RB-Eight").classList.add("Listening");
+    document.getElementById("Gooey").classList.add("Listening");
+
+    document.getElementById("Small-Record-Button").disabled = true;
+    setTimeout(function () {
+      document.getElementById("Small-Record-Button").disabled = false;
+      Bar_Recorder.classList = "Bar-Recorder";
+      document.getElementById("RB-One").classList.remove("Listening");
+      document.getElementById("RB-Two").classList.remove("Listening");
+      document.getElementById("RB-Three").classList.remove("Listening");
+      document.getElementById("RB-Four").classList.remove("Listening");
+      document.getElementById("RB-Five").classList.remove("Listening");
+      document.getElementById("RB-Six").classList.remove("Listening");
+      document.getElementById("RB-Seven").classList.remove("Listening");
+      document.getElementById("RB-Eight").classList.remove("Listening");
+      document.getElementById("Gooey").classList.remove("Listening");
     }, 10000);
   }
 }
 
-function MovingpillSignup(params) {
-  var Sp = document.getElementById("SP");
-  var SpF = document.getElementById("SPF");
-  var LpF = document.getElementById("LPF");
-  document.getElementById("Login-Pill").style.color = "white";
-  document.getElementById("Login-Pill").style.fontWeight = "400";
+function MovePillToSignup(params) {
+  var SelectionPill = document.getElementById("SelectionPill");
+  var Login_Form = document.getElementById("Login-Form");
+  var Signup_Form = document.getElementById("Signup-Form");
+  document.getElementById("Login-Button").style.color = "white";
+  document.getElementById("Login-Button").style.fontWeight = "400";
 
-  document.getElementById("Signup-Pill").style.color = "black";
-  document.getElementById("Signup-Pill").style.fontWeight = "700";
+  document.getElementById("Signup-Button").style.color = "black";
+  document.getElementById("Signup-Button").style.fontWeight = "700";
 
-  if (Sp.className == "Selection-pill") {
-    Sp.classList.add("move-Signup");
-    SpF.style.display = "flex";
-    LpF.style.display = "none";
+  if (SelectionPill.className == "LoginSignup__Pill--SelectionPill") {
+    SelectionPill.classList.add("Signup");
+    Signup_Form.style.display = "flex";
+    Login_Form.style.display = "none";
   }
 }
-function MovingpillLogin(params) {
-  var Sp = document.getElementById("SP");
-  var LpF = document.getElementById("LPF");
-  var SpF = document.getElementById("SPF");
-  document.getElementById("Login-Pill").style.color = "black";
-  document.getElementById("Login-Pill").style.fontWeight = "700";
+function MovePillToLogin(params) {
+  var SelectionPill = document.getElementById("SelectionPill");
+  var Login_Form = document.getElementById("Login-Form");
+  var Signup_Form = document.getElementById("Signup-Form");
+  document.getElementById("Login-Button").style.color = "black";
+  document.getElementById("Login-Button").style.fontWeight = "700";
 
-  document.getElementById("Signup-Pill").style.color = "white";
-  document.getElementById("Signup-Pill").style.fontWeight = "400";
+  document.getElementById("Signup-Button").style.color = "white";
+  document.getElementById("Signup-Button").style.fontWeight = "400";
+  SelectionPill.classList.remove("Signup");
+  Signup_Form.style.display = "none";
+  Login_Form.style.display = "flex";
+}
 
-  Sp.classList.remove("move-Signup");
-  SpF.style.display = "none";
-  LpF.style.display = "flex";
+function RevealPassword() {
+  var Login_Form = document.getElementById("Login-Form");
+  var Signup_Form = document.getElementById("Signup-Form");
+  if (Login_Form.style.display != "none") {
+    if (document.getElementById("Login-Pass").type == "password") {
+      document.getElementById("Login-Pass").type = "text";
+      document.getElementById("eye").classList.remove("fa-eye");
+      document.getElementById("eye").classList.add("fa-eye-slash");
+    } else {
+      document.getElementById("Login-Pass").type = "password";
+      document.getElementById("eye").classList.add("fa-eye");
+      document.getElementById("eye").classList.remove("fa-eye-slash");
+    }
+  }
+  if (Signup_Form.style.display != "none") {
+    if (document.getElementById("Signup-Pass").type == "password") {
+      document.getElementById("Signup-Pass").type = "text";
+      document.getElementById("Signup-CPass").type = "text";
+      document.getElementById("eye-C").classList.remove("fa-eye");
+      document.getElementById("eye-C").classList.add("fa-eye-slash");
+    } else {
+      document.getElementById("Signup-Pass").type = "password";
+      document.getElementById("Signup-CPass").type = "password";
+      document.getElementById("eye-C").classList.add("fa-eye");
+      document.getElementById("eye-C").classList.remove("fa-eye-slash");
+    }
+  }
 }
 
 function disableScroll() {
@@ -106,35 +154,6 @@ function disableScroll() {
 
 function enableScroll() {
   window.onscroll = function () {};
-}
-
-function RevealPassword() {
-  var LpF = document.getElementById("LPF");
-  var SpF = document.getElementById("SPF");
-  if (LpF.style.display != "none") {
-    if (document.getElementById("Login-Pass").type == "password") {
-      document.getElementById("Login-Pass").type = "text";
-      document.getElementById("eye").classList.remove("fa-eye");
-      document.getElementById("eye").classList.add("fa-eye-slash");
-    } else {
-      document.getElementById("Login-Pass").type = "password";
-      document.getElementById("eye").classList.add("fa-eye");
-      document.getElementById("eye").classList.remove("fa-eye-slash");
-    }
-  }
-  if (SpF.style.display != "none") {
-    if (document.getElementById("Signup-Pass").type == "password") {
-      document.getElementById("Signup-Pass").type = "text";
-      document.getElementById("Signup-CPass").type = "text";
-      document.getElementById("eye-C").classList.remove("fa-eye");
-      document.getElementById("eye-C").classList.add("fa-eye-slash");
-    } else {
-      document.getElementById("Signup-Pass").type = "password";
-      document.getElementById("Signup-CPass").type = "password";
-      document.getElementById("eye-C").classList.add("fa-eye");
-      document.getElementById("eye-C").classList.remove("fa-eye-slash");
-    }
-  }
 }
 
 const username = document.getElementById("Signup-Username");

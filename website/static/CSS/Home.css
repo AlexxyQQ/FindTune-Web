@@ -19,6 +19,7 @@
 }
 
 .Listening-Area {
+  margin: 0 auto;
   height: 80vh;
   background-color: var(--clr-main-two);
   display: flex;
@@ -29,6 +30,213 @@
   align-content: center;
 }
 
+/* Lsitening Button */
+.Circular-Recorder {
+  z-index: 5;
+  height: 290px;
+  width: 290px;
+  z-index: 11;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+}
+.Circle-Layer {
+  position: absolute;
+  height: 280px;
+  width: 280px;
+  background-color: rgba(8, 242, 211, 0.67);
+  opacity: 0.4;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(0, 154, 178, 0.7);
+}
+.Ellipse-One {
+  z-index: 1;
+}
+.Ellipse-Two {
+  z-index: 2;
+  height: 210px;
+  width: 210px;
+  opacity: 0.4;
+}
+.Ellipse-Three {
+  z-index: 3;
+  height: 180px;
+  width: 180px;
+}
+.Circle-Layer-Logo {
+  z-index: 4;
+}
+
+/* Animations */
+
+.Ellipse-One.Listening {
+  animation-name: Pulsing1;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.66, 0, 0, 1);
+  transition: all 500ms ease-out;
+}
+@keyframes Pulsing1 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 80vh rgba(232, 76, 61, 0);
+  }
+}
+.Ellipse-Two.Listening {
+  animation-name: Pulsing2;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.66, 0, 0, 1);
+  transition: all 500ms ease-out;
+  transform: scale(1);
+}
+@keyframes Pulsing2 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 40vh rgba(232, 76, 61, 0);
+  }
+}
+.Ellipse-Three.Listening {
+  animation-name: Pulsing3;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.66, 0, 0, 1);
+  transition: all 500ms ease-out;
+  transform: scale(1);
+}
+@keyframes Pulsing3 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 20vh rgba(232, 76, 61, 0);
+  }
+}
+.Circle-Layer-Logo.Listening {
+  animation-name: RotatingLogo;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate-reverse;
+  transition: all 500ms ease-out;
+}
+@keyframes RotatingLogo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hamburger Window */
+.Hamburger-Window {
+  position: fixed;
+  z-index: 11;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0);
+  visibility: hidden;
+  transition: all 250ms ease-in;
+  transform: translateX(100%);
+  opacity: 0;
+}
+.Hamburger-Window:target {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+}
+.Hamburger-Window-NavBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: nowrap;
+  margin-top: 14.5px;
+  /* height: 60px; */
+  width: 100%;
+  background-color: transparent;
+}
+.Hamburger-Window-NavBar .Logo {
+  filter: invert(100%);
+}
+.Hamburger-Window-Close {
+  height: 35px;
+  width: 35px;
+  margin: 0 15px;
+  float: right;
+  background-color: transparent;
+  background-size: fit;
+  content: url(../Assets/x-solid.svg);
+  filter: invert(100%);
+}
+.Hamburger-Content {
+  margin: 18% 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: left;
+}
+.Hamburger-Items-List {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  padding: 12px 0px;
+}
+.Hamburger-Content a:hover {
+  color: yellow;
+}
+.Signin-Box {
+  display: flex;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+.Hamburger-Signin-Description {
+  padding: 10px;
+  width: 60ch;
+  color: white;
+  text-align: justify;
+}
+.Signin-Box .Nav-Bar-Signup {
+  display: flex !important;
+  height: 40px;
+  background-color: #08f;
+  border-radius: 8px;
+  padding: 0 20px;
+  margin: 0 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: black;
+}
+.Signin-Box .Nav-Bar-Signup:hover {
+  background-color: #06f19f;
+}
+
 /* Small Screen */
 @media (min-width: 100px) and (max-width: 640px) {
   .Nav-Bar {
@@ -36,14 +244,14 @@
   }
   .Logo-Box {
     flex: 1 1 100%;
-    height: 60px;
-    width: 60px;
-    min-width: 60px;
-    margin-left: 20px;
+    height: 40px;
+    width: 40px;
+    min-width: 40px;
+    margin-left: 5px;
   }
   .Logo {
-    width: 60px;
-    min-width: 60px;
+    width: 40px;
+    min-width: 40px;
   }
 
   .Nav-Items {
@@ -55,7 +263,7 @@
     background-color: #26c2ff;
     border-radius: 10px;
     display: flex;
-    margin-right: 20px;
+    margin-right: 10px;
     color: white;
   }
   .Search-Box {
@@ -84,7 +292,6 @@
   }
 
   .Toggle-Theme {
-    padding: 0 15px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -92,13 +299,17 @@
   .Toggle-Theme > .Img {
     width: 30px;
   }
+  .Toggle-Theme > .Img.ThemeChanged {
+    content: url(../Assets/sun-solid.svg);
+  }
 
   .Nav-Bar-Signup {
     display: none;
   }
 
   .Hamburger {
-    padding: 0 15px;
+    margin-left: 5px;
+
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -106,7 +317,219 @@
   .Hamburger > .Img {
     width: 30px;
   }
+
+  .Circular-Recorder {
+    display: none;
+  }
+
+  /* Gooey Animation */
+  .Gooey {
+    position: absolute;
+    z-index: 1;
+    background-image: linear-gradient(120deg, #34f0b1 0%, #d9ff00 100%);
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    width: 150px;
+    height: 144px;
+    transform-style: preserve-3d;
+    /* outline: 1px solid transparent; */
+    will-change: border-radius;
+  }
+  .Gooey.Listening,
+  .Gooey.Listening:before,
+  .Gooey.Listening:after {
+    animation: morph 3s linear infinite;
+  }
+  .Gooey:before,
+  .Gooey:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    box-shadow: 5px 5px 89px rgba(0, 255, 200, 0.21);
+    will-change: border-radius, transform, opacity;
+    animation-delay: 200ms;
+    background-image: linear-gradient(
+      120deg,
+      rgba(0, 255, 225, 0.55) 0%,
+      rgb(0, 255, 174) 100%
+    );
+  }
+  .Gooey:before {
+    /* animation: morph 3s linear infinite; */
+    opacity: 0.21;
+    animation-duration: 1.5s;
+  }
+  .Gooey:after {
+    /* animation: morph 3s linear infinite; */
+    animation-delay: 400ms;
+    opacity: 0.89;
+    line-height: 120px;
+    text-indent: -21px;
+  }
+  @keyframes morph {
+    0%,
+    100% {
+      border-radius: 42% 58% 70% 30% / 45% 65% 55% 55%;
+      transform: translate3d(6px, 8px, 12px) rotateZ(0.01deg);
+      transform: scale(0.8);
+    }
+    34% {
+      border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+      transform: translate3d(-6px, 15px, 10px) rotateZ(0.02deg);
+      transform: scale(0.6);
+    }
+    50% {
+      opacity: 0.89;
+      transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+      transform: scale(0.69);
+    }
+    67% {
+      border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+      transform: translate3d(6px, -13px, -15px) rotateZ(0.2deg);
+    }
+  }
+  @keyframes fadeIn {
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  .Bar-Recorder {
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 70%;
+    height: 200px;
+  }
+  .Recorder-Bar {
+    display: flex;
+    width: 15px;
+    border-radius: 10px;
+    background-color: yellow;
+  }
+  .RB-One {
+    display: inherit;
+    height: 50px;
+  }
+  .RB-One.Listening {
+    animation: BarsPosition 1.5s infinite ease-in,
+      BarsHeight 1.5s infinite ease-in;
+  }
+  .RB-Two {
+    display: inherit;
+    height: 90px;
+  }
+  .RB-Two.Listening {
+    animation: BarsPosition 1.1s infinite ease-in,
+      BarsHeight 1.1s infinite ease-in;
+  }
+  .RB-Three {
+    display: inherit;
+    height: 130px;
+  }
+  .RB-Three.Listening {
+    animation: BarsPosition 0.9s infinite ease-in,
+      BarsHeight 0.9s infinite ease-in;
+  }
+  .RB-Four {
+    display: inherit;
+    height: 180px;
+  }
+  .RB-Four.Listening {
+    animation: BarsPosition 0.7s infinite ease-in,
+      BarsHeight 0.7s infinite ease-in;
+  }
+  .RB-Five {
+    display: inherit;
+    height: 180px;
+  }
+  .RB-Five.Listening {
+    animation: BarsPosition 0.75s infinite ease-in,
+      BarsHeight 0.75s infinite ease-in;
+  }
+  .RB-Six {
+    display: inherit;
+    height: 130px;
+  }
+  .RB-Six.Listening {
+    animation: BarsPosition 0.95s infinite ease-in,
+      BarsHeight 0.95s infinite ease-in;
+  }
+  .RB-Seven {
+    height: 90px;
+  }
+  .RB-Seven.Listening {
+    animation: BarsPosition 1.15s infinite ease-in,
+      BarsHeight 1.15s infinite ease-in;
+  }
+  .RB-Eight {
+    display: inherit;
+    height: 50px;
+  }
+  .RB-Eight.Listening {
+    animation: BarsPosition 1.55s infinite ease-in,
+      BarsHeight 1.55s infinite ease-in;
+  }
+  @keyframes BarsPosition {
+    0% {
+    }
+    25% {
+      margin-bottom: 50px;
+    }
+    50% {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    75% {
+      margin-top: 50px;
+    }
+    100% {
+    }
+  }
+  @keyframes BarsHeight {
+    0% {
+      transform: scaleY(1.2);
+    }
+    25% {
+      transform: scaleY(0.8);
+    }
+    50% {
+    }
+    75% {
+      transform: scaleY(0.8);
+    }
+    100% {
+      transform: scaleY(1.2);
+    }
+  }
+  .Small-Record {
+    width: 90%;
+    height: 200px;
+    background-color: cyan;
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .Circular-Recorder {
+    display: none;
+  }
+  .Circle-Layer {
+    display: none;
+  }
+  .Circle-Layer-Logo {
+    display: none;
+  }
 }
+
 /* Medium Screen */
 @media (min-width: 640px) and (max-width: 1155px) {
   .Logo-Box {
@@ -170,6 +593,9 @@
   .Toggle-Theme > .Img {
     width: 30px;
   }
+  .Toggle-Theme > .Img.ThemeChanged {
+    content: url(../Assets/sun-solid.svg);
+  }
 
   .Nav-Bar-Signup {
     display: none;
@@ -183,6 +609,16 @@
   }
   .Hamburger > .Img {
     width: 30px;
+  }
+
+  .Gooey {
+    display: none;
+  }
+  .Bar-Recorder {
+    display: none;
+  }
+  .Small-Record {
+    display: none;
   }
 }
 /* Large Screen */
@@ -257,6 +693,10 @@
   }
   .Toggle-Theme > .Img {
     width: 30px;
+    transition: all 300ms ease-in-out;
+  }
+  .Toggle-Theme > .Img.ThemeChanged {
+    content: url(../Assets/sun-solid.svg);
   }
 
   .Nav-Bar-Signup {
@@ -281,110 +721,19 @@
     display: none;
   }
 
-  .Circular-Recorder {
-    z-index: 10;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
+  .Gooey {
+    display: none;
+  }
+  .Bar-Recorder {
+    display: none;
+  }
+  .Small-Record {
+    display: none;
   }
 
-  .Circle-Layer {
-    position: absolute;
-    height: 280px;
-    width: 280px;
-    background-color: rgba(8, 242, 211, 0.67);
-    opacity: 0.4;
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(0, 154, 178, 0.7);
-  }
-  .Ellipse-One {
-    z-index: 1;
-  }
-  .Ellipse-Two {
-    z-index: 2;
-    height: 210px;
-    width: 210px;
-    opacity: 0.4;
-  }
-  .Ellipse-Three {
-    z-index: 3;
-    height: 180px;
-    width: 180px;
-  }
-  .Circle-Layer-Logo {
-    z-index: 4;
-  }
-
-  /* Animations */
-
-  .Ellipse-One {
-    animation-name: Pulsing1;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(0.66, 0, 0, 1);
-    transition: all 500ms ease-out;
-  }
-  @keyframes Pulsing1 {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.05);
-      box-shadow: 0 0 0 80vh rgba(232, 76, 61, 0);
-    }
-  }
-  .Ellipse-Two {
-    animation-name: Pulsing2;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(0.66, 0, 0, 1);
-    transition: all 500ms ease-out;
-    transform: scale(1);
-  }
-  @keyframes Pulsing2 {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.1);
-      box-shadow: 0 0 0 40vh rgba(232, 76, 61, 0);
-    }
-  }
-  .Ellipse-Three {
-    animation-name: Pulsing3;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(0.66, 0, 0, 1);
-    transition: all 500ms ease-out;
-    transform: scale(1);
-  }
-  @keyframes Pulsing3 {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.15);
-      box-shadow: 0 0 0 20vh rgba(232, 76, 61, 0);
-    }
-  }
-  .Circle-Layer-Logo {
-    animation-name: RotatingLogo;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate-reverse;
-    transition: all 500ms ease-out;
-  }
-  @keyframes RotatingLogo {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  .Hamburger-Window:target {
+    transform: translateX(100%);
+    visibility: hidden;
+    opacity: 0;
   }
 }
