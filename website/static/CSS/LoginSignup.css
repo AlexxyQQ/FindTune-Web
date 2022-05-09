@@ -185,22 +185,65 @@
   font-size: 21px;
 }
 
-/* Small Screen */
-@media (min-width: 100px) and (max-width: 640px) {
+.Login-ForgotPassword.Button {
+  justify-content: end;
+  font-size: 17px;
+}
+@media (min-width: 100px) and (max-width: 400px) {
+  .Login-Form {
+    padding: 20px 20px;
+  }
+  .Signup-Form {
+    padding: 10px 20px;
+  }
   .LoginSignup__Form {
-    width: 350px;
+    width: 90%;
   }
   .LoginSignup__Form--Close {
-    margin-top: 15px;
+    position: relative;
     height: 30px;
     width: 30px;
-    margin: 0 auto;
     border: none;
+    margin: 5px auto;
+    content: url(../Assets/x-solid.svg);
+  }
+  .LoginSignup__Pill {
+    width: 250px;
+    height: 48px;
+    margin-top: 10px;
+  }
+  .LoginSignup__Pill--SelectionPill {
+    width: 100px;
+    height: 41px;
+  }
+  .LoginSignup__Pill--SelectionPill.Signup {
+    background-color: var(--clr-accent-three);
+    transform: translateX(140px);
+  }
+}
+/* Small Screen */
+@media (min-width: 400px) and (max-width: 640px) {
+  .Login-Form {
+    padding: 20px 20px;
+  }
+  .Signup-Form {
+    padding: 20px 20px;
+  }
+  .LoginSignup__Form {
+    width: 80%;
+  }
+  .LoginSignup__Form--Close {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    border: none;
+    margin: 5px auto;
     content: url(../Assets/x-solid.svg);
   }
   .LoginSignup__Pill {
     width: 300px;
     height: 48px;
+    margin-top: 10px;
   }
   .LoginSignup__Pill--SelectionPill {
     width: 150px;
