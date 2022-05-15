@@ -142,52 +142,18 @@ function RevealPassword() {
   }
 }
 
-function disableScroll() {
-  // To get the scroll position of current webpage
-  TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-  (LeftScroll = window.pageXOffset || document.documentElement.scrollLeft),
-    // if scroll happens, set it to the previous value
-    (window.onscroll = function () {
-      window.scrollTo(LeftScroll, TopScroll);
-    });
-}
-
-function enableScroll() {
-  window.onscroll = function () {};
-}
-
-const username = document.getElementById("Signup-Username");
-const email = document.getElementById("Signup-Email");
-const password = document.getElementById("Signup-Password");
-const cpassword = document.getElementById("Signup-CPassword");
-
-//Show input error messages
 function showError(input, message) {
   const formControl = input.parentElement;
-  formControl.className = "form-control error";
-  const small = formControl.querySelector("small");
-  small.innerText = message;
+  formControl.className = "Form-Title";
+  var small = formControl.querySelector("p");
+  console.log(small);
+  small.style.visibility = "visible";
+  // small.innerText = message;
 }
-
-//show success colour
-function showSucces(input) {
-  const formControl = input.parentElement;
-  formControl.className = "form-control success";
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
-
-//check email is valid
-function checkEmail(input) {
-  const re =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (re.test(input.value.trim())) {
-    showSucces(input);
-  } else {
-    showError(input, "Email is not invalid");
-  }
-}
-
-//checkRequired fields
-function checkRequired(inputArr) {
+function CheckRequired(inputArr) {
   inputArr.forEach(function (input) {
     if (input.value.trim() === "") {
       showError(input, `${getFieldName(input)} is required`);
@@ -197,44 +163,209 @@ function checkRequired(inputArr) {
   });
 }
 
-//check input Length
-function checkLength(input, min, max) {
-  if (input.value.length < min) {
-    showError(
-      input,
-      `${getFieldName(input)} must be at least ${min} characters`
-    );
-  } else if (input.value.length > max) {
-    showError(
-      input,
-      `${getFieldName(input)} must be les than ${max} characters`
-    );
-  } else {
-    showSucces(input);
-  }
+function Submit_SignupForm() {
+  var SignupName = document.Signup_Form.FullName;
+  var SignupEmail = document.Signup_Form.Email;
+  var SignupUsername = document.Signup_Form.Username;
+  var SignupPassword = document.Signup_Form.Password;
+  var SignupCPassword = document.Signup_Form.CPassword;
+
+  CheckRequired([
+    SignupName,
+    SignupEmail,
+    SignupUsername,
+    SignupPassword,
+    SignupCPassword,
+  ]);
 }
 
-//get FieldName
-function getFieldName(input) {
-  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
-}
+// const form = document.getElementById("Signup-Form");
+// var username = document.Signup_Form.Username;
+// var email = document.Signup_Form.Email;
+// var password = document.Signup_Form.Password;
+// var password2 = document.Signup_Form.CPassword;
+// //Show input error messages
+// function showError(input, message) {
+//   const formControl = input.parentElement;
+//   formControl.className = "form-control error";
+//   const small = formControl.querySelector("small");
+//   small.innerText = message;
+// }
 
-// check passwords match
-function checkPasswordMatch(input1, input2) {
-  if (input1.value !== input2.value) {
-    showError(input2, "Passwords do not match");
-    console.log("MOFO");
-  }
-}
+// //show success colour
+// function showSucces(input) {
+//   const formControl = input.parentElement;
+//   formControl.className = "form-control success";
+// }
+
+// //check email is valid
+// function checkEmail(input) {
+//   const re =
+//     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//   if (re.test(input.value.trim())) {
+//     showSucces(input);
+//   } else {
+//     showError(input, "Email is not invalid");
+//   }
+// }
+
+// //checkRequired fields
+// function checkRequired(inputArr) {
+//   inputArr.forEach(function (input) {
+//     if (input.value.trim() === "") {
+//       showError(input, `${getFieldName(input)} is required`);
+//     } else {
+//       showSucces(input);
+//     }
+//   });
+// }
+
+// //check input Length
+// function checkLength(input, min, max) {
+//   if (input.value.length < min) {
+//     showError(
+//       input,
+//       `${getFieldName(input)} must be at least ${min} characters`
+//     );
+//   } else if (input.value.length > max) {
+//     showError(
+//       input,
+//       `${getFieldName(input)} must be les than ${max} characters`
+//     );
+//   } else {
+//     showSucces(input);
+//   }
+// }
+
+// //get FieldName
+// function getFieldName(input) {
+//   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+// }
+
+// // check passwords match
+// function checkPasswordMatch(input1, input2) {
+//   if (input1.value !== input2.value) {
+//     showError(input2, "Passwords do not match");
+//   }
+// }
+// function Submit_SignupForm() {
+//   var SignupName = document.Signup_Form.FullName;
+//   var SignupEmail = document.Signup_Form.Email;
+//   var SignupUsername = document.Signup_Form.Username;
+//   var SignupPassword = document.Signup_Form.Password;
+//   var SignupCPassword = document.Signup_Form.CPassword;
+//   checkRequired([username, email, password, password2]);
+//   checkLength(username, 3, 15);
+//   checkLength(password, 6, 25);
+//   checkEmail(email);
+//   checkPasswordMatch(password, password2);
+
+//   document.getElementById("Form-Btn").type = "submit";
+// }
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// //Event Listeners
+// form.addEventListener("submit", function (e) {
+//   e.preventDefault();
+
+//   checkRequired([username, email, password, password2]);
+//   checkLength(username, 3, 15);
+//   checkLength(password, 6, 25);
+//   checkEmail(email);
+//   checkPasswordMatch(password, password2);
+// });
+
+// function disableScroll() {
+//   // To get the scroll position of current webpage
+//   TopScroll = window.pageYOffset || document.documentElement.scrollTop;
+//   (LeftScroll = window.pageXOffset || document.documentElement.scrollLeft),
+//     // if scroll happens, set it to the previous value
+//     (window.onscroll = function () {
+//       window.scrollTo(LeftScroll, TopScroll);
+//     });
+// }
+
+// function enableScroll() {
+//   window.onscroll = function () {};
+// }
+
+// const username = document.getElementById("Signup-Username");
+// const email = document.getElementById("Signup-Email");
+// const password = document.getElementById("Signup-Password");
+// const cpassword = document.getElementById("Signup-CPassword");
+
+// //Show input error messages
+// function showError(input, message) {
+//   const formControl = input.parentElement;
+//   formControl.className = "form-control error";
+//   const small = formControl.querySelector("small");
+//   small.innerText = message;
+// }
+
+// //show success colour
+// function showSucces(input) {
+//   const formControl = input.parentElement;
+//   formControl.className = "form-control success";
+// }
+
+// //check email is valid
+// function checkEmail(input) {
+//   const re =
+//     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//   if (re.test(input.value.trim())) {
+//     showSucces(input);
+//   } else {
+//     showError(input, "Email is not invalid");
+//   }
+// }
+
+// //checkRequired fields
+// function checkRequired(inputArr) {
+//   inputArr.forEach(function (input) {
+//     if (input.value.trim() === "") {
+//       showError(input, `${getFieldName(input)} is required`);
+//     } else {
+//       showSucces(input);
+//     }
+//   });
+// }
+
+// //check input Length
+// function checkLength(input, min, max) {
+//   if (input.value.length < min) {
+//     showError(
+//       input,
+//       `${getFieldName(input)} must be at least ${min} characters`
+//     );
+//   } else if (input.value.length > max) {
+//     showError(
+//       input,
+//       `${getFieldName(input)} must be les than ${max} characters`
+//     );
+//   } else {
+//     showSucces(input);
+//   }
+// }
+
+// //get FieldName
+// function getFieldName(input) {
+//   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+// }
+
+// // check passwords match
+// function checkPasswordMatch(input1, input2) {
+//   if (input1.value !== input2.value) {
+//     showError(input2, "Passwords do not match");
+//     console.log("MOFO");
+//   }
+// }
 
 //Event Listeners
 // document.getElementById("Form-Btn").addEventListener("click", function (e) {
 //   e.preventDefault();
 // });
-function aa() {
-  // checkRequired([username, email, password, cpassword]);
-  // checkLength(username, 3, 15);
-  // checkLength(password, 6, 25);
-  // checkEmail(email);
-  checkPasswordMatch(password, cpassword);
-}
+// function aa() {
+// checkRequired([username, email, password, cpassword]);
+// checkLength(username, 3, 15);
+// checkEmail(email);
+// checkPasswordMatch(password, cpassword);
+// }

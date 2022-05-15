@@ -25,108 +25,131 @@
       <div class="LoginSignup__Pill--SelectionPill" id="SelectionPill"></div>
     </div>
     <!--  -->
-    <div class="Login-Form" id="Login-Form">
+    <form method="POST" class="Login-Form" id="Login-Form">
       <!--  -->
       <div class="Form-Title">
         Username
         <input
+          name="Username"
           type="text"
           class="Textbox Username"
-          placeholder="email@example.com"
+          placeholder="AppleMan"
         />
+        <p class="Login-Username Error-Message" id="Error-Message">
+          Aplpew asas djsalkdj.
+        </p>
       </div>
       <!--  -->
       <div class="Form-Title">
         Password
         <div class="Password-Box">
           <input
+            name="Password"
             type="password"
             class="Textbox Password"
             id="Login-Pass"
             placeholder="*********"
           />
-          <button
+          <a
             class="eye fa-solid fa-eye"
             id="eye"
             onclick="RevealPassword()"
-          ></button>
+          ></a>
         </div>
+        <p class="Login-Password Error-Message" id="Error-Message">A</p>
       </div>
       <a href="" class="Login-ForgotPassword Button">Forgot Password?</a>
       <!--  -->
-      <a href="" class="Submit Form-Login Button">Login</a>
-    </div>
+
+      <button
+        type="button"
+        class="Submit Form-Login Button"
+        onclick="Submit_SignupForm()"
+      >
+        Login
+      </button>
+    </form>
     <!--  -->
-    <div class="Signup-Form" id="Signup-Form">
+    <form method="POST" class="Signup-Form" id="Signup-Form" name="Signup_Form">
       <!--  -->
       <div class="Form-Title">
         Name
         <input
+          name="FullName"
           type="text"
           class="Textbox Name"
           placeholder="Name"
           id="Signup-Name"
         />
+        <p class="Signup-Name Error-Message" id="Error-Message">A</p>
       </div>
       <!--  -->
       <div class="Form-Title">
         Email
         <input
+          name="Email"
           type="email"
           class="Textbox Email"
           placeholder="example@email.com"
           id="Signup-Email"
         />
+        <p class="Signup-Email Error-Message" id="Error-Message">A</p>
       </div>
       <!--  -->
       <div class="Form-Title">
         Username
         <input
+          name="Username"
           type="text"
           class="Textbox Username"
           placeholder="AppleMan"
           id="Signup-Username"
         />
+        <p class="Signup-Username Error-Message" id="Error-Message">A</p>
       </div>
       <!--  -->
       <div class="Form-Title">
         Password
-        <div class="Password-Box">
+        <!-- <div class="Password-Box"> -->
           <input
+            name="Password"
             type="password"
             id="Signup-Pass"
             class="Textbox Password"
             placeholder="*********"
             id="Signup-Password"
           />
-          <button
+          <!-- <button
+            type="button"
             onclick="RevealPassword()"
             class="eye fa-solid fa-eye"
             id="eye-C"
-            id="Signup-CPassword"
-          ></button>
-        </div>
+          ></button> -->
+        <!-- </div> -->
+        <p class="Signup-CPassword Error-Message" id="Error-Message">A</p>
       </div>
       <!--  -->
       <div class="Form-Title">
         Confirm Password
         <input
+          name="CPassword"
           type="password"
-          id="Signup-CPass"
+          id="Signup-CPassword"
           class="Textbox CPassword"
           placeholder="*********"
         />
+        <p class="Signup-CPassword Error-Message" id="Error-Message">A</p>
       </div>
       <!--  -->
       <button
-        href="#Signup"
         class="Submit Form-Signup Button"
         id="Form-Btn"
-        onclick="aa()"
+        type="button"
+        onclick="Submit_SignupForm()"
       >
         Signup
       </button>
-    </div>
+    </form>
   </div>
 </section>
 {% endblock %}
