@@ -25,7 +25,7 @@
       <div class="LoginSignup__Pill--SelectionPill" id="SelectionPill"></div>
     </div>
     <!--  -->
-    <form method="POST" class="Login-Form" id="Login-Form">
+    <form method="POST" class="Login-Form" id="Login-Form" name="Login_Form">
       <!--  -->
       <div class="Form-Title">
         Username
@@ -42,20 +42,14 @@
       <!--  -->
       <div class="Form-Title">
         Password
-        <div class="Password-Box">
-          <input
-            name="Password"
-            type="password"
-            class="Textbox Password"
-            id="Login-Pass"
-            placeholder="*********"
-          />
-          <a
-            class="eye fa-solid fa-eye"
-            id="eye"
-            onclick="RevealPassword()"
-          ></a>
-        </div>
+        <input
+          name="Password"
+          type="password"
+          class="Textbox Password"
+          id="Login-Pass"
+          placeholder="*********"
+        />
+        <a class="eye fa-solid fa-eye" id="eye" onclick="RevealPassword()"></a>
         <small class="Login-Password Error-Message" id="Error-Message">A</small>
       </div>
       <a href="" class="Login-ForgotPassword Button">Forgot Password?</a>
@@ -64,7 +58,7 @@
       <button
         type="button"
         class="Submit Form-Login Button"
-        onclick="Submit_SignupForm()"
+        onclick="Submit_SigninForm()"
       >
         Login
       </button>

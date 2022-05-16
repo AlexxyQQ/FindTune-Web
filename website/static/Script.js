@@ -141,7 +141,7 @@ function RevealPassword() {
     }
   }
 }
-
+// Validation
 function showError(input, message) {
   const formControl = input.parentElement;
   formControl.className = "Form-Title";
@@ -248,6 +248,19 @@ function Submit_SignupForm() {
     checkPasswordMatch(SignupPassword, SignupCPassword)
   ) {
     console.log("Ass");
+    document.getElementById("Form-Btn").type = "submit";
+  }
+}
+function Submit_SigninForm() {
+  var LoginUsername = document.Login_Form.Username;
+  var LoginPassword = document.Login_Form.Password;
+  CheckRequired([LoginUsername, LoginPassword]);
+  if (
+    checkLength(LoginUsername, 3, 15) &&
+    checkUsername(LoginUsername) &&
+    checkLength(LoginPassword, 5, 15) &&
+    checkPassword(LoginPassword)
+  ) {
     document.getElementById("Form-Btn").type = "submit";
   }
 }

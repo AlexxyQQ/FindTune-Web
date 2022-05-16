@@ -17,7 +17,7 @@
   position: relative;
   background-color: white;
   border-radius: 50px;
-  height: 85%;
+  height: 90%;
   width: 700px;
   overflow: hidden;
 }
@@ -188,10 +188,10 @@
   background-color: transparent;
   padding: 5px 8px;
   right: 20px;
-}
-.Signup-Form .Form-Title .eye {
   top: 42px;
+  font-size: 17px;
 }
+
 .Textbox:focus {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   font-size: 21px;
@@ -209,9 +209,11 @@
   }
   .Signup-Form {
     padding: 10px 20px;
+    height: auto;
   }
   .LoginSignup__Form {
     width: 90%;
+    overflow: auto;
   }
   .LoginSignup__Form--Close {
     position: relative;
@@ -242,9 +244,10 @@
   }
   .Signup-Form {
     padding: 20px 20px;
+    height: auto;
   }
   .LoginSignup__Form {
-    width: 80%;
+    width: 90%;
   }
   .LoginSignup__Form--Close {
     position: relative;
