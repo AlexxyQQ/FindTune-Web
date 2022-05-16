@@ -1,3 +1,159 @@
 .Preview-Area {
-  height: 100vh;
+  height: auto;
+  padding: 10px 0px;
+  background-color: #e2e22c;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+}
+.Preview-Card {
+  padding: 20px;
+  width: 90%;
+  height: auto;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.Card {
+  filter: drop-shadow(6px 4px 13px rgba(0, 0, 0, 0.5));
+  border-radius: 40px;
+}
+
+.Album-Cover {
+  background-image: url(../Assets/FloweArrDee.jpg);
+  background-size: cover;
+  z-index: 6;
+  width: 80%;
+  height: 250px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: center;
+}
+.Song-Info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.Song-Name {
+  font-size: 25px;
+}
+.Artis-Name {
+  font-size: 15px;
+}
+.Lyrics {
+  z-index: 5;
+  display: none;
+  background-color: white;
+  transition: all 500ms ease-in-out;
+}
+.Song-Lyrics {
+  font-size: 15px;
+  padding: 15px;
+}
+
+.Search-Card__Search-Button {
+  margin: 0 5px;
+  width: 40px;
+}
+.Search-Card__Search-Button > .Img {
+  height: 80%;
+  width: 100%;
+  transition: all 500ms ease-in-out;
+}
+.Search-Card__Search-Button > .Img:hover {
+  transform: scale(1.1);
+  filter: invert(100%);
+}
+
+/* Small Screen */
+@media (min-width: 100px) and (max-width: 640px) {
+  .Preview-Card {
+    position: relative;
+  }
+  .Album-Cover {
+    width: 250px;
+    height: 300px;
+    transition: transform 350ms ease-in-out;
+  }
+  .Song-Name {
+    font-size: 20px;
+  }
+  .Lyrics {
+    display: block;
+    /* position: absolute; */
+    background: white;
+    transform: scale(0.2, 0.6);
+    opacity: 0;
+    height: 50px;
+    overflow: hidden;
+  }
+  .Song-Lyrics {
+    padding-top: 35px;
+    font-size: 20px;
+  }
+
+  .Album-Cover:focus-within ~ .Lyrics,
+  .Album-Cover:focus ~ .Lyrics,
+  .Album-Cover:hover ~ .Lyrics {
+    transition: transform 250ms ease-in-out, opacity 200ms linear;
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    transform: scale(1.02);
+    transform: translateY(-27%);
+  }
+  .Album-Cover:focus-within,
+  .Album-Cover:focus,
+  .Album-Cover:hover {
+    transform: translateY(-27%) scale(0.9);
+  }
+}
+/* Medium Screen */
+@media (min-width: 640px) and (max-width: 1155px) {
+  .Album-Cover {
+    width: 320px;
+    height: 400px;
+  }
+  .Lyrics {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .Song-Lyrics {
+    font-size: 20px;
+  }
+}
+/* Large Screen */
+@media (min-width: 1155px) {
+  .Preview-Card {
+    flex-direction: row;
+  }
+  .Album-Cover {
+    width: 400px;
+    height: 550px;
+    transform: translateX(5%);
+  }
+  .Lyrics {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .Song-Lyrics {
+    width: max-content;
+    padding-left: 30px;
+    font-size: 25px;
+  }
 }

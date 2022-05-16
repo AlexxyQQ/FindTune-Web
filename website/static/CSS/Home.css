@@ -3,7 +3,7 @@
   position: sticky;
   padding: 15px 0;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
   width: 80%;
   -webkit-transition: width 0.3s ease-in-out;
   transform: width 0.3s ease-in-out;
@@ -28,6 +28,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: center;
+  overflow: hidden;
 }
 
 /* Lsitening Button */
