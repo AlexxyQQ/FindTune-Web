@@ -141,6 +141,14 @@ function RevealPassword() {
     }
   }
 }
+
+function SearchPreviewExpand() {
+  var SIC = document.getElementById("Searched_Items_Card");
+  if (SIC.className == "Searched-Items-Card") {
+    SIC.classList.add("Expanded");
+  }
+}
+
 // Validation
 function showError(input, message) {
   const formControl = input.parentElement;

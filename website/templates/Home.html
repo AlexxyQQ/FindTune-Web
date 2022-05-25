@@ -154,16 +154,18 @@
       </div>
       <div class="Preview-Card Preview-Card__Two">
         <div class="Search-Card">
-          <div class="Search-Area">
+          <div class="Search-Card__Search-Area">
             <input
               type="text"
-              class="Search-Box"
+              class="Search-Card__Search-Box"
               value="Let Her Go"
               placeholder="Let Her Go"
-              id="Search-Box"
               readonly
             />
-            <button class="Search-Card__Search-Button Button">
+            <button
+              class="Search-Card__Search-Button Button"
+              onclick="SearchPreviewExpand()"
+            >
               <img
                 src="../static/Assets/search-icon.svg"
                 alt="Search"
@@ -171,9 +173,46 @@
               />
             </button>
           </div>
+          <div class="Searched-Items-Card" id="Searched_Items_Card">
+            <div class="Searched-Item-List">
+              <div class="Searched-Items">
+                <img
+                  src="../static/Assets/LHG-P.jpg"
+                  alt=""
+                  class="Searched-Item-Image Img"
+                />
+                <div class="Searched-Item__Song-Info">
+                  <div class="Searched-Item__Song-Name">Let Her Go</div>
+                  <div class="Searched-Item__Artist-Name">Passenger</div>
+                </div>
+              </div>
+              <div class="Searched-Items">
+                <img
+                  src="../static/Assets/LHG-TW.jpg"
+                  alt=""
+                  class="Searched-Item-Image Img"
+                />
+                <div class="Searched-Item__Song-Info">
+                  <div class="Searched-Item__Song-Name">Let Her Go</div>
+                  <div class="Searched-Item__Artist-Name">Tyler Ward</div>
+                </div>
+              </div>
+              <div class="Searched-Items">
+                <img
+                  src="../static/Assets/LHG-GM.jpg"
+                  alt=""
+                  class="Searched-Item-Image Img"
+                />
+                <div class="Searched-Item__Song-Info">
+                  <div class="Searched-Item__Song-Name">Let Her Go</div>
+                  <div class="Searched-Item__Artist-Name">Gavin Mikhail</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="Preview-Card Preview-Card__Three">
+      <!-- <div class="Preview-Card Preview-Card__Three">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
         eaque aut perspiciatis neque illum, dolorum officia impedit laboriosam
         nulla repellat quo reprehenderit ad delectus eum doloremque temporibus
@@ -215,9 +254,15 @@
         illum, dolorum officia impedit laboriosam nulla repellat quo
         reprehenderit ad delectus eum doloremque temporibus ducimus corrupti
         sed.
-      </div>
+      </div> -->
     </section>
 
     {% endblock %}
+    <section class="Footer">
+      <!-- <div class="Logo-Box"> -->
+      <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
+      <p class="Footer__Title">Find-Tune</p>
+      <!-- </div> -->
+    </section>
   </body>
 </html>

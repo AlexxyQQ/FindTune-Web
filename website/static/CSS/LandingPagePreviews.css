@@ -66,6 +66,32 @@
   padding: 15px;
 }
 
+.Search-Card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-end;
+}
+.Search-Card__Search-Area {
+  float: right;
+  background-color: #26c2ff;
+  border-radius: 10px;
+  display: flex;
+  color: white;
+}
+.Search-Card__Search-Box {
+  padding-left: 10px;
+  outline: none;
+  color: white;
+  margin: 0 auto;
+  max-width: 230px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
 .Search-Card__Search-Button {
   margin: 0 5px;
   width: 40px;
@@ -78,6 +104,51 @@
 .Search-Card__Search-Button > .Img:hover {
   transform: scale(1.1);
   filter: invert(100%);
+}
+
+.Searched-Items-Card {
+  display: block;
+  height: 0px;
+  width: 280px;
+  border-radius: 5px;
+  background-color: white;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 500ms ease;
+}
+.Searched-Item-List {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+}
+.Searched-Items {
+  padding: 10px;
+  border-bottom: 2px solid grey;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.Searched-Item-Image {
+  width: 80px;
+}
+.Searched-Item__Song-Info {
+  flex: 1 1 100%;
+  margin: auto 5px auto 20px;
+}
+.Searched-Item__Song-Name {
+  font-size: 15px;
+  font-weight: 700;
+}
+.Searched-Item__Artist-Name {
+  font-size: 13px;
+  font-weight: 200;
 }
 
 /* Small Screen */
@@ -115,12 +186,19 @@
     visibility: visible;
     height: auto;
     transform: scale(1.02);
-    transform: translateY(-27%);
+    transform: translateY(-17%);
   }
   .Album-Cover:focus-within,
   .Album-Cover:focus,
   .Album-Cover:hover {
     transform: translateY(-27%) scale(0.9);
+  }
+
+  .Search-Card__Search-Area:focus-within ~ .Searched-Items-Card,
+  .Search-Card__Search-Area:hover ~ .Searched-Items-Card {
+    transition: transform 200ms ease-in-out, opacity 200ms linear;
+    opacity: 1;
+    height: 306px;
   }
 }
 /* Medium Screen */
@@ -135,6 +213,27 @@
   }
   .Song-Lyrics {
     font-size: 20px;
+  }
+
+  .Search-Card__Search-Box {
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    max-width: 500px;
+  }
+  .Searched-Items-Card {
+    width: 435px !important;
+    transition: all 1200ms ease;
+  }
+  /* .Searched-Items-Card:hovor {
+    opacity: 1;
+    width: 435px;
+  } */
+  .Searched-Items-Card.Expanded {
+    opacity: 1;
+    height: 306px;
+    width: 435px;
   }
 }
 /* Large Screen */
@@ -155,5 +254,33 @@
     width: max-content;
     padding-left: 30px;
     font-size: 25px;
+  }
+
+  .Search-Card__Search-Box {
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    max-width: 600px;
+    width: 600px;
+  }
+  .Searched-Items-Card {
+    width: 650px !important;
+    transition: all 1200ms ease;
+  }
+  .Searched-Item-List {
+    width: 100%;
+  }
+  .Searched-Items-Card {
+    display: flex;
+    opacity: 1;
+    height: auto;
+    width: 650px;
+  }
+  .Searched-Item__Song-Name {
+    font-size: 25px;
+  }
+  .Searched-Item__Artist-Name {
+    font-size: 18px;
   }
 }
