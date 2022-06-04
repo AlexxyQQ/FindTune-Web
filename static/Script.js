@@ -1,3 +1,23 @@
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/service-worker.js")
+    .then(function (registration) {
+      console.log("Service Worker Registered");
+      return registration;
+    })
+    .catch(function (err) {
+      console.error("Unable to register service worker.", err);
+    });
+}
+
+window.addEventListener(
+  "online",
+  function (e) {
+    console.log("You are online");
+  },
+  false
+);
+
 // Navbar Transform on Scroll
 window.onscroll = function () {
   console.log(window.pageYOffset);
@@ -234,30 +254,44 @@ function checkUsername(input) {
   }
 }
 
+$(document).on("submit", "#Signup-Form", function (e) {
+  console.log("hello");
+  e.preventDefault();
+  $.ajax({
+    type: "POST",
+    url: "/LoginSignup",
+    data: {
+      params: 1,
+    },
+    success: function (response) {
+      pass;
+    },
+  });
+});
 function Submit_SignupForm() {
-  var SignupName = document.Signup_Form.FullName;
-  var SignupEmail = document.Signup_Form.Email;
-  var SignupUsername = document.Signup_Form.Username;
-  var SignupPassword = document.Signup_Form.Password;
-  var SignupCPassword = document.Signup_Form.CPassword;
-  CheckRequired([
-    SignupName,
-    SignupEmail,
-    SignupUsername,
-    SignupPassword,
-    SignupCPassword,
-  ]);
-  if (
-    checkLength(SignupUsername, 3, 15) &&
-    checkUsername(SignupUsername) &&
-    checkLength(SignupPassword, 5, 15) &&
-    checkPassword(SignupPassword) &&
-    checkEmail(SignupEmail) &&
-    checkPasswordMatch(SignupPassword, SignupCPassword)
-  ) {
-    console.log("Ass");
-    document.getElementById("Form-Btn").type = "submit";
-  }
+  // var SignupName = document.Signup_Form.FullName;
+  // var SignupEmail = document.Signup_Form.Email;
+  // var SignupUsername = document.Signup_Form.Username;
+  // var SignupPassword = document.Signup_Form.Password;
+  // var SignupCPassword = document.Signup_Form.CPassword;
+  // CheckRequired([
+  //   SignupName,
+  //   SignupEmail,
+  //   SignupUsername,
+  //   SignupPassword,
+  //   SignupCPassword,
+  // ]);
+  // if (
+  //   checkLength(SignupUsername, 3, 15) &&
+  //   checkUsername(SignupUsername) &&
+  //   checkLength(SignupPassword, 5, 15) &&
+  //   checkPassword(SignupPassword) &&
+  //   checkEmail(SignupEmail) &&
+  //   checkPasswordMatch(SignupPassword, SignupCPassword)
+  // ) {
+  //   console.log("Ass");
+  //   document.getElementById("Form-Btn").type = "submit";
+  // }
 }
 function Submit_SigninForm() {
   var LoginUsername = document.Login_Form.Username;

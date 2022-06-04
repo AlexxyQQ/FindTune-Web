@@ -25,6 +25,8 @@
       <div class="LoginSignup__Pill--SelectionPill" id="SelectionPill"></div>
     </div>
     <!--  -->
+
+    <!--  -->
     <form method="POST" class="Login-Form" id="Login-Form" name="Login_Form">
       <!--  -->
       <div class="Form-Title">
@@ -35,9 +37,7 @@
           class="Textbox Username"
           placeholder="AppleMan"
         />
-        <small class="Login-Username Error-Message" id="Error-Message">
-          Aplpew asas djsalkdj.
-        </small>
+        <small class="Login-Username Error-Message" id="Error-Message"> </small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -50,7 +50,7 @@
           placeholder="*********"
         />
         <a class="eye fa-solid fa-eye" id="eye" onclick="RevealPassword()"></a>
-        <small class="Login-Password Error-Message" id="Error-Message">A</small>
+        <small class="Login-Password Error-Message" id="Error-Message"></small>
       </div>
       <a href="" class="Login-ForgotPassword Button">Forgot Password?</a>
       <!--  -->
@@ -75,7 +75,8 @@
           placeholder="Name"
           id="Signup-Name"
         />
-        <small class="Signup-Name Error-Message" id="Error-Message">A</small>
+        <small class="Signup-FullName Error-Message" id="Error-Message">
+        </small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -87,7 +88,7 @@
           placeholder="example@email.com"
           id="Signup-Email"
         />
-        <small class="Signup-Email Error-Message" id="Error-Message">A</small>
+        <small class="Signup-Email Error-Message" id="Error-Message"> </small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -99,9 +100,7 @@
           placeholder="AppleMan"
           id="Signup-Username"
         />
-        <small class="Signup-Username Error-Message" id="Error-Message"
-          >A</small
-        >
+        <small class="Signup-Username Error-Message" id="Error-Message"></small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -120,9 +119,10 @@
           class="eye fa-solid fa-eye"
           id="eye-C"
         ></button>
-        <small class="Signup-CPassword Error-Message" id="Error-Message"
-          >A</small
-        >
+        <small
+          class="Signup-CPassword Error-Message"
+          id="Error-Message"
+        ></small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -134,15 +134,16 @@
           class="Textbox CPassword"
           placeholder="*********"
         />
-        <small class="Signup-CPassword Error-Message" id="Error-Message"
-          >A</small
-        >
+        <small
+          class="Signup-CPassword Error-Message"
+          id="Error-Message"
+        ></small>
       </div>
       <!--  -->
       <button
         class="Submit Form-Signup Button"
         id="Form-Btn"
-        type="button"
+        type="submit"
         onclick="Submit_SignupForm()"
       >
         Signup

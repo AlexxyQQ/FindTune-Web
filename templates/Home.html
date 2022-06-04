@@ -4,14 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome js -->
     <script
       src="https://kit.fontawesome.com/01c6376a08.js"
       crossorigin="anonymous"
     ></script>
+    <!-- JQuery js -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom js -->
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='Script.js') }}"
     ></script>
+    <!-- webmanifest -->
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='manifest.json') }}"
+    />
+
+    <!-- Css -->
     <link rel="stylesheet" href="../static/CSS/Main.css" />
     {% block Style %}
     <link rel="stylesheet" href="../static/CSS/Home.css" />

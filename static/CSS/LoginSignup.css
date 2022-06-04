@@ -136,7 +136,7 @@
 .Error-Message {
   font-size: 12px;
   font-weight: 400;
-  visibility: hidden;
+  visibility: visible;
   /* margin: 2px 0px 2px 0px; */
   color: red;
 }
