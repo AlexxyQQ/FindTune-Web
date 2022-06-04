@@ -1,4 +1,3 @@
-from this import d
 from flask import Blueprint, flash, render_template, request, redirect, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
