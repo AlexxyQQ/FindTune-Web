@@ -1,4 +1,8 @@
-- Get song name from shazam API
+- Generate fingerprints from the songs
+- Database for the fingerprint hases
+- If possible create online databse for the fingerprinting(optional)
+- Let users to upload and generate fingerprints (optional)
+- Get the full info from the found song from Shazam API
 - Create database for user registration and profile
 - Create own database for song lyrics (user can edit the lyrics accordingly and can download)
 - Create own database (My Library) for the user found song (user can delete the song, can add it to the Spotify playlist, can edit lyrics of the song in their library)
