@@ -1,4 +1,4 @@
-const cacheName = "flask-PWA-v3";
+const cacheName = "FindTune";
 const filesToCache = [
   "/",
   "/static/Script.js",

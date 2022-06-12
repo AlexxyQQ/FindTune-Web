@@ -1,0 +1,15 @@
+flask
+flask_sqlalchemy
+flask_login 
+flask_bcrypt 
+flask_wtf 
+wtforms 
+email_validator 
+numpy 
+scipy 
+termcolor 
+pydub 
+matplotlib 
+wheelcls
+
+.\Backend\PyAudio-0.2.11-cp310-cp310-win_amd64.whl

@@ -1,0 +1,4 @@
+- Get song name from shazam API
+- Create database for user registration and profile
+- Create own database for song lyrics (user can edit the lyrics accordingly and can download)
+- Create own database (My Library) for the user found song (user can delete the song, can add it to the Spotify playlist, can edit lyrics of the song in their library)

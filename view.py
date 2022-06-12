@@ -8,7 +8,7 @@ def offline():
     return views.send_static_file("offline.html")
 
 
-@views.route("/service-worker.js")
+@views.route("/")
 def sw():
     return views.send_static_file("service-worker.js")
 
