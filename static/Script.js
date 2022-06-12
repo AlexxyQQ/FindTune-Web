@@ -46,13 +46,56 @@ function Themeing() {
   }
 }
 
-function Listening() {
+// Audio Recorder
+const recordAudio = () =>
+  new Promise(async (resolve) => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mediaRecorder = new MediaRecorder(stream);
+    const audioChunks = [];
+
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      audioChunks.push(event.data);
+    });
+
+    const start = () => mediaRecorder.start();
+
+    const stop = () =>
+      new Promise((resolve) => {
+        mediaRecorder.addEventListener("stop", () => {
+          const audioBlob = new Blob(audioChunks, { type: "audio/mpeg" });
+          const audioUrl = URL.createObjectURL(audioBlob);
+          const audio = new Audio(audioUrl);
+          const play = () => audio.play();
+          resolve({ audioBlob, audioUrl, play });
+          const downloadFile = (file) => {
+            console.log(file);
+            var element = document.createElement("a");
+            element.href = file;
+            element.download = "recorded.mp3";
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+          };
+          downloadFile(audioUrl);
+        });
+
+        mediaRecorder.stop();
+      });
+
+    resolve({ start, stop });
+  });
+
+const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
+
+const Listening = async () => {
   var Circular_Recorder = document.getElementById("Circular-Recorder");
   var Ellipse_One = document.getElementById("Ellipse-One");
   var Ellipse_Two = document.getElementById("Ellipse-Two");
   var Ellipse_Three = document.getElementById("Ellipse-Three");
   var Rotating_Logo = document.getElementById("Rotating-Logo");
-  console.log(Circular_Recorder.className);
+  const recorder = await recordAudio();
+  recorder.start();
   if (Circular_Recorder.className == "Circular-Recorder Button") {
     Ellipse_One.classList.add("Listening");
     Ellipse_Two.classList.add("Listening");
@@ -60,20 +103,22 @@ function Listening() {
     Rotating_Logo.classList.add("Listening");
     Circular_Recorder.classList.add("Static");
     document.getElementById("Circular-Recorder").disabled = true;
-    setTimeout(function () {
-      document.getElementById("Circular-Recorder").disabled = false;
-      Ellipse_One.classList.remove("Listening");
-      Ellipse_Two.classList.remove("Listening");
-      Ellipse_Three.classList.remove("Listening");
-      Rotating_Logo.classList.remove("Listening");
-      Circular_Recorder.classList.remove("Static");
-    }, 8000);
   }
-}
+  await sleep(8000);
+  const audio = await recorder.stop();
+  document.getElementById("Circular-Recorder").disabled = false;
+  Ellipse_One.classList.remove("Listening");
+  Ellipse_Two.classList.remove("Listening");
+  Ellipse_Three.classList.remove("Listening");
+  Rotating_Logo.classList.remove("Listening");
+  Circular_Recorder.classList.remove("Static");
+  await sleep(8000);
+};
 
-function Listening2() {
+const Listening2 = async () => {
   var Bar_Recorder = document.getElementById("Bar-Recorder");
-
+  const recorder = await recordAudio();
+  recorder.start();
   if (Bar_Recorder.className == "Bar-Recorder") {
     Bar_Recorder.classList.add("Listening");
     document.getElementById("RB-One").classList.add("Listening");
@@ -85,23 +130,23 @@ function Listening2() {
     document.getElementById("RB-Seven").classList.add("Listening");
     document.getElementById("RB-Eight").classList.add("Listening");
     document.getElementById("Gooey").classList.add("Listening");
-
     document.getElementById("Small-Record-Button").disabled = true;
-    setTimeout(function () {
-      document.getElementById("Small-Record-Button").disabled = false;
-      Bar_Recorder.classList = "Bar-Recorder";
-      document.getElementById("RB-One").classList.remove("Listening");
-      document.getElementById("RB-Two").classList.remove("Listening");
-      document.getElementById("RB-Three").classList.remove("Listening");
-      document.getElementById("RB-Four").classList.remove("Listening");
-      document.getElementById("RB-Five").classList.remove("Listening");
-      document.getElementById("RB-Six").classList.remove("Listening");
-      document.getElementById("RB-Seven").classList.remove("Listening");
-      document.getElementById("RB-Eight").classList.remove("Listening");
-      document.getElementById("Gooey").classList.remove("Listening");
-    }, 10000);
   }
-}
+  await sleep(8000);
+  const audio = await recorder.stop();
+  document.getElementById("Small-Record-Button").disabled = false;
+  Bar_Recorder.classList = "Bar-Recorder";
+  document.getElementById("RB-One").classList.remove("Listening");
+  document.getElementById("RB-Two").classList.remove("Listening");
+  document.getElementById("RB-Three").classList.remove("Listening");
+  document.getElementById("RB-Four").classList.remove("Listening");
+  document.getElementById("RB-Five").classList.remove("Listening");
+  document.getElementById("RB-Six").classList.remove("Listening");
+  document.getElementById("RB-Seven").classList.remove("Listening");
+  document.getElementById("RB-Eight").classList.remove("Listening");
+  document.getElementById("Gooey").classList.remove("Listening");
+  await sleep(8000);
+};
 
 function MovePillToSignup(params) {
   var SelectionPill = document.getElementById("SelectionPill");
