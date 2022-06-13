@@ -33,24 +33,19 @@ def return_matches(db, hashes):
       FROM fingerprints
       WHERE upper(hash) IN (%s)
     """
-        query = query % ', '.join('?' * len(split_values))
+        query = query % ", ".join("?" * len(split_values))
 
         x = db.executeAll(query, split_values)
         matches_found = len(x)
 
         if matches_found > 0:
-            msg = '   ** found %d hash matches (step %d/%d)'
-            print(colored(msg, 'green') % (
-                matches_found,
-                len(split_values),
-                len(values)
-            ))
+            msg = "   ** found %d hash matches (step %d/%d)"
+            print(
+                colored(msg, "green") % (matches_found, len(split_values), len(values))
+            )
         else:
-            msg = '   ** not matches found (step %d/%d)'
-            print(colored(msg, 'red') % (
-                len(split_values),
-                len(values)
-            ))
+            msg = "   ** not matches found (step %d/%d)"
+            print(colored(msg, "red") % (len(split_values), len(values)))
 
         for audio_hash, sid, offset in x:
             yield sid, offset - mapper[audio_hash]
@@ -80,16 +75,20 @@ def align_matches(db, matches):
 
     songM = db.get_song_by_id(song_id)
 
-    nseconds = round(float(largest) / fingerprint.DEFAULT_FS *
-                     fingerprint.DEFAULT_WINDOW_SIZE *
-                     fingerprint.DEFAULT_OVERLAP_RATIO, 5)
+    nseconds = round(
+        float(largest)
+        / fingerprint.DEFAULT_FS
+        * fingerprint.DEFAULT_WINDOW_SIZE
+        * fingerprint.DEFAULT_OVERLAP_RATIO,
+        5,
+    )
 
     return {
         "SONG_ID": song_id,
         "SONG_NAME": songM[1],
         "CONFIDENCE": largest_count,
         "OFFSET": int(largest),
-        "OFFSET_SECS": nseconds
+        "OFFSET_SECS": nseconds,
     }
 
 
@@ -109,7 +108,7 @@ def main():
 
     db = SqliteDatabase()
     matches = []
-    for channel in data['channels']:
+    for channel in data["channels"]:
         # TODO: Remove prints or change them into optional logging.
         matches.extend(find_matches(db, channel, Fs=Fs))
 
@@ -127,7 +126,7 @@ def main():
                 f" => song: {song['SONG_NAME']} (id={song['SONG_ID']})\n"
                 f"    offset: {song['OFFSET']} ({song['OFFSET_SECS']} secs)\n"
                 f"    confidence: {song['CONFIDENCE']}",
-                "green"
+                "green",
             )
         )
     else:

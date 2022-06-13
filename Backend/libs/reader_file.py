@@ -8,15 +8,15 @@ from pydub.utils import audioop
 
 class FileReader:
     """
-        Reads any file supported by pydub (ffmpeg) and returns the data contained
-        within. If file reading fails due to input being a 24-bit wav file,
-        wavio is used as a backup.
+    Reads any file supported by pydub (ffmpeg) and returns the data contained
+    within. If file reading fails due to input being a 24-bit wav file,
+    wavio is used as a backup.
 
-        Can be optionally limited to a certain amount of seconds from the start
-        of the file by specifying the `limit` parameter. This is the amount of
-        seconds from the start of the file.
+    Can be optionally limited to a certain amount of seconds from the start
+    of the file by specifying the `limit` parameter. This is the amount of
+    seconds from the start of the file.
 
-        returns: (channels, samplerate)
+    returns: (channels, samplerate)
     """
 
     def __init__(self, filename):
@@ -31,25 +31,25 @@ class FileReader:
 
         try:
             audiofile = AudioSegment.from_file(self.filename)
-
+            print(audiofile)
             if limit:
-                audiofile = audiofile[:limit * 1000]
+                audiofile = audiofile[: limit * 1000]
 
             data = np.fromstring(audiofile._data, np.int16)
 
             channels = []
             for chn in range(audiofile.channels):
-                channels.append(data[chn::audiofile.channels])
+                channels.append(data[chn :: audiofile.channels])
 
             result = {
                 "songname": songname,
                 "extension": extension,
                 "channels": channels,
                 "Fs": audiofile.frame_rate,
-                "file_hash": self.parse_file_hash()
+                "file_hash": self.parse_file_hash(),
             }
         except audioop.error:
-            print('audioop.error')
+            print("audioop.error")
             pass
             # fs, _, audiofile = wavio.readwav(filename)
 
@@ -64,8 +64,8 @@ class FileReader:
             #     channels.append(chn)
         return result
 
-    def parse_file_hash(self, blocksize=2 ** 20):
-        """ Small function to generate a hash to uniquely generate
+    def parse_file_hash(self, blocksize=2**20):
+        """Small function to generate a hash to uniquely generate
         a file. Inspired by MD5 version here:
         http://stackoverflow.com/a/1131255/712997
 

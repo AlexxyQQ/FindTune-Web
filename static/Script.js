@@ -65,19 +65,75 @@ const recordAudio = () =>
           const audioBlob = new Blob(audioChunks, { type: "audio/mpeg" });
           const audioUrl = URL.createObjectURL(audioBlob);
           const audio = new Audio(audioUrl);
-          const play = () => audio.play();
-          resolve({ audioBlob, audioUrl, play });
-          const downloadFile = (file) => {
-            console.log(file);
-            var element = document.createElement("a");
-            element.href = file;
-            element.download = "recorded.mp3";
-            element.style.display = "none";
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-          };
-          downloadFile(audioUrl);
+          function submit(blob) {
+            var fd = new FormData();
+            fd.append("file", blob, "audio.ogg");
+            $.ajax({
+              type: "POST",
+              url: "/check",
+              data: fd,
+              cache: false,
+              processData: false,
+              contentType: false,
+            }).done(function (data) {
+              console.log(data);
+            });
+          }
+          submit(audioBlob);
+          // function uploadFile() {
+          //   // define data and connections
+          //   // var blob = new Blob([JSON.stringify(data)]);
+          //   // var url = URL.createObjectURL(blob);
+          //   var xhr = new XMLHttpRequest();
+          //   xhr.open("POST", "http://127.0.0.1:8080/check", true);
+
+          //   // define new form
+          //   var formData = new FormData();
+          //   formData.append("rec", audioBlob, "rec.mp3");
+
+          //   // action after uploading happens
+          //   xhr.onload = function (e) {
+          //     console.log("File uploading completed!");
+          //   };
+
+          //   // do the uploading
+          //   console.log("File uploading started!");
+          //   xhr.send(formData);
+          // }
+          // uploadFile();
+          // const uploadfile = (file) => {
+          //   console.log(file);
+          //   var formm = document.createElement("form");
+          //   var inp = document.createElement("input");
+          //   var bt = document.createElement("button");
+          //   formm.action = "/check";
+          //   formm.method = "POST";
+          //   formm.style.display = "none";
+          //   inp.id = "rec";
+          //   inp.name = "rec";
+          //   inp.type = "file";
+          //   inp.value = file;
+          //   btn.type = "submit";
+          //   formm.appendChild(inp, btn);
+          //   btn.click();
+          // };
+          // uploadfile(audioUrl);
+
+          // const form = new FormData();
+          // form.append("recorded", audioUrl);
+          // axios.post("http://127.0.0.1:8080/check", form);
+          resolve({ audioBlob, audioUrl });
+          // const downloadFile = (file) => {
+          //   console.log(file);
+          //   var element = document.createElement("a");
+          //   element.href = file;
+          //   element.download = "recorded.mp3";
+          //   element.style.display = "none";
+          //   document.body.appendChild(element);
+          //   element.click();
+          //   document.body.removeChild(element);
+          // };
+          // downloadFile(audioUrl);
         });
 
         mediaRecorder.stop();

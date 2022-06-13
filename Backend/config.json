@@ -1,13 +1,13 @@
 {
-    "env": "default",
+  "env": "default",
 
-    "db.dsn": null,
-    "db.database": null,
-    "db.file": "Backend/db/fingerprints2.db",
+  "db.dsn": null,
+  "db.database": null,
+  "db.file": "Backend/db/fingerprints.db",
 
-    "channels": "2",
-    "mic.visualise_console": true,
-    "mic.visualise_plot": false,
+  "channels": "2",
+  "mic.visualise_console": true,
+  "mic.visualise_plot": false,
 
-    "fingerprint.show_plots": false
+  "fingerprint.show_plots": false
 }
