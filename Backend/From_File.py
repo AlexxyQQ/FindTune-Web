@@ -3,9 +3,9 @@ from itertools import zip_longest
 
 from termcolor import colored
 
-import libs.fingerprint as fingerprint
-from libs.db_sqlite import SqliteDatabase, SQLITE_MAX_VARIABLE_NUMBER
-from libs.reader_file import FileReader
+from Backend.libs import fingerprint as fingerprint
+from Backend.libs.db_sqlite import SqliteDatabase, SQLITE_MAX_VARIABLE_NUMBER
+from Backend.libs.reader_file import FileReader
 
 
 def grouper(iterable, n, fillvalue=None):
@@ -92,13 +92,15 @@ def align_matches(db, matches):
     }
 
 
-def main():
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("-f", "--file", type=argparse.FileType("r"), required=True)
-    args = parser.parse_args()
+def main(filename):
+    # parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
+    # parser.add_argument("-f", "--file", type=argparse.FileType("r"), required=False)
+    # args = parser.parse_args()
 
-    song = args.file.name
-    args.file.close()
+    # song = args.file.name
+    song = filename
+
+    # args.file.close()
 
     r = FileReader(song)  # only get filename
 
@@ -120,6 +122,7 @@ def main():
         print(colored(f" ** totally found {total_matches_found} hash matches", "green"))
 
         song = align_matches(db, matches)
+        return {song["SONG_NAME"]}
 
         print(
             colored(
@@ -133,5 +136,5 @@ def main():
         print(colored(" ** not matches found at all", "red"))
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

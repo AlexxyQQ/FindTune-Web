@@ -1,5 +1,7 @@
+from re import A
 from flask import Blueprint, request, render_template
-
+import os
+from Backend import From_File
 
 # from Backend import From_File
 
@@ -13,10 +15,13 @@ def home():
 
 @views.route("/check", methods=["GET", "POST"])
 def check():
+    a = "non"
     if request.method == "POST":
         request.files["file"].save("./audio.mp3")
-        print("FILE CLOSED")
-    return "<h1>Apple"
+        b = From_File.main("./audio.mp3")
+        print(b)
+        # os.system(f"Backend\From_File.py -f {a}")
+    return f"<h1>{a}</h1>"
 
 
 @views.route("/Song")
