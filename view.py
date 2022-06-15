@@ -1,6 +1,4 @@
-from re import A
-from flask import Blueprint, request, render_template
-import os
+from flask import Blueprint, redirect, request, render_template
 from Backend import From_File
 
 # from Backend import From_File
@@ -17,9 +15,10 @@ def home():
 def check():
     a = "non"
     if request.method == "POST":
-        request.files["file"].save("./audio.mp3")
-        b = From_File.main("./audio.mp3")
-        print(b)
+        request.files["file"].save("./audio.wav")
+        b = From_File.main("./audio.wav")
+        a = b
+        # redirect("/check")
         # os.system(f"Backend\From_File.py -f {a}")
     return f"<h1>{a}</h1>"
 

@@ -160,7 +160,7 @@ const Listening = async () => {
     Circular_Recorder.classList.add("Static");
     document.getElementById("Circular-Recorder").disabled = true;
   }
-  await sleep(8000);
+  await sleep(10000);
   const audio = await recorder.stop();
   document.getElementById("Circular-Recorder").disabled = false;
   Ellipse_One.classList.remove("Listening");
@@ -168,7 +168,7 @@ const Listening = async () => {
   Ellipse_Three.classList.remove("Listening");
   Rotating_Logo.classList.remove("Listening");
   Circular_Recorder.classList.remove("Static");
-  await sleep(8000);
+  await sleep(10000);
 };
 
 const Listening2 = async () => {
@@ -188,7 +188,7 @@ const Listening2 = async () => {
     document.getElementById("Gooey").classList.add("Listening");
     document.getElementById("Small-Record-Button").disabled = true;
   }
-  await sleep(8000);
+  await sleep(10000);
   const audio = await recorder.stop();
   document.getElementById("Small-Record-Button").disabled = false;
   Bar_Recorder.classList = "Bar-Recorder";
@@ -201,7 +201,7 @@ const Listening2 = async () => {
   document.getElementById("RB-Seven").classList.remove("Listening");
   document.getElementById("RB-Eight").classList.remove("Listening");
   document.getElementById("Gooey").classList.remove("Listening");
-  await sleep(8000);
+  await sleep(10000);
 };
 
 function MovePillToSignup(params) {
@@ -270,140 +270,140 @@ function SearchPreviewExpand() {
   }
 }
 
-// Validation
-function showError(input, message) {
-  const formControl = input.parentElement;
-  formControl.className = "Form-Title";
-  var small = formControl.querySelector("small");
-  small.style.visibility = "visible";
-  small.innerText = message;
-}
-function showSucces(input) {
-  const formControl = input.parentElement;
-  formControl.className = "Form-Title";
-  var small = formControl.querySelector("small");
-  small.style.visibility = "hidden";
-}
-function getFieldName(input) {
-  return input.name;
-}
+// // Validation
+// function showError(input, message) {
+//   const formControl = input.parentElement;
+//   formControl.className = "Form-Title";
+//   var small = formControl.querySelector("small");
+//   small.style.visibility = "visible";
+//   small.innerText = message;
+// }
+// function showSucces(input) {
+//   const formControl = input.parentElement;
+//   formControl.className = "Form-Title";
+//   var small = formControl.querySelector("small");
+//   small.style.visibility = "hidden";
+// }
+// function getFieldName(input) {
+//   return input.name;
+// }
 
-function CheckRequired(inputArr) {
-  inputArr.forEach(function (input) {
-    if (input.value.trim() === "") {
-      showError(input, `${getFieldName(input)} is required`);
-    } else {
-      showSucces(input);
-    }
-  });
-}
-function checkLength(input, min, max) {
-  if (input.value.length < min) {
-    showError(
-      input,
-      `${getFieldName(input)} must be at least ${min} characters`
-    );
-    return false;
-  } else if (input.value.length > max) {
-    showError(
-      input,
-      `${getFieldName(input)} must be les than ${max} characters`
-    );
-    return false;
-  } else {
-    showSucces(input);
-    return true;
-  }
-}
-function checkPasswordMatch(input1, input2) {
-  if (input1.value !== input2.value) {
-    showError(input2, "Passwords do not match");
-    return false;
-  }
-  return true;
-}
-function checkEmail(input) {
-  const re =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (re.test(input.value.trim())) {
-    showSucces(input);
-    return true;
-  } else {
-    showError(input, "Email is not valid");
-    return false;
-  }
-}
-function checkPassword(input) {
-  const re =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{5,15}$/;
-  if (re.test(input.value.trim())) {
-    showSucces(input);
-    return true;
-  } else {
-    showError(input, "Password is not valid");
-    return false;
-  }
-}
-function checkUsername(input) {
-  const re = /^[a-z0-9_.]+$/;
-  if (re.test(input.value.trim())) {
-    showSucces(input);
-    return true;
-  } else {
-    showError(input, "Username is not valid");
-    return false;
-  }
-}
+// function CheckRequired(inputArr) {
+//   inputArr.forEach(function (input) {
+//     if (input.value.trim() === "") {
+//       showError(input, `${getFieldName(input)} is required`);
+//     } else {
+//       showSucces(input);
+//     }
+//   });
+// }
+// function checkLength(input, min, max) {
+//   if (input.value.length < min) {
+//     showError(
+//       input,
+//       `${getFieldName(input)} must be at least ${min} characters`
+//     );
+//     return false;
+//   } else if (input.value.length > max) {
+//     showError(
+//       input,
+//       `${getFieldName(input)} must be les than ${max} characters`
+//     );
+//     return false;
+//   } else {
+//     showSucces(input);
+//     return true;
+//   }
+// }
+// function checkPasswordMatch(input1, input2) {
+//   if (input1.value !== input2.value) {
+//     showError(input2, "Passwords do not match");
+//     return false;
+//   }
+//   return true;
+// }
+// function checkEmail(input) {
+//   const re =
+//     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//   if (re.test(input.value.trim())) {
+//     showSucces(input);
+//     return true;
+//   } else {
+//     showError(input, "Email is not valid");
+//     return false;
+//   }
+// }
+// function checkPassword(input) {
+//   const re =
+//     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{5,15}$/;
+//   if (re.test(input.value.trim())) {
+//     showSucces(input);
+//     return true;
+//   } else {
+//     showError(input, "Password is not valid");
+//     return false;
+//   }
+// }
+// function checkUsername(input) {
+//   const re = /^[a-z0-9_.]+$/;
+//   if (re.test(input.value.trim())) {
+//     showSucces(input);
+//     return true;
+//   } else {
+//     showError(input, "Username is not valid");
+//     return false;
+//   }
+// }
 
-$(document).on("submit", "#Signup-Form", function (e) {
-  console.log("hello");
-  e.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "/LoginSignup",
-    data: {
-      params: 1,
-    },
-    success: function (response) {
-      pass;
-    },
-  });
-});
-function Submit_SignupForm() {
-  // var SignupName = document.Signup_Form.FullName;
-  // var SignupEmail = document.Signup_Form.Email;
-  // var SignupUsername = document.Signup_Form.Username;
-  // var SignupPassword = document.Signup_Form.Password;
-  // var SignupCPassword = document.Signup_Form.CPassword;
-  // CheckRequired([
-  //   SignupName,
-  //   SignupEmail,
-  //   SignupUsername,
-  //   SignupPassword,
-  //   SignupCPassword,
-  // ]);
-  // if (
-  //   checkLength(SignupUsername, 3, 15) &&
-  //   checkUsername(SignupUsername) &&
-  //   checkLength(SignupPassword, 5, 15) &&
-  //   checkPassword(SignupPassword) &&
-  //   checkEmail(SignupEmail) &&
-  //   checkPasswordMatch(SignupPassword, SignupCPassword)
-  // ) {
-  //   console.log("Ass");
-  //   document.getElementById("Form-Btn").type = "submit";
-  // }
-}
-function Submit_SigninForm() {
-  var LoginUsername = document.Login_Form.Username;
-  var LoginPassword = document.Login_Form.Password;
-  CheckRequired([LoginUsername, LoginPassword]);
-  if (
-    checkLength(LoginUsername, 3, 15) &&
-    checkUsername(LoginUsername) &&
-    checkLength(LoginPassword, 5, 15) &&
-    checkPassword(LoginPassword)
-  ) {
-    document.getElementById("Form-Btn").type = "submit";
-  }
-}
+// $(document).on("submit", "#Signup-Form", function (e) {
+//   console.log("hello");
+//   e.preventDefault();
+//   $.ajax({
+//     type: "POST",
+//     url: "/LoginSignup",
+//     data: {
+//       params: 1,
+//     },
+//     success: function (response) {
+//       pass;
+//     },
+//   });
+// });
+// function Submit_SignupForm() {
+//   // var SignupName = document.Signup_Form.FullName;
+//   // var SignupEmail = document.Signup_Form.Email;
+//   // var SignupUsername = document.Signup_Form.Username;
+//   // var SignupPassword = document.Signup_Form.Password;
+//   // var SignupCPassword = document.Signup_Form.CPassword;
+//   // CheckRequired([
+//   //   SignupName,
+//   //   SignupEmail,
+//   //   SignupUsername,
+//   //   SignupPassword,
+//   //   SignupCPassword,
+//   // ]);
+//   // if (
+//   //   checkLength(SignupUsername, 3, 15) &&
+//   //   checkUsername(SignupUsername) &&
+//   //   checkLength(SignupPassword, 5, 15) &&
+//   //   checkPassword(SignupPassword) &&
+//   //   checkEmail(SignupEmail) &&
+//   //   checkPasswordMatch(SignupPassword, SignupCPassword)
+//   // ) {
+//   //   console.log("Ass");
+//   //   document.getElementById("Form-Btn").type = "submit";
+//   // }
+// }
+// function Submit_SigninForm() {
+//   var LoginUsername = document.Login_Form.Username;
+//   var LoginPassword = document.Login_Form.Password;
+//   CheckRequired([LoginUsername, LoginPassword]);
+//   if (
+//     checkLength(LoginUsername, 3, 15) &&
+//     checkUsername(LoginUsername) &&
+//     checkLength(LoginPassword, 5, 15) &&
+//     checkPassword(LoginPassword)
+//   ) {
+//     document.getElementById("Form-Btn").type = "submit";
+//   }
+// }

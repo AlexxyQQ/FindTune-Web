@@ -5,8 +5,11 @@ import matplotlib.pyplot as plt
 
 from termcolor import colored
 from scipy.ndimage.filters import maximum_filter
-from scipy.ndimage.morphology import (generate_binary_structure, iterate_structure,
-                                      binary_erosion)
+from scipy.ndimage.morphology import (
+    generate_binary_structure,
+    iterate_structure,
+    binary_erosion,
+)
 from operator import itemgetter
 
 IDX_FREQ_I = 0
@@ -26,7 +29,7 @@ DEFAULT_OVERLAP_RATIO = 0.5
 
 # Degree to which a fingerprint can be paired with its neighbors --
 # higher will cause more fingerprints, but potentially better accuracy.
-DEFAULT_FAN_VALUE = 15
+DEFAULT_FAN_VALUE = 20
 
 # Minimum amplitude in spectrogram in order to be considered a peak.
 # This can be raised to reduce number of fingerprints, but can negatively
@@ -36,13 +39,13 @@ DEFAULT_AMP_MIN = 10
 # Number of cells around an amplitude peak in the spectrogram in order
 # for Dejavu to consider it a spectral peak. Higher values mean less
 # fingerprints and faster matching, but can potentially affect accuracy.
-PEAK_NEIGHBORHOOD_SIZE = 20
+PEAK_NEIGHBORHOOD_SIZE = 25
 
 # Thresholds on how close or far fingerprints can be in time in order
 # to be paired as a fingerprint. If your max is too low, higher values of
 # DEFAULT_FAN_VALUE may not perform as expected.
 MIN_HASH_TIME_DELTA = 0
-MAX_HASH_TIME_DELTA = 200
+MAX_HASH_TIME_DELTA = 250
 
 # If True, will sort peaks temporally for fingerprinting;
 # not sorting will cut down number of fingerprints, but potentially
@@ -55,18 +58,21 @@ PEAK_SORT = True
 FINGERPRINT_REDUCTION = 20
 
 
-def fingerprint(channel_samples, Fs=DEFAULT_FS,
-                wsize=DEFAULT_WINDOW_SIZE,
-                wratio=DEFAULT_OVERLAP_RATIO,
-                fan_value=DEFAULT_FAN_VALUE,
-                amp_min=DEFAULT_AMP_MIN,
-                plots=False):
+def fingerprint(
+    channel_samples,
+    Fs=DEFAULT_FS,
+    wsize=DEFAULT_WINDOW_SIZE,
+    wratio=DEFAULT_OVERLAP_RATIO,
+    fan_value=DEFAULT_FAN_VALUE,
+    amp_min=DEFAULT_AMP_MIN,
+    plots=False,
+):
     # show samples plot
     if plots:
         plt.plot(channel_samples)
-        plt.title('%d samples' % len(channel_samples))
-        plt.xlabel('time (s)')
-        plt.ylabel('amplitude (A)')
+        plt.title("%d samples" % len(channel_samples))
+        plt.xlabel("time (s)")
+        plt.ylabel("amplitude (A)")
         plt.show()
         plt.gca().invert_yaxis()
 
@@ -80,23 +86,26 @@ def fingerprint(channel_samples, Fs=DEFAULT_FS,
         NFFT=wsize,
         Fs=Fs,
         window=mlab.window_hanning,
-        noverlap=int(wsize * wratio))[0]
+        noverlap=int(wsize * wratio),
+    )[0]
 
     # show spectrogram plot
     if plots:
         plt.plot(arr2D)
-        plt.title('FFT')
+        plt.title("FFT")
         plt.show()
 
     # apply log transform since specgram() returns linear array
-    arr2D = 10 * np.log10(arr2D)  # calculates the base 10 logarithm for all elements of arr2D
+    arr2D = 10 * np.log10(
+        arr2D
+    )  # calculates the base 10 logarithm for all elements of arr2D
     arr2D[arr2D == -np.inf] = 0  # replace infs with zeros
 
     # find local maxima
     local_maxima = list(get_2D_peaks(arr2D, plot=plots, amp_min=amp_min))
 
-    msg = '   local_maxima: %d of frequency & time pairs'
-    print(colored(msg, attrs=['dark']) % len(local_maxima))
+    msg = "   local_maxima: %d of frequency & time pairs"
+    print(colored(msg, attrs=["dark"]) % len(local_maxima))
 
     # return hashes
     return generate_hashes(local_maxima, fan_value=fan_value)
@@ -109,9 +118,10 @@ def get_2D_peaks(arr2D, plot=False, amp_min=DEFAULT_AMP_MIN):
 
     # find local maxima using our fliter shape
     local_max = maximum_filter(arr2D, footprint=neighborhood) == arr2D
-    background = (arr2D == 0)
-    eroded_background = binary_erosion(background, structure=neighborhood,
-                                       border_value=1)
+    background = arr2D == 0
+    eroded_background = binary_erosion(
+        background, structure=neighborhood, border_value=1
+    )
 
     # Boolean mask of arr2D with True at peaks
     detected_peaks = local_max ^ eroded_background
@@ -134,8 +144,8 @@ def get_2D_peaks(arr2D, plot=False, amp_min=DEFAULT_AMP_MIN):
         fig, ax = plt.subplots()
         ax.imshow(arr2D)
         ax.scatter(time_idx, frequency_idx)
-        ax.set_xlabel('Time')
-        ax.set_ylabel('Frequency')
+        ax.set_xlabel("Time")
+        ax.set_ylabel("Frequency")
         ax.set_title("Spectrogram")
         plt.gca().invert_yaxis()
         plt.show()
@@ -168,5 +178,5 @@ def generate_hashes(peaks, fan_value=DEFAULT_FAN_VALUE):
                 # check if delta is between min & max
                 if MIN_HASH_TIME_DELTA <= t_delta <= MAX_HASH_TIME_DELTA:
                     hash_code = "%s|%s|%s" % (str(freq1), str(freq2), str(t_delta))
-                    h = hashlib.sha1(hash_code.encode('utf-8'))
+                    h = hashlib.sha1(hash_code.encode("utf-8"))
                     yield (h.hexdigest()[0:FINGERPRINT_REDUCTION], t1)

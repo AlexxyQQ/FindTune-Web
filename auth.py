@@ -1,12 +1,45 @@
 from flask import Blueprint, flash, render_template, request, redirect, url_for
-from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import login_user, current_user
+from models import user
+from __init__ import db, bcrypt
 
 auth = Blueprint("auth", __name__)
 
 
 @auth.route("/LoginSignup", methods=["GET", "POST"])
-def renderpage():
-    return render_template("LoginSignup.html")
+def LoginSignup():
+    if request.method == "POST":
+        if request.form["submit"] == "SIGNUP":
+            if user.query.filter_by(username=request.form["username"]).first():
+                flash("Username is already taken ", "danger")
+            elif user.query.filter_by(email=request.form["email"]).first():
+                flash("email is already taken ", "danger")
+            elif request.form["password"] != request.form["confirm_password"]:
+                flash("Password does not match ", "danger")
+            else:
+                hashed_password = bcrypt.generate_password_hash(
+                    request.form["password"]
+                ).decode("utf-8")
+                User = user(
+                    username=request.form["username"],
+                    email=request.form["email"],
+                    password=hashed_password,
+                )
+                db.session.add(User)
+                db.session.commit()
+                flash(f"Account created for {request.form['username']}!", "sucess")
+
+        if request.form["submit"] == "LOGIN":
+            User = user.query.filter_by(username=request.form["username"]).first()
+            if User and bcrypt.check_password_hash(
+                User.password, request.form["password"]
+            ):
+                login_user(User)
+                return redirect(url_for("home"))
+            else:
+                flash("Login unsucessfull", "danger")
+
+    return render_template("LoginSignup.html", title=LoginSignup)
 
 
 # def signup():

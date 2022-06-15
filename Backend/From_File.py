@@ -1,5 +1,6 @@
 import argparse
 from itertools import zip_longest
+import itertools
 
 from termcolor import colored
 
@@ -23,26 +24,27 @@ def find_matches(db, samples, Fs=fingerprint.DEFAULT_FS):
 def return_matches(db, hashes):
     mapper = {}
     for audio_hash, offset in hashes:
+        print(type(audio_hash))
         mapper[audio_hash.upper()] = offset
     values = mapper.keys()
-
-    for split_values in grouper(values, SQLITE_MAX_VARIABLE_NUMBER):
+    for split_values in grouper(values, 1400):
         # @todo move to db related files
         query = """
-      SELECT upper(hash), song_fk, offset
-      FROM fingerprints
-      WHERE upper(hash) IN (%s)
-    """
+            SELECT upper(hash), song_fk, offset
+            FROM fingerprints
+            WHERE upper(hash) IN (%s)
+            """
         query = query % ", ".join("?" * len(split_values))
 
         x = db.executeAll(query, split_values)
         matches_found = len(x)
 
-        if matches_found > 0:
+        if matches_found > 50:
             msg = "   ** found %d hash matches (step %d/%d)"
             print(
                 colored(msg, "green") % (matches_found, len(split_values), len(values))
             )
+            break
         else:
             msg = "   ** not matches found (step %d/%d)"
             print(colored(msg, "red") % (len(split_values), len(values)))
@@ -122,7 +124,6 @@ def main(filename):
         print(colored(f" ** totally found {total_matches_found} hash matches", "green"))
 
         song = align_matches(db, matches)
-        return {song["SONG_NAME"]}
 
         print(
             colored(
@@ -132,6 +133,8 @@ def main(filename):
                 "green",
             )
         )
+        return {song["SONG_NAME"]}
+
     else:
         print(colored(" ** not matches found at all", "red"))
 

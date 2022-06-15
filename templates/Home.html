@@ -134,6 +134,16 @@
         <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
       </div>
     </section>
+    {%with messages =get_flashed_messages(with_categories=true) %}
+    {% if messages%}
+    {% for category,message in messages%}
+    <div class="alert alert-{{ category }} alert-dismissible">
+        <a href="/login" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%} 
     {% endblock %} {% block LoginSignupPage %} {% endblock %} {% block Previews
     %}
     <link rel="stylesheet" href="../static/CSS/LandingPagePreviews.css" />

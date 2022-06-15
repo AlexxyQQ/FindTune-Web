@@ -14,7 +14,7 @@ sqlite3.register_adapter(np.int32, int)
 # https://www.sqlite.org/limits.html
 # To prevent excessive memory allocations,
 # the maximum value of a host parameter number is SQLITE_MAX_VARIABLE_NUMBER, which defaults to 999 for SQLites
-SQLITE_MAX_VARIABLE_NUMBER = 999
+SQLITE_MAX_VARIABLE_NUMBER = 1500
 
 
 class SqliteDatabase(Database):
@@ -94,7 +94,7 @@ class SqliteDatabase(Database):
                 for values in izip_longest(fillvalue=fillvalue, *args)
             )
 
-        for split_values in grouper(values, 1000):
+        for split_values in grouper(values, SQLITE_MAX_VARIABLE_NUMBER):
             query = "INSERT OR IGNORE INTO %s (%s) VALUES (?, ?, ?)" % (
                 table,
                 ", ".join(columns),

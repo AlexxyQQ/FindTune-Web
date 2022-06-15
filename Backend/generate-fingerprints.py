@@ -70,7 +70,6 @@ if __name__ == "__main__":
 
             msg = "   storing %d hashes in db" % len(values)
             print(colored(msg, "green"))
-
             db.store_fingerprints(values)
 
     print("end")
