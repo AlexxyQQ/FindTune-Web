@@ -70,8 +70,38 @@
           id="Theme-Toggler-Icon"
         />
       </button>
-      {% if current_user.is_authenticated %} {{current_user.username}} {% else
-      %}
+      {% if current_user.is_authenticated %}
+      <div class="action">
+        <div class="profile" onclick="menuToggle();">
+          <img
+            src="{{ url_for('static',
+      filename='Assets/userimage/' + current_user.image_file) }}"
+          />
+        </div>
+        <div class="menu">
+          <h3>{{ current_user.username }}</h3>
+          <ul>
+            <li>
+              <img src="/static/Assets/profile.png" /><a
+                href="/{{ current_user.username }}"
+                >My profile</a
+              >
+            </li>
+            <li>
+              <img src="/static/Assets/logout.png" /><a href="/Logout"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+        <script>
+          function menuToggle() {
+            const toggleMenu = document.querySelector(".menu");
+            toggleMenu.classList.toggle("active");
+          }
+        </script>
+      </div>
+      {% else %}
       <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
       {% endif %}
       <a href="#Hamburger-Window" class="Hamburger Button">
@@ -79,7 +109,6 @@
       </a>
     </header>
     {% endblock %} {% block MusicListeningArea %}
-    <h1>aSS {{current_user.username}}</h1>
     <section class="Listening-Area" id="Listening_Area">
       <button
         class="Circular-Recorder Button"
