@@ -79,7 +79,7 @@
           />
         </div>
         <div class="menu">
-          <h3>{{ current_user.username }}</h3>
+          <h3>{{ current_user.username.upper() }}</h3>
           <ul>
             <li>
               <img src="/static/Assets/profile.png" /><a
@@ -144,7 +144,9 @@
         id="Small-Record-Button"
       ></button>
     </section>
-    {% endblock %} {% block HamburgerWindow %}
+    {% endblock %}
+    <!--  -->
+    {% block HamburgerWindow %}
     <section class="Hamburger-Window" id="Hamburger-Window">
       <div class="Hamburger-Window-NavBar">
         <div class="Logo-Box">
@@ -152,6 +154,19 @@
         </div>
         <a href="" class="Hamburger-Window-Close Button"></a>
       </div>
+      <div class="userDisplay">
+        <img
+          class="userImage Img"
+          src="{{ url_for('static',
+      filename='Assets/userimage/' + current_user.image_file) }}"
+        />
+        <a
+          href="/{{ current_user.username }}"
+          class="UserProfile-Ham Hamburger-Items-List Button"
+          >{{ current_user.username.upper() }}</a
+        >
+      </div>
+      <hr class="Line-Ham" />
       <div class="Hamburger-Content">
         <a href="" class="Hamburger-Items-List Button">My Libraries</a>
         <a href="" class="Hamburger-Items-List Button">About</a>

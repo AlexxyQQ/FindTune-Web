@@ -185,7 +185,8 @@
   filter: invert(100%);
 }
 .Hamburger-Content {
-  margin: 18% 20px;
+  margin: 0 20px;
+  margin-bottom: 18%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -313,6 +314,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    margin: 0px 8px;
   }
   .Toggle-Theme > .Img {
     width: 30px;
@@ -549,6 +551,34 @@
   .Footer {
     flex-direction: column;
   }
+
+  .action {
+    display: none;
+  }
+  .userDisplay {
+    display: flex;
+    margin: 0 20px;
+    margin-top: 16%;
+    margin-bottom: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .userImage {
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    margin-right: 10px;
+  }
+  .UserProfile-Ham:hover {
+    color: #26c2ff;
+  }
+  .Line-Ham {
+    margin: 0 auto;
+    width: 99vw;
+    height: 0.5px;
+    color: gray;
+  }
 }
 
 /* Medium Screen */
@@ -639,6 +669,25 @@
     display: none;
   }
   .Small-Record {
+    display: none;
+  }
+  .Hamburger-Content {
+    margin-top: 16%;
+  }
+
+  .action {
+    display: block;
+  }
+  .userDisplay {
+    display: none;
+  }
+  .UserProfile-Ham {
+    display: none;
+  }
+  .UserProfile-Ham:hover {
+    display: none;
+  }
+  .Line-Ham {
     display: none;
   }
 }
@@ -770,13 +819,14 @@
 }
 
 .action {
+  padding: 0px 8px;
   position: relative;
 }
 
 .action .profile {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -861,5 +911,5 @@
 }
 
 .action .menu ul li:hover a {
-  color: #ff5d94;
+  color: #26c2ff;
 }
