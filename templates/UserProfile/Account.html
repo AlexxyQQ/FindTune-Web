@@ -17,7 +17,19 @@
 />
 <!--  -->
 <section class="UserProfile">
-  <section class="ProfileArea"></section>
+  <section class="ProfileArea">
+    <div class="UserProfileBox">
+      <div class="UserProfileImage">
+        <img
+          src="{{ url_for('static',
+        filename='Assets/userimage/' + current_user.image_file) }}"
+          alt="UserImage"
+          class="UserImage Img"
+        />
+      </div>
+      <span class="UserNameDisplay">{{current_user.username.upper()}}</span>
+    </div>
+  </section>
   <section class="OtherArea"></section>
 </section>
 {% endblock UserProfile %}

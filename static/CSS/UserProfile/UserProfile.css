@@ -13,3 +13,28 @@
   width: 100%;
   height: 60%;
 }
+
+/*  */
+.UserProfileBox {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.UserProfileImage {
+  width: 200px;
+}
+.UserImage {
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  width: 200px;
+  padding: 10px;
+}
+
+.UserNameDisplay {
+  font-size: 30px;
+  font-weight: 600;
+}

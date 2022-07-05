@@ -36,7 +36,7 @@ def save_pic(pic):
     pic_fn = random_hex + f_ext
     pic_path = os.path.join(app.root_path, "static/Assets/userimage", pic_fn)
     pic.save(pic_path)
-    output_size = (125, 125)
+    output_size = (250, 250)
     i = Image.open(pic)
     i.thumbnail(output_size)
     i.save(pic_path)
