@@ -22,14 +22,17 @@
       >
         Signup</a
       >
-      <div class="LoginSignup__Pill--SelectionPill" id="SelectionPill"></div>
+      <div
+        class="LoginSignup__Pill--SelectionPill Signup"
+        id="SelectionPill"
+      ></div>
     </div>
     <!--  -->
 
     <!--  -->
     <form
       method="POST"
-      action="/LoginSignup"
+      action="/"
       class="Login-Form"
       id="Login-Form"
       name="Login_Form"
@@ -46,7 +49,6 @@
           maxlength="20"
           minlength="5"
         />
-        <small class="Login-Username Error-Message" id="Error-Message"> </small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -62,17 +64,22 @@
           minlength="8"
         />
         <a class="eye fa-solid fa-eye" id="eye" onclick="RevealPassword()"></a>
-        <small class="Login-Password Error-Message" id="Error-Message"></small>
       </div>
       <a href="" class="Login-ForgotPassword Button">Forgot Password?</a>
       <!--  -->
 
-      <input type="submit" value="LOGIN" class="Submit Form-Login Button" />
+      <input
+        type="submit"
+        name="submit"
+        value="LOGIN"
+        action="/LoginSignup"
+        class="Submit Form-Login Button"
+      />
     </form>
     <!--  -->
     <form
       method="POST"
-      action="/LoginSignup"
+      action="/"
       class="Signup-Form"
       id="Signup-Form"
       name="Signup_Form"
@@ -91,7 +98,6 @@
           maxlength="20"
           minlength="3"
         />
-        <small class="Signup-FullName Error-Message" id="Error-Message">
         </small>
       </div>
       <!--  -->
@@ -103,9 +109,8 @@
           class="Textbox Email"
           placeholder="example@email.com"
           id="Signup-Email"
-          autocomplete="off"
+          required
         />
-        <small class="Signup-Email Error-Message" id="Error-Message"> </small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -114,10 +119,10 @@
           name="Username"
           type="text"
           class="Textbox Username"
-          placeholder="AppleMan"
+          required
+          placeholder="Username"
           id="Signup-Username"
         />
-        <small class="Signup-Username Error-Message" id="Error-Message"></small>
       </div>
       <!--  -->
       <div class="Form-Title">
@@ -129,7 +134,6 @@
           class="Textbox Password"
           placeholder="Password"
           id="Signup-Password"
-          autocomplete="off"
           required
           maxlength="20"
           minlength="8"
@@ -154,7 +158,6 @@
           id="Signup-CPass"
           class="Textbox CPassword"
           placeholder="Password"
-          autocomplete="off"
           required
           maxlength="20"
           minlength="8"

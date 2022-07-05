@@ -96,7 +96,7 @@
 }
 
 .Login-Form {
-  display: flex;
+  display: none;
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: left;
@@ -112,7 +112,7 @@
 }
 
 .Signup-Form {
-  display: none;
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: left;
@@ -132,13 +132,6 @@
   font-weight: 600;
   color: var(--clr-dark);
   right: 0px;
-}
-.Error-Message {
-  font-size: 12px;
-  font-weight: 400;
-  visibility: visible;
-  /* margin: 2px 0px 2px 0px; */
-  color: red;
 }
 .Textbox {
   margin: 5px auto;

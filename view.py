@@ -6,7 +6,7 @@ from Backend import From_File
 views = Blueprint("views", __name__)
 
 
-@views.route("/")
+@views.route("/", methods=["GET", "POST"])
 def home():
     return render_template("Home.html")
 
