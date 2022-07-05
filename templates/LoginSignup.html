@@ -37,8 +37,28 @@
       id="Login-Form"
       name="Login_Form"
     >
+      {{ form_login.hidden_tag() }}
+
       <!--  -->
-      <div class="Form-Title">
+      {{ form_login.email.label(class="Form-Title") }}
+      <!--  -->
+      {% if form_login.email.errors %}
+      <!--  -->
+      {{ form_login.email(placeholder="Eg: apple@gmail.com",class="Textbox
+      Email") }}
+      <div class="invalid-feedback">
+        {% for error in form_login.email.errors %}
+        <span class="Error-Message">{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      <!--  -->
+      {{ form_login.email(placeholder="Eg: apple@gmail.com",class="Textbox
+      Email") }}
+      <!--  -->
+      {% endif %}
+      <!--  -->
+      <!-- <div class="Form-Title">
         Username
         <input
           name="Username"
@@ -49,9 +69,35 @@
           maxlength="20"
           minlength="5"
         />
+      </div> -->
+      <!--  -->
+      <!--  -->
+      <div class="Password-Box-Eye">
+        {{ form_login.password.label(class="Form-Title") }}
+        <!--  -->
+        {% if form_login.password.errors %}
+        <!--  -->
+        {{ form_login.password(class="Textbox Password
+        ",placeholder="*******",id="Login-Pass") }}
+        <div class="invalid-feedback">
+          {% for error in form_login.password.errors %}
+          <span class="Error-Message">{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        <!--  -->
+        {{ form_login.password(class="Textbox
+        Password",placeholder="*******",id="Login-Pass") }}
+        <button
+          type="button"
+          onclick="RevealPassword()"
+          class="eye fa-solid fa-eye"
+          id="eye"
+        ></button>
       </div>
       <!--  -->
-      <div class="Form-Title">
+      {% endif %}
+      <!-- <div class="Form-Title">
         Password
         <input
           name="Password"
@@ -64,118 +110,124 @@
           minlength="8"
         />
         <a class="eye fa-solid fa-eye" id="eye" onclick="RevealPassword()"></a>
-      </div>
+      </div> -->
       <a href="" class="Login-ForgotPassword Button">Forgot Password?</a>
       <!--  -->
-
-      <input
-        type="submit"
-        name="submit"
-        value="LOGIN"
-        action="/LoginSignup"
-        class="Submit Form-Login Button"
-      />
+      {{ form_login.submit(value="LOGIN",class="Submit Form-Login Button") }}
     </form>
     <!--  -->
     <form
       method="POST"
-      action="/"
+      action=""
       class="Signup-Form"
       id="Signup-Form"
       name="Signup_Form"
     >
+      {{ form_signup.hidden_tag() }}
+
       <!--  -->
-      <div class="Form-Title">
-        Name
-        <input
-          name="FullName"
-          type="text"
-          class="Textbox Name"
-          placeholder="Name"
-          id="Signup-Name"
-          autocomplete="off"
-          required
-          maxlength="20"
-          minlength="3"
-        />
-        </small>
+      {{ form_signup.fullname.label(class="Form-Title") }}
+      <!--  -->
+      {% if form_signup.fullname.errors %}
+      <!--  -->
+      {{ form_signup.fullname(class="Textbox Name ",placeholder="Eg: Will
+      Smith") }}
+      <div class="invalid-feedback">
+        {% for error in form_signup.fullname.errors %}
+        <span class="Error-Message">{{ error }}</span>
+        {% endfor %}
       </div>
+      {% else %}
       <!--  -->
-      <div class="Form-Title">
-        Email
-        <input
-          name="Email"
-          type="email"
-          class="Textbox Email"
-          placeholder="example@email.com"
-          id="Signup-Email"
-          required
-        />
+      {{ form_signup.fullname(class="Textbox Name",placeholder="Eg: Will Smith")
+      }}
+      <!--  -->
+      {% endif %}
+      <!--  -->
+      <!--  -->
+      {{ form_signup.email.label(class="Form-Title") }}
+      <!--  -->
+      {% if form_signup.email.errors %}
+      <!--  -->
+      {{ form_signup.email(placeholder="Eg: apple@gmail.com",class="Textbox
+      Email") }}
+      <div class="invalid-feedback">
+        {% for error in form_signup.email.errors %}
+        <span class="Error-Message">{{ error }}</span>
+        {% endfor %}
       </div>
+      {% else %}
       <!--  -->
-      <div class="Form-Title">
-        Username
-        <input
-          name="Username"
-          type="text"
-          class="Textbox Username"
-          required
-          placeholder="Username"
-          id="Signup-Username"
-        />
+      {{ form_signup.email(placeholder="Eg: apple@gmail.com",class="Textbox
+      Email") }}
+      <!--  -->
+      {% endif %}
+      <!--  -->
+      <!--  -->
+      {{ form_signup.username.label(class="Form-Title") }}
+      <!--  -->
+      {% if form_signup.username.errors %}
+      <!--  -->
+      {{ form_signup.username(class="Textbox Username ",placeholder="Eg: WillS")
+      }}
+      <div class="invalid-feedback">
+        {% for error in form_signup.username.errors %}
+        <span class="Error-Message">{{ error }}</span>
+        {% endfor %}
       </div>
+      {% else %}
       <!--  -->
-      <div class="Form-Title">
-        Password
-        <input
-          name="Password"
-          type="password"
-          id="Signup-Pass"
-          class="Textbox Password"
-          placeholder="Password"
-          id="Signup-Password"
-          required
-          maxlength="20"
-          minlength="8"
-        />
+      {{ form_signup.username(class="Textbox Username",placeholder="Eg: WillS")
+      }}
+      <!--  -->
+      {% endif %}
+      <!--  -->
+      <!--  -->
+      <div class="Password-Box-Eye">
+        {{ form_signup.password.label(class="Form-Title") }}
+        <!--  -->
+        {% if form_signup.password.errors %}
+        <!--  -->
+        {{ form_signup.password(class="Textbox Password
+        ",placeholder="*******",id="Signup-Pass") }}
+        <div class="invalid-feedback">
+          {% for error in form_signup.password.errors %}
+          <span class="Error-Message">{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        <!--  -->
+        {{ form_signup.password(class="Textbox
+        Password",placeholder="*******",id="Signup-Pass") }}
         <button
           type="button"
           onclick="RevealPassword()"
           class="eye fa-solid fa-eye"
           id="eye-C"
         ></button>
-        <small
-          class="Signup-CPassword Error-Message"
-          id="Error-Message"
-        ></small>
       </div>
       <!--  -->
-      <div class="Form-Title">
-        Confirm Password
-        <input
-          name="CPassword"
-          type="password"
-          id="Signup-CPass"
-          class="Textbox CPassword"
-          placeholder="Password"
-          required
-          maxlength="20"
-          minlength="8"
-        />
-        <small
-          class="Signup-CPassword Error-Message"
-          id="Error-Message"
-        ></small>
-      </div>
+      {% endif %}
       <!--  -->
-      <input
-        class="Submit Form-Signup Button"
-        id="Form-Btn"
-        type="submit"
-        name="submit"
-        value="SIGNUP"
-        action="/LoginSignup"
-      />
+      {{ form_signup.cpassword.label(class="Form-Title") }}
+      <!--  -->
+      {% if form_signup.cpassword.errors %}
+      <!--  -->
+      {{ form_signup.cpassword(class="Textbox
+      CPassword",placeholder="*******",id="Signup-CPass") }}
+      <div class="invalid-feedback">
+        {% for error in form_signup.cpassword.errors %}
+        <span class="Error-Message">{{ error }}</span>
+        {% endfor %}
+      </div>
+      {% else %}
+      <!--  -->
+      {{ form_signup.cpassword(class="Textbox
+      CPassword",placeholder="*******",id="Signup-CPass") }}
+      <!--  -->
+      {% endif %}
+      <!--  -->
+      {{ form_signup.submit(value="SIGNUP",class="Submit Form-Signup Button") }}
     </form>
   </div>
 </section>

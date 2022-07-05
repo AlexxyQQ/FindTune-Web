@@ -133,6 +133,10 @@
   color: var(--clr-dark);
   right: 0px;
 }
+.Form-Title::after {
+  content: " *";
+  color: red;
+}
 .Textbox {
   margin: 5px auto;
   width: 100%;
@@ -166,14 +170,9 @@
   font-size: 20px;
   font-weight: 300;
 }
-.Password-Box {
+
+.Password-Box-Eye {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  align-content: center;
-  flex-direction: row;
 }
 .eye {
   border: none;
@@ -185,6 +184,10 @@
   font-size: 17px;
 }
 
+.Error-Message {
+  font-size: 12px !important;
+  color: red !important;
+}
 .Textbox:focus {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   font-size: 21px;

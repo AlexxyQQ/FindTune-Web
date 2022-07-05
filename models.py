@@ -16,10 +16,7 @@ class user(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(120), nullable=False, default="default.jpg")
     password = db.Column(db.String(60), nullable=False)
-    songs = db.relationship(
-        "Songs", cascade="all, delete-orphan", backref="author", lazy=True
-    )
-    lyrics = db.relationship("Songs", cascade="all", backref="author", lazy=True)
+    lyrics = db.relationship("Lyrics", backref="User", lazy=True)
 
     def __repr__(self):
         return f"user('{self.username}','{self.email}','{self.password}')"
@@ -27,18 +24,14 @@ class user(db.Model, UserMixin):
 
 class Songs(db.Model):
     __tablename__ = "songs"
-
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     artist = db.Column(db.String(100), nullable=True)
     album = db.Column(db.String(100), nullable=True)
     year = db.Column(db.String(100), nullable=True)
     genre = db.Column(db.String(100), nullable=True)
-    user_id = db.Column(
-        db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False
-    )
     lyrics = db.relationship(
-        "Songs", cascade="all,delete-orphan", backref="author", lazy=True
+        "Lyrics", backref="Song", cascade="all, delete-orphan", lazy=True
     )
 
     def __repr__(self):
@@ -48,10 +41,8 @@ class Songs(db.Model):
 class Lyrics(db.Model):
     __tablename__ = "lyrics"
     id = db.Column(db.Integer, primary_key=True)
-    lyrics = db.Column(db.String(1000000), nullable=True)
-    user_id = db.Column(
-        db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False
-    )
+    lyrics = db.Column(db.String(16000), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     song_id = db.Column(
         db.Integer, db.ForeignKey("songs.id", ondelete="CASCADE"), nullable=False
     )
