@@ -25,9 +25,15 @@
     <link rel="manifest" href="/static/manifest.json" />
 
     <!-- Css -->
-    <link rel="stylesheet" href="../static/CSS/Main.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/CSS/Main.css') }}"
+    />
     {% block Style %}
-    <link rel="stylesheet" href="../static/CSS/Home.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/CSS/Home.css') }}"
+    />
     {% endblock %}
 
     <title>{% block Title %}Find-Tune{% endblock %}</title>
@@ -43,21 +49,25 @@
         <a href="" class="Nav-Items-List Button">About</a>
         <a href="" class="Nav-Items-List Button">Donate</a>
       </div>
-      <div class="Search-Area">
-        <input
-          type="text"
-          class="Search-Box"
-          placeholder="Title, Artist, Album"
-          id="Search-Box"
-        />
-        <button class="Search-Button Button">
-          <img
-            src="../static/Assets/search-icon.svg"
-            alt="Search"
-            class="Img"
+      <form action="/search" method="GET">
+        <div class="Search-Area">
+          <input
+            type="text"
+            class="Search-Box"
+            placeholder="Title, Artist, Album"
+            id="Search-Box"
+            name="Song"
+            required
           />
-        </button>
-      </div>
+          <button type="submit" class="Search-Button Button">
+            <img
+              src="../static/Assets/search-icon.svg"
+              alt="Search"
+              class="Img"
+            />
+          </button>
+        </div>
+      </form>
       <button
         class="Toggle-Theme Button"
         id="Toggle-Theme-Btn"
@@ -108,7 +118,9 @@
         <img src="../static/Assets/bars.svg" alt="Bar" class="Img" />
       </a>
     </header>
-    {% endblock %} {% block MusicListeningArea %}
+    {% endblock NavBar %}
+    <!--  -->
+    {% block MusicListeningArea %}
     <section class="Listening-Area" id="Listening_Area">
       <button
         class="Circular-Recorder Button"
@@ -144,7 +156,7 @@
         id="Small-Record-Button"
       ></button>
     </section>
-    {% endblock %}
+    {% endblock MusicListeningArea %}
     <!--  -->
     {% block HamburgerWindow %}
     <section class="Hamburger-Window" id="Hamburger-Window">
@@ -190,8 +202,11 @@
       >
       {{message}}
     </div>
-    {%endfor%} {%endif%} {%endwith%} {% endblock %} {% block LoginSignupPage %}
-    {% endblock %} {% block Previews %}
+    {%endfor%} {%endif%} {%endwith%} {% endblock HamburgerWindow %}
+    <!--  -->
+    {% block LoginSignupPage %} {% endblock LoginSignupPage %}
+    <!--  -->
+    {% block Previews %}
     <link rel="stylesheet" href="../static/CSS/LandingPagePreviews.css" />
     <section class="Preview-Area">
       <div class="Preview-Card Preview-Card__One">
@@ -326,12 +341,18 @@
       </div> -->
     </section>
 
-    {% endblock %}
+    {% endblock Previews %}
+    <!--  -->
+    {% block UserProfile %} {% endblock UserProfile %}
+
+    <!--  -->
+    {% block Footer %}
     <section class="Footer">
       <!-- <div class="Logo-Box"> -->
       <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
       <p class="Footer__Title">Find-Tune</p>
       <!-- </div> -->
     </section>
+    {% endblock Footer %}
   </body>
 </html>

@@ -1,0 +1,23 @@
+{% extends "Home.html" %}
+<!--  -->
+{% block MusicListeningArea %} {%endblock MusicListeningArea%}
+<!--  -->
+{% block LoginSignupPage %} {% endblock LoginSignupPage %}
+<!--  -->
+{% block Previews %}{% endblock Previews %}
+<!--  -->
+{% block Footer %} {% endblock Footer %}
+<!--  -->
+<!--  -->
+{% block UserProfile %}
+<!-- Csslink  -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='/CSS/UserProfile/UserProfile.css') }}"
+/>
+<!--  -->
+<section class="UserProfile">
+  <section class="ProfileArea"></section>
+  <section class="OtherArea"></section>
+</section>
+{% endblock UserProfile %}
