@@ -18,19 +18,6 @@ def home():
     return render_template("Home.html")
 
 
-@views.route("/check", methods=["GET", "POST"])
-def check():
-    a = "non"
-    if request.method == "POST":
-        request.files["file"].save("./audio.wav")
-        b = From_File.main("./audio.wav")
-        print(b)
-        a = b
-        return redirect(url_for("views.account", username=current_user.username))
-        # os.system(f"Backend\From_File.py -f {a}")
-    return f"<h1>{a}</h1>"
-
-
 def save_pic(pic):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(pic.filename)
@@ -76,3 +63,20 @@ def RecordedSearch():
 @login_required
 def Library():
     pass
+
+
+@views.route("/<string:songname>", methods=["GET", "POST"])
+def song(songname):
+    return render_template("FoundSong/FoundSong.html", songname=songname)
+
+
+@views.route("/check", methods=["GET", "POST"])
+def check():
+    songname = "notfound"
+    if request.method == "POST":
+        request.files["file"].save("./audio.wav")
+        b = From_File.main("./audio.wav")
+        # print(b.pop().replace(".mp3", ""))
+        songname = b.pop().replace(".mp3", "")
+        return render_template("FoundSong/FoundSong.html", songname=songname)
+    return render_template("FoundSong/FoundSong.html", songname=songname)

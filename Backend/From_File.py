@@ -40,13 +40,13 @@ def return_matches(db, hashes):
 
         if matches_found > 50:
             msg = "   ** found %d hash matches (step %d/%d)"
-            print(
-                colored(msg, "green") % (matches_found, len(split_values), len(values))
-            )
+            # print(
+            #     colored(msg, "green") % (matches_found, len(split_values), len(values))
+            # )
             break
         else:
             msg = "   ** not matches found (step %d/%d)"
-            print(colored(msg, "red") % (len(split_values), len(values)))
+            # print(colored(msg, "red") % (len(split_values), len(values)))
 
         for audio_hash, sid, offset in x:
             yield sid, offset - mapper[audio_hash]
@@ -117,7 +117,7 @@ def main(filename):
 
     total_matches_found = len(matches)
     if total_matches_found > 20:
-        print(colored(f" ** totally found {total_matches_found} hash matches", "green"))
+        # print(colored(f" ** totally found {total_matches_found} hash matches", "green"))
 
         song = align_matches(db, matches)
 
@@ -132,6 +132,7 @@ def main(filename):
         return {song["SONG_NAME"]}
 
     else:
+        # pass
         print(colored(" ** not matches found at all", "red"))
 
 
