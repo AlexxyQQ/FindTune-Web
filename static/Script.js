@@ -77,7 +77,7 @@ const recordAudio = () =>
               contentType: false,
             }).done(function (data) {
               console.log(data);
-              window.location.href = "http://127.0.0.1:8080/check";
+              window.location.href = "http://127.0.0.1:8080/" + data;
             });
           }
           submit(audioBlob);

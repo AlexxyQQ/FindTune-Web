@@ -29,14 +29,16 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='/CSS/Main.css') }}"
     />
-    {% block Style %}
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='/CSS/Home.css') }}"
     />
-    {% endblock %}
-
-    <title>{% block Title %}Find-Tune{% endblock %}</title>
+    <!--  -->
+    {% if title %}
+    <title>FindTune - {{ title }}</title>
+    {% else %}
+    <title>FindTune</title>
+    {% endif %}
   </head>
   <body>
     {% block NavBar %}
@@ -347,7 +349,8 @@
     {% endblock Previews %}
     <!--  -->
     {% block UserProfile %} {% endblock UserProfile %}
-
+    <!--  -->
+    {% block SongInfo %} {% endblock SongInfo %}
     <!--  -->
     {% block Footer %}
     <section class="Footer">

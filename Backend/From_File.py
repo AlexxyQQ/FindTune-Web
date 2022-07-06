@@ -118,7 +118,6 @@ def main(filename):
     total_matches_found = len(matches)
     if total_matches_found > 20:
         # print(colored(f" ** totally found {total_matches_found} hash matches", "green"))
-
         song = align_matches(db, matches)
 
         print(
@@ -129,7 +128,7 @@ def main(filename):
                 "green",
             )
         )
-        return {song["SONG_NAME"]}
+        return ({song["SONG_NAME"]}, matches)
 
     else:
         # pass
