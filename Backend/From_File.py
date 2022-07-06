@@ -24,7 +24,6 @@ def find_matches(db, samples, Fs=fingerprint.DEFAULT_FS):
 def return_matches(db, hashes):
     mapper = {}
     for audio_hash, offset in hashes:
-        print(type(audio_hash))
         mapper[audio_hash.upper()] = offset
     values = mapper.keys()
     for split_values in grouper(values, 1400):
@@ -117,10 +116,7 @@ def main(filename):
         matches.extend(find_matches(db, channel, Fs=Fs))
 
     total_matches_found = len(matches)
-
-    print("")
-
-    if total_matches_found:
+    if total_matches_found > 20:
         print(colored(f" ** totally found {total_matches_found} hash matches", "green"))
 
         song = align_matches(db, matches)

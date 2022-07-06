@@ -24,8 +24,9 @@ def check():
     if request.method == "POST":
         request.files["file"].save("./audio.wav")
         b = From_File.main("./audio.wav")
+        print(b)
         a = b
-        # redirect("/check")
+        return redirect(url_for("views.account", username=current_user.username))
         # os.system(f"Backend\From_File.py -f {a}")
     return f"<h1>{a}</h1>"
 
@@ -47,15 +48,16 @@ def save_pic(pic):
 @login_required
 def account(username):
     form = UpdateAccountForm()
-    if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_pic(form.picture.data)
-            current_user.image_file = picture_file
-        current_user.username = form.username.data
-        db.session.commit()
-        return redirect(url_for("views.home"))
-    elif request.method == "GET":
-        form.username.data = current_user.username
+    if request.method == "POST":
+        if form.validate_on_submit():
+            if form.picture.data:
+                picture_file = save_pic(form.picture.data)
+                current_user.image_file = picture_file
+            current_user.username = form.username.data
+            db.session.commit()
+            return redirect(url_for("views.home"))
+        elif request.method == "GET":
+            form.username.data = current_user.username
 
     if DBUser.query.filter_by(username=username).first():
         return render_template(
@@ -68,3 +70,9 @@ def account(username):
 @views.route("/Song")
 def RecordedSearch():
     return render_template("FoundSong.html")
+
+
+@views.route("/library", methods=["GET", "POST"])
+@login_required
+def Library():
+    pass

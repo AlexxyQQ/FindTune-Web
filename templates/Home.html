@@ -41,11 +41,11 @@
   <body>
     {% block NavBar %}
     <header class="Nav-Bar" id="Nav-Bar">
-      <div class="Logo-Box">
+      <a class="Logo-Box" href="/">
         <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
-      </div>
+      </a>
       <div class="Navbar Nav-Items">
-        <a href="" class="Nav-Items-List Button">My Library</a>
+        <a href="/library" class="Nav-Items-List Button">My Library</a>
         <a href="" class="Nav-Items-List Button">About</a>
         <a href="" class="Nav-Items-List Button">Donate</a>
       </div>
@@ -166,6 +166,7 @@
         </div>
         <a href="" class="Hamburger-Window-Close Button"></a>
       </div>
+      {% if current_user.is_authenticated %}
       <div class="userDisplay">
         <img
           class="userImage Img"
@@ -178,6 +179,7 @@
           >{{ current_user.username.upper() }}</a
         >
       </div>
+      {% endif %}
       <hr class="Line-Ham" />
       <div class="Hamburger-Content">
         <a href="" class="Hamburger-Items-List Button">My Libraries</a>
@@ -194,6 +196,7 @@
         <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
       </div>
     </section>
+    <!--  -->
     {%with messages =get_flashed_messages(with_categories=true) %} {% if
     messages%} {% for category,message in messages%}
     <div class="alert alert-{{ category }} alert-dismissible">
