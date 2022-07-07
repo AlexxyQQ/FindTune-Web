@@ -20,17 +20,21 @@
 <section class="SongDetailsArea">
   <div class="TitleArea">
     <div class="SongCover">
-      <img src="" alt="" class="SongCoverImg Img" />
+      <img src="{{cover_image}}" alt="" class="SongCoverImg Img" />
     </div>
     <div class="SongTitle">
-      <span class="SongName">{{songname.split()[2]}}</span>
-      <span class="SingerName">{{songname.split()[0]}}</span>
+      <span class="SongName">{{songname}}</span>
+      <span class="SingerName">{{artist}}</span>
     </div>
   </div>
   <div class="LyricsArea">
     <hr class="Line" />
     <span class="LyricsLyrisc">Lyrics</span>
+    {% if lyrics != None %}
     <p class="LyricsofSong" id="LyricsofSong"></p>
+    {% else %}
+    <span class="NoLyrics">No Lyrics Found!!</span>
+    {% endif %}
   </div>
   <div class="VideoArea">C</div>
   <div class="DetailsArea">D</div>

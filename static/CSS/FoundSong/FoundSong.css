@@ -16,27 +16,80 @@
     align-content: center;
     justify-content: flex-start;
     align-items: center;
+    background-color: transparent;
   }
   .TitleArea {
+    width: 100%;
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  .SongCover {
+    width: 200px;
+  }
+  .SongCoverImg {
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
   }
   .SongTitle {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
   }
   .SongName {
+    color: #ddf7f6;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
   }
   .SingerName {
+    color: #ddf7f6;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
   }
 
   .LyricsArea {
+    z-index: 0;
+    transform: translateY(-10%);
+    width: 100%;
+    min-height: 500px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: flex-start;
     align-items: center;
+    background-color: #ddf7f6;
   }
   .Line {
+    width: 80%;
+    height: 1px;
+    margin-top: 60px;
+    margin-bottom: 15px;
   }
+
   .LyricsLyrisc {
+  }
+  .NoLyrics {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 30px;
+    margin-top: 125px;
   }
   .LyricsofSong {
     margin: 0 auto;

@@ -1,14 +1,12 @@
 import os
 import secrets
 from flask import Blueprint, redirect, request, render_template, url_for
-from matplotlib import artist
-from matplotlib.pyplot import title
 from Backend.utils import From_File
 from flask_login import current_user, login_required
 from form import UpdateAccountForm
 from __init__ import db, bcrypt, app
 from PIL import Image
-from models import Songs, user as DBUser
+from models import Songs, user as DBUser, Lyrics, Votes
 
 # from Backend import From_File
 
@@ -23,14 +21,27 @@ def home():
 @views.route("<string:songname>", methods=["GET", "POST"])
 def song(songname):
     if songname != "service-worker.js" and songname != "favicon.ico":
-        all_song = Songs.query.filter_by(
+        Song_details = Songs.query.filter_by(
             title=songname.split("-")[0], artist=songname.split("-")[1]
         ).first()
-        return render_template(
-            "FoundSong/FoundSong.html",
-            songname=songname.split("-")[0],
-            artist=songname.split("-")[1],
-        )
+        song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
+        if Song_details != "none":
+            if song_lyrics != None:
+                return render_template(
+                    "FoundSong/FoundSong.html",
+                    songname=Song_details.title,
+                    artist=Song_details.artist,
+                    cover_image=Song_details.cover_image,
+                    lyrics=song_lyrics.lyrics,
+                )
+            else:
+                return render_template(
+                    "FoundSong/FoundSong.html",
+                    songname=Song_details.title,
+                    artist=Song_details.artist,
+                    cover_image=Song_details.cover_image,
+                    lyrics=None,
+                )
     return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
@@ -53,6 +64,7 @@ def check():
                 album=b.get("track").get("sections")[0].get("metadata")[0].get("text"),
                 year=b.get("track").get("sections")[0].get("metadata")[2].get("text"),
                 tagid=b.get("track").get("key"),
+                cover_image=b.get("track").get("images").get("coverart"),
             )
             db.session.add(details)
             db.session.commit()
