@@ -40,7 +40,7 @@
   }
   .LyricsofSong {
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
     width: 90%;
     max-width: 90%;
     white-space: pre-wrap;

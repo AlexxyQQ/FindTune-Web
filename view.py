@@ -19,7 +19,7 @@ def home():
     return render_template("Home.html")
 
 
-@views.route("/<string:songname>", methods=["GET", "POST"])
+@views.route("<string:songname>", methods=["GET", "POST"])
 def song(songname):
     import sqlite3
 
@@ -32,6 +32,12 @@ def song(songname):
         return render_template("FoundSong/FoundSong.html", songname=songname)
     else:
         return render_template("404/pagenotfound.html", title="Pagenotfound")
+
+
+@views.route("/search", methods=["GET", "POST"])
+def searchsong():
+    if request.method == "POST":
+        return redirect(url_for("views.song", songname=request.form["Song"]))
 
 
 @views.route("/check", methods=["GET", "POST"])

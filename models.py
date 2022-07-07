@@ -49,3 +49,11 @@ class Lyrics(db.Model):
 
     def __repr__(self):
         return f"Lyrics('{self.lyrics}')"
+
+
+class Votes(db.Model):
+    __tablename__ = "votes"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"), nullable=False)
+    vote = db.Column(db.Integer, nullable=True)
