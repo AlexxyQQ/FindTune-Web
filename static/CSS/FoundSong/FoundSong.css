@@ -1,0 +1,59 @@
+.SongDetailsArea {
+  width: 99vw !important;
+  height: 100vw;
+  padding: 5px;
+  background-color: #fff;
+}
+
+/* Small screen */
+@media (min-width: 100px) and (max-width: 640px) {
+  .SongDetailsArea {
+    width: 99vw !important;
+    height: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .TitleArea {
+  }
+  .SongTitle {
+  }
+  .SongName {
+  }
+  .SingerName {
+  }
+
+  .LyricsArea {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .Line {
+  }
+  .LyricsLyrisc {
+  }
+  .LyricsofSong {
+    margin: 0 auto;
+    text-align: left;
+    width: 90%;
+    max-width: 90%;
+    white-space: pre-wrap;
+  }
+
+  .VideoArea {
+  }
+  .DetailsArea {
+  }
+}
+/* All Screen */
+@media (min-width: 640px) {
+  .SongDetailsArea {
+    background-color: yellow;
+  }
+}

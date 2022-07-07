@@ -1,6 +1,7 @@
 import os
 import secrets
 from flask import Blueprint, redirect, request, render_template, url_for
+from matplotlib.pyplot import title
 from Backend import From_File
 from flask_login import current_user, login_required
 from form import UpdateAccountForm
@@ -18,17 +19,44 @@ def home():
     return render_template("Home.html")
 
 
+@views.route("<string:songname>", methods=["GET", "POST"])
+def song(songname):
+    import sqlite3
+
+    con = sqlite3.connect("Backend/db/fingerprints.db")
+    cur = con.cursor()
+    a = cur.execute(
+        f"""SELECT * FROM songs WHERE name = "{songname+ ".mp3"}";"""
+    ).fetchall()
+    if a != []:
+        return render_template("FoundSong/FoundSong.html", songname=songname)
+    else:
+        return render_template("404/pagenotfound.html", title="Pagenotfound")
+
+
+@views.route("/search", methods=["GET", "POST"])
+def searchsong():
+    if request.method == "POST":
+        return redirect(url_for("views.song", songname=request.form["Song"]))
+
+
 @views.route("/check", methods=["GET", "POST"])
 def check():
-    a = "non"
+    songname = "notfound"
     if request.method == "POST":
         request.files["file"].save("./audio.wav")
         b = From_File.main("./audio.wav")
-        print(b)
-        a = b
-        return redirect(url_for("views.account", username=current_user.username))
-        # os.system(f"Backend\From_File.py -f {a}")
-    return f"<h1>{a}</h1>"
+        # print(b.pop().replace(".mp3", ""))
+        result = b
+        songname = b[0].pop().replace(".mp3", "")
+        # return render_template(
+        #     "FoundSong/FoundSong.html", songname=songname, title=songname
+        # )
+        return songname
+    # return render_template(
+    #     "FoundSong/FoundSong.html", songname=songname, title="Song Not Found"
+    # )
+    return songname
 
 
 def save_pic(pic):

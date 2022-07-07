@@ -118,22 +118,21 @@ def main(filename):
     total_matches_found = len(matches)
     if total_matches_found > 20:
         # print(colored(f" ** totally found {total_matches_found} hash matches", "green"))
-
         song = align_matches(db, matches)
 
-        # print(
-        #     colored(
-        #         f" => song: {song['SONG_NAME']} (id={song['SONG_ID']})\n"
-        #         f"    offset: {song['OFFSET']} ({song['OFFSET_SECS']} secs)\n"
-        #         f"    confidence: {song['CONFIDENCE']}",
-        #         "green",
-        #     )
-        # )
-        return {song["SONG_NAME"]}
+        print(
+            colored(
+                f" => song: {song['SONG_NAME']} (id={song['SONG_ID']})\n"
+                f"    offset: {song['OFFSET']} ({song['OFFSET_SECS']} secs)\n"
+                f"    confidence: {song['CONFIDENCE']}",
+                "green",
+            )
+        )
+        return ({song["SONG_NAME"]}, matches)
 
     else:
-        # print(colored(" ** not matches found at all", "red"))
-        pass
+        # pass
+        print(colored(" ** not matches found at all", "red"))
 
 
 # if __name__ == "__main__":

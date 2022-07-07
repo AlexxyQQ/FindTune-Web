@@ -1,0 +1,39 @@
+{% extends "Home.html" %}
+<!--  -->
+{% block MusicListeningArea %} {%endblock MusicListeningArea%}
+<!--  -->
+{% block LoginSignupPage %} {% endblock LoginSignupPage %}
+<!--  -->
+{% block Previews %}{% endblock Previews %}
+<!--  -->
+{% block Footer %} {% endblock Footer %}
+<!--  -->
+{% block UserProfile %}{% endblock UserProfile %}
+<!--  -->
+<!--  -->
+{% block SongInfo %}
+<!--  -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='/CSS/FoundSong/FoundSong.css') }}"
+/>
+<section class="SongDetailsArea">
+  <div class="TitleArea">
+    <div class="SongCover">
+      <img src="" alt="" class="SongCoverImg Img" />
+    </div>
+    <div class="SongTitle">
+      <span class="SongName">{{songname.split()[2]}}</span>
+      <span class="SingerName">{{songname.split()[0]}}</span>
+    </div>
+  </div>
+  <div class="LyricsArea">
+    <hr class="Line" />
+    <span class="LyricsLyrisc">Lyrics</span>
+    <p class="LyricsofSong" id="LyricsofSong"></p>
+  </div>
+  <div class="VideoArea">C</div>
+  <div class="DetailsArea">D</div>
+</section>
+<!--  -->
+{% endblock SongInfo %}
