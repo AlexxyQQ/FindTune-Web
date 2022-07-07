@@ -24,15 +24,18 @@ def song(songname):
         Song_details = Songs.query.filter_by(
             title=songname.split("-")[0], artist=songname.split("-")[1]
         ).first()
-        song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
-        if Song_details != "none":
+        if Song_details != None:
+            song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
+
             if song_lyrics != None:
+                aa = song_lyrics.lyrics.replace("[", "").replace("]", "")
+                l = ['"{}"'.format(aa) for aa in aa.split('"') if aa not in ("", ", ")]
                 return render_template(
                     "FoundSong/FoundSong.html",
                     songname=Song_details.title,
                     artist=Song_details.artist,
                     cover_image=Song_details.cover_image,
-                    lyrics=song_lyrics.lyrics,
+                    lyrics=l,
                 )
             else:
                 return render_template(
@@ -66,8 +69,21 @@ def check():
                 tagid=b.get("track").get("key"),
                 cover_image=b.get("track").get("images").get("coverart"),
             )
+
             db.session.add(details)
             db.session.commit()
+            Song_details = Songs.query.filter_by(
+                title=b.get("track").get("title"), artist=b.get("track").get("subtitle")
+            ).first()
+            if Song_details != None:
+                print(Song_details.id)
+                lyrics = Lyrics(
+                    lyrics=f"""{b.get("track").get("sections")[1].get("text")}""",
+                    song_id=Song_details.id,
+                    user_id=current_user.id,
+                )
+                db.session.add(lyrics)
+                db.session.commit()
         except:
             pass
         return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'

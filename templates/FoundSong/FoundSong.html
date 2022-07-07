@@ -31,13 +31,18 @@
     <hr class="Line" />
     <span class="LyricsLyrisc">Lyrics</span>
     {% if lyrics != None %}
-    <p class="LyricsofSong" id="LyricsofSong"></p>
+    <!--  -->
+    {% for line in lyrics %}
+    <p class="LyricsLines">
+      {{line.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
+    </p>
+    {% endfor %}
+    </p>
+    <!--  -->
     {% else %}
     <span class="NoLyrics">No Lyrics Found!!</span>
     {% endif %}
   </div>
-  <div class="VideoArea">C</div>
-  <div class="DetailsArea">D</div>
 </section>
 <!--  -->
 {% endblock SongInfo %}

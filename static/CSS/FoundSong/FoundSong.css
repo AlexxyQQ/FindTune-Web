@@ -1,6 +1,5 @@
 .SongDetailsArea {
   width: 99vw !important;
-  height: 100vw;
   padding: 5px;
   background-color: #fff;
 }
@@ -8,7 +7,8 @@
 /* Small screen */
 @media (min-width: 100px) and (max-width: 640px) {
   .SongDetailsArea {
-    width: 99vw !important;
+    width: 90vw !important;
+    margin: 0 auto;
     height: 100vw;
     display: flex;
     flex-direction: column;
@@ -19,6 +19,7 @@
     background-color: transparent;
   }
   .TitleArea {
+    padding: 10px;
     width: 100%;
     gap: 15px;
     display: flex;
@@ -31,6 +32,11 @@
   }
   .SongCover {
     width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align-content: center;
   }
   .SongCoverImg {
     border-radius: 25px;
@@ -57,16 +63,17 @@
     color: #ddf7f6;
     font-weight: 700;
     font-size: 15px;
-    line-height: 30px;
     display: flex;
     align-items: center;
   }
 
   .LyricsArea {
     z-index: 0;
-    transform: translateY(-10%);
-    width: 100%;
-    min-height: 500px;
+    position: absolute;
+    margin-top: 28% !important;
+    margin: 0 auto;
+    width: 90%;
+    height: fit-content;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -79,17 +86,26 @@
   .Line {
     width: 80%;
     height: 1px;
+    border: none;
+    background-color: black;
     margin-top: 60px;
     margin-bottom: 15px;
   }
-
+  .LyricsLines {
+    max-width: 95%;
+    text-align: center;
+    line-height: 2;
+  }
   .LyricsLyrisc {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
   }
   .NoLyrics {
     font-weight: 700;
     font-size: 30px;
     line-height: 30px;
-    margin-top: 125px;
+    margin: 125px 0px;
   }
   .LyricsofSong {
     margin: 0 auto;
