@@ -1,13 +1,14 @@
 import os
 import secrets
 from flask import Blueprint, redirect, request, render_template, url_for
+from matplotlib import artist
 from matplotlib.pyplot import title
-from Backend import From_File
+from Backend.utils import From_File
 from flask_login import current_user, login_required
 from form import UpdateAccountForm
 from __init__ import db, bcrypt, app
 from PIL import Image
-from models import user as DBUser
+from models import Songs, user as DBUser
 
 # from Backend import From_File
 
@@ -21,17 +22,16 @@ def home():
 
 @views.route("<string:songname>", methods=["GET", "POST"])
 def song(songname):
-    import sqlite3
-
-    con = sqlite3.connect("Backend/db/fingerprints.db")
-    cur = con.cursor()
-    a = cur.execute(
-        f"""SELECT * FROM songs WHERE name = "{songname+ ".mp3"}";"""
-    ).fetchall()
-    if a != []:
-        return render_template("FoundSong/FoundSong.html", songname=songname)
-    else:
-        return render_template("404/pagenotfound.html", title="Pagenotfound")
+    if songname != "service-worker.js" and songname != "favicon.ico":
+        all_song = Songs.query.filter_by(
+            title=songname.split("-")[0], artist=songname.split("-")[1]
+        ).first()
+        return render_template(
+            "FoundSong/FoundSong.html",
+            songname=songname.split("-")[0],
+            artist=songname.split("-")[1],
+        )
+    return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
 @views.route("/search", methods=["GET", "POST"])
@@ -46,16 +46,20 @@ def check():
     if request.method == "POST":
         request.files["file"].save("./audio.wav")
         b = From_File.main("./audio.wav")
-        # print(b.pop().replace(".mp3", ""))
-        result = b
-        songname = b[0].pop().replace(".mp3", "")
-        # return render_template(
-        #     "FoundSong/FoundSong.html", songname=songname, title=songname
-        # )
-        return songname
-    # return render_template(
-    #     "FoundSong/FoundSong.html", songname=songname, title="Song Not Found"
-    # )
+        try:
+            details = Songs(
+                title=b.get("track").get("title"),
+                artist=b.get("track").get("subtitle"),
+                album=b.get("track").get("sections")[0].get("metadata")[0].get("text"),
+                year=b.get("track").get("sections")[0].get("metadata")[2].get("text"),
+                tagid=b.get("track").get("key"),
+            )
+            db.session.add(details)
+            db.session.commit()
+        except:
+            pass
+        return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
+
     return songname
 
 

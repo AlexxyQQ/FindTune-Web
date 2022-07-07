@@ -29,13 +29,13 @@ class Songs(db.Model):
     artist = db.Column(db.String(100), nullable=True)
     album = db.Column(db.String(100), nullable=True)
     year = db.Column(db.String(100), nullable=True)
-    genre = db.Column(db.String(100), nullable=True)
+    tagid = db.Column(db.String(100), nullable=False, unique=True)
     lyrics = db.relationship(
         "Lyrics", backref="Song", cascade="all, delete-orphan", lazy=True
     )
 
     def __repr__(self):
-        return f"Songs('{self.title}','{self.artist}','{self.album}','{self.year}','{self.genre}','{self.lyrics}')"
+        return f"Songs('{self.title}','{self.artist}','{self.album}','{self.year}','{self.tagid}')"
 
 
 class Lyrics(db.Model):
