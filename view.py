@@ -7,6 +7,8 @@ from form import UpdateAccountForm
 from __init__ import db, bcrypt, app
 from PIL import Image
 from models import Songs, user as DBUser, Lyrics, Votes
+import urllib3
+import ast
 
 # from Backend import From_File
 
@@ -16,36 +18,6 @@ views = Blueprint("views", __name__)
 @views.route("/", methods=["GET", "POST"])
 def home():
     return render_template("Home.html")
-
-
-@views.route("<string:songname>", methods=["GET", "POST"])
-def song(songname):
-    if songname != "service-worker.js" and songname != "favicon.ico":
-        Song_details = Songs.query.filter_by(
-            title=songname.split("-")[0], artist=songname.split("-")[1]
-        ).first()
-        if Song_details != None:
-            song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
-
-            if song_lyrics != None:
-                aa = song_lyrics.lyrics.replace("[", "").replace("]", "")
-                l = ['"{}"'.format(aa) for aa in aa.split('"') if aa not in ("", ", ")]
-                return render_template(
-                    "FoundSong/FoundSong.html",
-                    songname=Song_details.title,
-                    artist=Song_details.artist,
-                    cover_image=Song_details.cover_image,
-                    lyrics=l,
-                )
-            else:
-                return render_template(
-                    "FoundSong/FoundSong.html",
-                    songname=Song_details.title,
-                    artist=Song_details.artist,
-                    cover_image=Song_details.cover_image,
-                    lyrics=None,
-                )
-    return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
 @views.route("/search", methods=["GET", "POST"])
@@ -89,6 +61,55 @@ def check():
         return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
 
     return songname
+
+
+@views.route("<string:songname>", methods=["GET", "POST"])
+def song(songname):
+    if songname != "service-worker.js" and songname != "favicon.ico":
+        Song_details = Songs.query.filter_by(
+            title=songname.split("-")[0], artist=songname.split("-")[1]
+        ).first()
+        if Song_details != None:
+            song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
+            song_info_global = From_File.main("./audio.wav")
+            song_info_global.get("track").get("sections")[2].get("youtubeurl")
+
+            t = urllib3.PoolManager()
+            test = t.request(
+                "GET",
+                song_info_global.get("track").get("sections")[2].get("youtubeurl"),
+            )
+
+            byte_str = test.data
+            dict_str = byte_str.decode("UTF-8")
+            xx = ast.literal_eval(dict_str)
+            if song_lyrics != None:
+                aa = song_lyrics.lyrics.replace("[", "").replace("]", "")
+                l = ['"{}"'.format(aa) for aa in aa.split('"') if aa not in ("", ", ")]
+                return render_template(
+                    "FoundSong/FoundSong.html",
+                    songname=Song_details.title,
+                    artist=Song_details.artist,
+                    album=Song_details.album,
+                    year=Song_details.year,
+                    cover_image=Song_details.cover_image,
+                    lyrics=l,
+                    yt_thumbnail=xx.get("image").get("url"),
+                    yt_link=xx.get("actions")[0].get("uri"),
+                )
+            else:
+                return render_template(
+                    "FoundSong/FoundSong.html",
+                    songname=Song_details.title,
+                    artist=Song_details.artist,
+                    album=Song_details.album,
+                    year=Song_details.year,
+                    cover_image=Song_details.cover_image,
+                    lyrics=None,
+                    yt_thumbnail=xx.get("image").get("url"),
+                    yt_link=xx.get("actions")[0].get("uri"),
+                )
+    return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
 def save_pic(pic):

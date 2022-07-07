@@ -43,6 +43,29 @@
     <span class="NoLyrics">No Lyrics Found!!</span>
     {% endif %}
   </div>
+  <div class="VideoArea">
+    <span class="Video Title">Video</span>
+    <a href="{{yt_link}}" class="YoutubeRedirect Button">
+    <img src="{{yt_thumbnail}}" alt="" class="Thumbnail Img">
+    <img src="{{ url_for('static', filename='Assets/YTLogo.png') }}" alt="" class="YTLogo">
+  </a>
+  </div>
+  <div class="DetailsArea">
+    <span class="Details Title">Song Info</span>
+    <div class="AllInfo">
+      <div class="Performed DisArea">
+        <span class="PerformedBy TI">Performed By:</span>
+        <span class="PerformedBy Info">{{artist}}</span>
+      </div>
+      <div class="AlbumInfo DisArea">
+        <span class="AlbunNameis TI">Album Name:</span>
+        <span class="AlbumName Info">{{album}}</span>
+      </div>
+      <div class="Released DisArea">
+        <span class="ReleasedIn TI">Released In:</span>
+        <span class="ReleasedIn Info">{{year}}</span>
+    </div>
+  </div>
 </section>
 <!--  -->
 {% endblock SongInfo %}

@@ -69,10 +69,8 @@
 
   .LyricsArea {
     z-index: 0;
-    position: absolute;
-    margin-top: 28% !important;
-    margin: 0 auto;
-    width: 90%;
+    margin-top: -10% !important;
+    width: 99%;
     height: fit-content;
     border-radius: 15px;
     display: flex;
@@ -97,9 +95,9 @@
     line-height: 2;
   }
   .LyricsLyrisc {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
   .NoLyrics {
     font-weight: 700;
@@ -115,9 +113,75 @@
     white-space: pre-wrap;
   }
 
-  .VideoArea {
+  .Title {
+    font-weight: 700;
+    font-size: 30px;
+    color: #ddf7f6;
+    text-align: left;
   }
+  .VideoArea,
   .DetailsArea {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .YoutubeRedirect {
+    position: relative;
+    width: 98%;
+    height: 720px;
+    border-radius: 15px;
+  }
+  .YoutubeRedirect:hover {
+    opacity: 0.8;
+  }
+  .Thumbnail {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+  .YTLogo {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  .AllInfo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #98b7b9;
+    border-radius: 15px;
+    width: 88vw;
+    padding: 20px 25px;
+  }
+  .DisArea {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .TI {
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #091813;
+  }
+  .Info {
+    font-weight: 700;
+    font-size: 20px;
+
+    color: #091813;
   }
 }
 /* All Screen */
