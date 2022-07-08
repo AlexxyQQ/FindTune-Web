@@ -13,6 +13,7 @@ import ast
 # from Backend import From_File
 
 views = Blueprint("views", __name__)
+t = urllib3.PoolManager()
 
 
 @views.route("/", methods=["GET", "POST"])
@@ -32,6 +33,12 @@ def check():
     if request.method == "POST":
         request.files["file"].save("./audio.wav")
         b = From_File.main("./audio.wav")
+        get_youtube_uri = t.request(
+            "GET",
+            b.get("track").get("sections")[2].get("youtubeurl"),
+        )
+        dict_str = get_youtube_uri.data.decode("UTF-8")
+        youtubeDetail = ast.literal_eval(dict_str)
         try:
             details = Songs(
                 title=b.get("track").get("title"),
@@ -40,6 +47,8 @@ def check():
                 year=b.get("track").get("sections")[0].get("metadata")[2].get("text"),
                 tagid=b.get("track").get("key"),
                 cover_image=b.get("track").get("images").get("coverart"),
+                yt_thumbnail=youtubeDetail.get("image").get("url"),
+                yt_link=youtubeDetail.get("actions")[0].get("uri"),
             )
 
             db.session.add(details)
@@ -47,42 +56,30 @@ def check():
             Song_details = Songs.query.filter_by(
                 title=b.get("track").get("title"), artist=b.get("track").get("subtitle")
             ).first()
-            if Song_details != None:
-                print(Song_details.id)
-                lyrics = Lyrics(
-                    lyrics=f"""{b.get("track").get("sections")[1].get("text")}""",
-                    song_id=Song_details.id,
-                    user_id=current_user.id,
-                )
-                db.session.add(lyrics)
-                db.session.commit()
+            # if Song_details != None:
+            #     print(Song_details.id)
+            #     lyrics = Lyrics(
+            #         lyrics=f"""{b.get("track").get("sections")[1].get("text")}""",
+            #         song_id=Song_details.id,
+            #         user_id=current_user.id,
+            #     )
+            #     db.session.add(lyrics)
+            #     db.session.commit()
         except:
             pass
-        return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}', b
+        return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
 
-    return songname, {}
+    return songname
 
 
 @views.route("<string:songname>", methods=["GET", "POST"])
-def song(songname, songdetails):
+def song(songname):
     if songname != "service-worker.js" and songname != "favicon.ico":
         Song_details = Songs.query.filter_by(
             title=songname.split("-")[0], artist=songname.split("-")[1]
         ).first()
         if Song_details != None:
             song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
-            song_info_global = songdetails
-            song_info_global.get("track").get("sections")[2].get("youtubeurl")
-
-            t = urllib3.PoolManager()
-            test = t.request(
-                "GET",
-                song_info_global.get("track").get("sections")[2].get("youtubeurl"),
-            )
-
-            byte_str = test.data
-            dict_str = byte_str.decode("UTF-8")
-            xx = ast.literal_eval(dict_str)
             if song_lyrics != None:
                 aa = song_lyrics.lyrics.replace("[", "").replace("]", "")
                 l = ['"{}"'.format(aa) for aa in aa.split('"') if aa not in ("", ", ")]
@@ -94,8 +91,8 @@ def song(songname, songdetails):
                     year=Song_details.year,
                     cover_image=Song_details.cover_image,
                     lyrics=l,
-                    yt_thumbnail=xx.get("image").get("url"),
-                    yt_link=xx.get("actions")[0].get("uri"),
+                    yt_thumbnail=Song_details.yt_thumbnail,
+                    yt_link=Song_details.yt_link,
                 )
             else:
                 return render_template(
@@ -106,8 +103,8 @@ def song(songname, songdetails):
                     year=Song_details.year,
                     cover_image=Song_details.cover_image,
                     lyrics=None,
-                    yt_thumbnail=xx.get("image").get("url"),
-                    yt_link=xx.get("actions")[0].get("uri"),
+                    yt_thumbnail=Song_details.yt_thumbnail,
+                    yt_link=Song_details.yt_link,
                 )
     return render_template("404/pagenotfound.html", title="Pagenotfound")
 

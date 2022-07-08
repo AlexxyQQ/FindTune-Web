@@ -11,10 +11,10 @@ auth = Blueprint("auth", __name__)
 def LoginSignup():
     form_signup = RegistrationForm()
     form_login = LoginForm()
-
+    if current_user.is_authenticated:
+        return redirect(url_for("views.home"))
     if request.method == "POST":
-        if current_user.is_authenticated:
-            return redirect(url_for("views.home"))
+
         if form_signup.validate_on_submit():
             hashed_password = bcrypt.generate_password_hash(
                 form_signup.password.data
