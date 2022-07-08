@@ -58,20 +58,20 @@ def check():
                 db.session.commit()
         except:
             pass
-        return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
+        return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}', b
 
-    return songname
+    return songname, {}
 
 
 @views.route("<string:songname>", methods=["GET", "POST"])
-def song(songname):
+def song(songname, songdetails):
     if songname != "service-worker.js" and songname != "favicon.ico":
         Song_details = Songs.query.filter_by(
             title=songname.split("-")[0], artist=songname.split("-")[1]
         ).first()
         if Song_details != None:
             song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
-            song_info_global = From_File.main("./audio.wav")
+            song_info_global = songdetails
             song_info_global.get("track").get("sections")[2].get("youtubeurl")
 
             t = urllib3.PoolManager()
