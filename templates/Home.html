@@ -95,7 +95,7 @@
           <ul>
             <li>
               <img src="/static/Assets/profile.png" /><a
-                href="/{{ current_user.username }}"
+                href="/@{{ current_user.username }}"
                 >My profile</a
               >
             </li>
@@ -176,7 +176,7 @@
       filename='Assets/userimage/' + current_user.image_file) }}"
         />
         <a
-          href="/{{ current_user.username }}"
+          href="/@{{ current_user.username }}"
           class="UserProfile-Ham Hamburger-Items-List Button"
           >{{ current_user.username.upper() }}</a
         >

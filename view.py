@@ -21,6 +21,16 @@ def home():
     return render_template("Home.html")
 
 
+@app.route("/offline.html")
+def offline():
+    return app.send_static_file("offline.html")
+
+
+@app.route("/service-worker.js")
+def sw():
+    return app.send_static_file("service-worker.js")
+
+
 @views.route("/search", methods=["GET", "POST"])
 def searchsong():
     if request.method == "POST":
@@ -171,7 +181,7 @@ def save_pic(pic):
     return pic_fn
 
 
-@views.route("/<string:username>", methods=["GET", "POST"])
+@views.route("/@<string:username>", methods=["GET", "POST"])
 @login_required
 def account(username):
     form = UpdateAccountForm()
