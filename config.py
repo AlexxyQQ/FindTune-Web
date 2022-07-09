@@ -3,7 +3,7 @@ import os
 
 class Config:
     SECRET_KEY = "FindTune"
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:0102@localhost/findtune"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///findtune.db"
     MAIL_SERVER = "smtp.googlemail.com"
     MAIL_PORT = 465
     MAIL_USE_SSL = True
