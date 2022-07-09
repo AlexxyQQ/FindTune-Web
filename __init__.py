@@ -21,11 +21,11 @@ app.register_blueprint(auth, url_prefix="/")
 # from models import user
 
 
-def create_database(app):
-    if not path.exists(app.config["SQLALCHEMY_DATABASE_URI"]):
-        db.create_all()
+# def create_database(app):
+#     if not path.exists(app.config["SQLALCHEMY_DATABASE_URI"]):
+#         db.create_all()
 
-        print("create_database")
+#         print("create_database")
 
 
-create_database(app)
+# create_database(app)
