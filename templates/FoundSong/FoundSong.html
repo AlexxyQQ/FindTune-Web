@@ -40,7 +40,17 @@
     </p>
     <!--  -->
     {% else %}
+    <!--  -->
     <span class="NoLyrics">No Lyrics Found!!</span>
+    {%if current_user.is_authenticated%}
+    <form method="POST" class="LyricsForm"  action="/lyrics_display" enctype="multipart/form-data">
+      <span class="Info Lyrics">Write your lyrics here.</span>
+      {{ lyrics_form.hidden_tag() }}
+      {{ lyrics_form.lyrics(class="TextArea-Lyrics") }}
+      {{ lyrics_form.submit(value="POST",class="Submit Form-Login Button") }}
+    </form>
+    {% endif %}
+    <!--  -->
     {% endif %}
   </div>
   <div class="VideoArea">

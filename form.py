@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from models import user as User
 
@@ -58,3 +58,8 @@ class UpdateAccountForm(FlaskForm):
     #         user = User.query.filter_by(email=email.data).first()
     #         if user:
     #             raise ValidationError("That email is taken.")
+
+
+class LyricsForm(FlaskForm):
+    lyrics = TextAreaField("Lyrics", validators=[])
+    submit = SubmitField("Post")

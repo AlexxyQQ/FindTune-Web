@@ -3,7 +3,7 @@ import secrets
 from flask import Blueprint, redirect, request, render_template, url_for
 from Backend.utils import From_File
 from flask_login import current_user, login_required
-from form import UpdateAccountForm
+from form import UpdateAccountForm, LyricsForm
 from __init__ import db, bcrypt, app
 from PIL import Image
 from models import Songs, user as DBUser, Lyrics, Votes
@@ -74,12 +74,49 @@ def check():
 
 @views.route("<string:songname>", methods=["GET", "POST"])
 def song(songname):
+    lyrics_form = LyricsForm()
     if songname != "service-worker.js" and songname != "favicon.ico":
         Song_details = Songs.query.filter_by(
             title=songname.split("-")[0], artist=songname.split("-")[1]
         ).first()
         if Song_details != None:
             song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
+            if current_user.is_authenticated:
+                voted = Votes.query.filter_by(user_id=current_user.id).first()
+                if voted == None:
+                    if song_lyrics != None:
+                        aa = song_lyrics.lyrics.replace("[", "").replace("]", "")
+                        l = [
+                            '"{}"'.format(aa)
+                            for aa in aa.split('"')
+                            if aa not in ("", ", ")
+                        ]
+                        return render_template(
+                            "FoundSong/FoundSong.html",
+                            songname=Song_details.title,
+                            artist=Song_details.artist,
+                            album=Song_details.album,
+                            year=Song_details.year,
+                            cover_image=Song_details.cover_image,
+                            lyrics=l,
+                            yt_thumbnail=Song_details.yt_thumbnail,
+                            yt_link=Song_details.yt_link,
+                            lyrics_form=lyrics_form,
+                        )
+                    else:
+                        return render_template(
+                            "FoundSong/FoundSong.html",
+                            songname=Song_details.title,
+                            artist=Song_details.artist,
+                            album=Song_details.album,
+                            year=Song_details.year,
+                            cover_image=Song_details.cover_image,
+                            lyrics=None,
+                            yt_thumbnail=Song_details.yt_thumbnail,
+                            yt_link=Song_details.yt_link,
+                            lyrics_form=lyrics_form,
+                        )
+
             if song_lyrics != None:
                 aa = song_lyrics.lyrics.replace("[", "").replace("]", "")
                 l = ['"{}"'.format(aa) for aa in aa.split('"') if aa not in ("", ", ")]
@@ -106,6 +143,18 @@ def song(songname):
                     yt_thumbnail=Song_details.yt_thumbnail,
                     yt_link=Song_details.yt_link,
                 )
+    return render_template("404/pagenotfound.html", title="Pagenotfound")
+
+
+@views.route("/lyrics_display", methods=["GET", "POST"])
+@login_required
+def lyrics_display():
+    lyrics_form = LyricsForm()
+    if request.method == "POST":
+        print(lyrics_form.data)
+        if lyrics_form.validate_on_submit():
+            print("ass")
+            pass
     return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
