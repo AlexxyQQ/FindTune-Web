@@ -22,6 +22,12 @@
   justify-content: center;
   align-items: center;
 }
+.Title {
+  font-weight: 800;
+  font-size: 30px;
+  color: #ddf7f6;
+  text-align: left;
+}
 
 /* Small screen */
 @media (min-width: 100px) and (max-width: 640px) {
@@ -72,7 +78,7 @@
   }
   .SongName {
     color: #ddf7f6;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 30px;
     line-height: 30px;
     display: flex;
@@ -80,7 +86,7 @@
   }
   .SingerName {
     color: #ddf7f6;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 15px;
     display: flex;
     align-items: center;
@@ -115,11 +121,11 @@
   }
   .LyricsLyrisc {
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 20px;
   }
   .NoLyrics {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 30px;
     line-height: 30px;
     margin: 125px 0px;
@@ -133,13 +139,14 @@
   }
 
   .Title {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 30px;
     color: #ddf7f6;
     text-align: left;
   }
   .VideoArea,
   .DetailsArea {
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -197,15 +204,386 @@
     color: #091813;
   }
   .Info {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 20px;
 
     color: #091813;
   }
 }
 /* All Screen */
-@media (min-width: 640px) {
+@media (min-width: 640px) and (max-width: 1155px) {
   .SongDetailsArea {
-    background-color: yellow;
+    width: 95vw !important;
+    margin: 0 auto;
+    height: 100vw;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
+  }
+  .TitleArea {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+  }
+  .SongCover {
+    width: 200px;
+  }
+  .SongCoverImg {
+    border-radius: 20px;
+  }
+  .SongTitle {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .SongName {
+    font-weight: 800;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    color: #ddf7f6;
+  }
+  .SingerName {
+    font-weight: 800;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #ddf7f6;
+  }
+  .GridGroup {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .LyricsArea {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddf7f6;
+    border-radius: 15px;
+    padding: 8px;
+    width: 90%;
+  }
+  .Line {
+    width: 80%;
+    height: 1px;
+    border: none;
+    background-color: black;
+    margin-top: 60px;
+    margin-bottom: 15px;
+  }
+  .LyricsLines {
+    max-width: 95%;
+    text-align: center;
+    line-height: 2;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .LyricsLyrisc {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  .NoLyrics {
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 30px;
+    margin: 125px 0px;
+  }
+
+  .VideoArea {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .YoutubeRedirect {
+    position: relative;
+    width: 98%;
+    height: 720px;
+    border-radius: 15px;
+  }
+  .Thumbnail {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+  .YTLogo {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+  .YoutubeRedirect:hover {
+    opacity: 0.8;
+  }
+
+  .DetailsArea {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .AllInfo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #98b7b9;
+    border-radius: 15px;
+    width: 88vw;
+    padding: 20px 25px;
+  }
+  .DisArea {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .TI {
+    font-weight: 400;
+    font-size: 15px;
+    color: #091813;
+  }
+  .Info {
+    font-weight: 800;
+    font-size: 20px;
+    color: #091813;
+  }
+}
+
+@media (min-width: 1155px) {
+  .SongDetailsArea {
+    width: 90vw !important;
+    margin: 0 auto;
+    height: auto;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: transparent;
+  }
+
+  .TitleArea {
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .SongCover {
+    width: 350px;
+  }
+  .SongCoverImg {
+    border-radius: 20px;
+  }
+  .SongTitle {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .SongName {
+    font-weight: 800;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    color: #ddf7f6;
+  }
+  .SingerName {
+    font-weight: 800;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    color: #ddf7f6;
+  }
+
+  .LyricsArea {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    background-color: #ddf7f6;
+    border-radius: 15px;
+    padding: 8px;
+    width: 50%;
+  }
+  .Line {
+    width: 80%;
+    height: 1px;
+    border: none;
+    background-color: black;
+    margin-top: 60px;
+    margin-bottom: 15px;
+  }
+  .LyricsLyrisc {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  .LyricsLines {
+    max-width: 95%;
+    text-align: center;
+    line-height: 2;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .NoLyrics {
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 30px;
+    margin: 125px 0px;
+  }
+  .LyricsForm {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .TextArea-Lyrics {
+    width: 100%;
+    height: 500px;
+    border: none;
+    resize: none;
+    font-size: 20px;
+    font-weight: 800;
+    color: #091813;
+  }
+
+  .LyricsofSong {
+    margin: 0 auto;
+    text-align: left;
+    width: 90%;
+    max-width: 90%;
+    white-space: pre-wrap;
+  }
+
+  .GridGroup {
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .SecondGridGroup {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .VideoArea {
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .YoutubeRedirect {
+    position: relative;
+    width: 98%;
+    border-radius: 15px;
+  }
+  .YoutubeRedirect:hover {
+    opacity: 0.8;
+  }
+  .Thumbnail {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+  .YTLogo {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  .DetailsArea {
+    width: 99%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .AllInfo {
+    max-width: 99%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #98b7b9;
+    border-radius: 15px;
+    width: 88vw;
+    padding: 20px 25px;
+  }
+  .DisArea {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .TI {
+    font-weight: 400;
+    font-size: 15px;
+    color: #091813;
+  }
+  .Info {
+    font-weight: 800;
+    font-size: 20px;
+    color: #091813;
   }
 }

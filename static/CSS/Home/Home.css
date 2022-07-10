@@ -16,7 +16,7 @@
 .Nav-Bar.Nav-Bar-Transform {
   background-color: white;
   color: black;
-  width: 100%;
+  width: 98%;
 }
 
 .Listening-Area {
@@ -622,7 +622,7 @@
     font-size: 20px;
   }
   .Search-Box:focus {
-    width: 300px;
+    width: 250px;
   }
   .Search-Button {
     width: 40px;

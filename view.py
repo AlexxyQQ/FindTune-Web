@@ -21,6 +21,16 @@ def home():
     return render_template("Home.html")
 
 
+@app.route("/offline.html")
+def offline():
+    return render_template("404/pagenotfound.html", title="Pagenotfound")
+
+
+@app.route("/service-worker.js")
+def sw():
+    return app.send_static_file("service-worker.js")
+
+
 @views.route("/search", methods=["GET", "POST"])
 def searchsong():
     if request.method == "POST":
