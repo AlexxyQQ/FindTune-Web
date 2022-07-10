@@ -49,7 +49,7 @@ def LoginSignup():
             else:
                 flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template(
-        "LoginAndRegestration/LoginSignup.html",
+        "LoginAndRegestration/LoginAndRegestration.html",
         title="LoginSignup",
         form_signup=form_signup,
         form_login=form_login,

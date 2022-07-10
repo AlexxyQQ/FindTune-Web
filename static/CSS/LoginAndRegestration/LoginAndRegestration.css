@@ -28,7 +28,7 @@
   width: 30px;
   margin: 15px 10px;
   border: none;
-  content: url(../Assets/x-solid.svg);
+  content: url(../../Assets/x-solid.svg);
 }
 .LoginSignup__Pill {
   background-color: var(--clr-main-three);
@@ -217,7 +217,7 @@
     width: 30px;
     border: none;
     margin: 5px auto;
-    content: url(../Assets/x-solid.svg);
+    content: url(../../Assets/x-solid.svg);
   }
   .LoginSignup__Pill {
     width: 250px;
@@ -251,7 +251,7 @@
     width: 30px;
     border: none;
     margin: 5px auto;
-    content: url(../Assets/x-solid.svg);
+    content: url(../../Assets/x-solid.svg);
   }
   .LoginSignup__Pill {
     width: 300px;
