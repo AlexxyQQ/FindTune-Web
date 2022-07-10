@@ -1,6 +1,6 @@
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("service-worker.js")
+    .register("/service-worker.js")
     .then(function (registration) {
       console.log("Service Worker Registered");
       return registration;
@@ -77,7 +77,7 @@ const recordAudio = () =>
               contentType: false,
             }).done(function (data) {
               console.log(data);
-              window.location.href = "http://127.0.0.1:8080/" + data;
+              window.location.href = "http://127.0.0.1:5558/" + data;
             });
           }
           submit(audioBlob);
@@ -151,7 +151,7 @@ const Listening = async () => {
   var Ellipse_Two = document.getElementById("Ellipse-Two");
   var Ellipse_Three = document.getElementById("Ellipse-Three");
   var Rotating_Logo = document.getElementById("Rotating-Logo");
-  const recorder = await recordAudio();
+  var recorder = await recordAudio();
   recorder.start();
   if (Circular_Recorder.className == "Circular-Recorder Button") {
     Ellipse_One.classList.add("Listening");
@@ -174,7 +174,7 @@ const Listening = async () => {
 
 const Listening2 = async () => {
   var Bar_Recorder = document.getElementById("Bar-Recorder");
-  const recorder = await recordAudio();
+  var recorder = await recordAudio();
   recorder.start();
   if (Bar_Recorder.className == "Bar-Recorder") {
     Bar_Recorder.classList.add("Listening");

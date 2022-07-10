@@ -7,7 +7,7 @@ const filesToCache = [
   "/templates/LoginAndRegestration/LoginAndRegestration.html",
   "/templates/UserProfile/Account.html",
   "/templates/Home.html",
-  // Stayic
+  // Styles
   "/static/Script.js",
   "/static/offline.html",
   "/static/service-worker.js",
@@ -23,13 +23,18 @@ const filesToCache = [
   "/static/CSS/Main.css",
 ];
 
-self.addEventListener("install", function (e) {
-  console.log("[ServiceWorker] Install");
-  e.waitUntil(
-    caches.open(cacheName).then(function (cache) {
-      console.log("[ServiceWorker] Caching app shell");
-      return cache.addAll(filesToCache);
-    })
+self.addEventListener("install", (event) => {
+  console.log("Service Worker : Installed!");
+
+  event.waitUntil(
+    (async () => {
+      try {
+        cache_obj = await caches.open(cache);
+        cache_obj.addAll(caching_files);
+      } catch {
+        console.log("error occured while caching...");
+      }
+    })()
   );
 });
 
