@@ -206,7 +206,7 @@ def account(username):
 
 @views.route("/Song")
 def RecordedSearch():
-    return render_template("FoundSong.html")
+    return render_template("FoundSong/FoundSong.html")
 
 
 @views.route("/library", methods=["GET", "POST"])
