@@ -1,10 +1,26 @@
 const cacheName = "FindTune";
 const filesToCache = [
   "/",
+  // templates
+  "/templates/404/pagenotfound.html",
+  "/templates/FoundSong/FoundSong.html",
+  "/templates/LoginAndRegestration/LoginAndRegestration.html",
+  "/templates/UserProfile/Account.html",
+  "/templates/Home.html",
+  // Stayic
   "/static/Script.js",
-  "/static/CSS/Home.css",
+  "/static/offline.html",
+  "/static/service-worker.js",
+  "/static/manifest.json",
+
+  "/static/JS/UserProfile/UserProfile.js",
+
+  "/static/CSS/404/style.css",
+  "/static/CSS/FoundSong/FoundSong.css",
+  "/static/CSS/Home/Home.css",
+  "/static/CSS/Home/LandingPagePreviews.css",
+  "/static/CSS/LoginAndRegestration/LoginAndRegestration.css",
   "/static/CSS/Main.css",
-  "/static/CSS/LoginSignup.css",
 ];
 
 self.addEventListener("install", function (e) {

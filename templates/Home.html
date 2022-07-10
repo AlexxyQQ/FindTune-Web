@@ -21,7 +21,12 @@
       type="text/javascript"
       src="{{ url_for('static', filename='Script.js') }}"
     ></script>
+    <script src="/static/Script.js"></script>
     <!-- webmanifest -->
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='manifest.json') }}"
+    />
     <link rel="manifest" href="/static/manifest.json" />
 
     <!-- Css -->
@@ -29,10 +34,12 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='/CSS/Main.css') }}"
     />
+    <link rel="stylesheet" href="/static/CSS/Main.css" />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='/CSS/Home.css') }}"
+      href="{{ url_for('static', filename='/CSS/Home/Home.css') }}"
     />
+    <link rel="stylesheet" href="/static/CSS/Home/Home.css" />
     <link rel="icon" type="image/png" href="/static/Assets/FTLogo-192.png" />
     <!--  -->
     {% if title %}
@@ -45,7 +52,11 @@
     {% block NavBar %}
     <header class="Nav-Bar" id="Nav-Bar">
       <a class="Logo-Box" href="/">
-        <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
+        <img
+          src="{{ url_for('static', filename='/Assets/Logo.png') }}"
+          alt="Logo"
+          class="Logo Img"
+        />
       </a>
       <div class="Navbar Nav-Items">
         <a href="/library" class="Nav-Items-List Button">My Library</a>
@@ -64,7 +75,7 @@
           />
           <button type="submit" class="Search-Button Button">
             <img
-              src="../static/Assets/search-icon.svg"
+              src="{{ url_for('static', filename='/Assets/search-icon.svg') }}"
               alt="Search"
               class="Img"
             />
@@ -77,7 +88,7 @@
         onclick="Themeing()"
       >
         <img
-          src="../static/Assets/moon-solid.svg"
+          src="{{ url_for('static', filename='/Assets/moon-solid.svg') }}"
           alt="Search"
           class="Img"
           id="Theme-Toggler-Icon"
@@ -95,15 +106,14 @@
           <h3>{{ current_user.username.upper() }}</h3>
           <ul>
             <li>
-              <img src="/static/Assets/profile.png" /><a
-                href="/@{{ current_user.username }}"
-                >My profile</a
-              >
+              <img
+                src="{{ url_for('static', filename='/Assets/profile.png') }}"
+              /><a href="/@{{ current_user.username }}">My profile</a>
             </li>
             <li>
-              <img src="/static/Assets/logout.png" /><a href="/Logout"
-                >Logout</a
-              >
+              <img
+                src="{{ url_for('static', filename='/Assets/logout.png') }}"
+              /><a href="/Logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -118,7 +128,11 @@
       <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
       {% endif %}
       <a href="#Hamburger-Window" class="Hamburger Button">
-        <img src="../static/Assets/bars.svg" alt="Bar" class="Img" />
+        <img
+          src="{{ url_for('static', filename='/Assets/bars.svg') }}"
+          alt="Bar"
+          class="Img"
+        />
       </a>
     </header>
     {% endblock NavBar %}
@@ -134,7 +148,7 @@
         <div class="Circle-Layer Ellipse-Two" id="Ellipse-Two"></div>
         <div class="Circle-Layer Ellipse-Three" id="Ellipse-Three"></div>
         <img
-          src="../static/Assets/Logo.png"
+          src="{{ url_for('static', filename='/Assets/Logo.png') }}"
           alt="Logo"
           class="Circle-Layer-Logo Logo Img"
           id="Rotating-Logo"
@@ -165,7 +179,11 @@
     <section class="Hamburger-Window" id="Hamburger-Window">
       <div class="Hamburger-Window-NavBar">
         <div class="Logo-Box">
-          <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
+          <img
+            src="{{ url_for('static', filename='/Assets/Logo.png') }}"
+            alt="Logo"
+            class="Logo Img"
+          />
         </div>
         <a href="" class="Hamburger-Window-Close Button"></a>
       </div>
@@ -213,7 +231,11 @@
     {% block LoginSignupPage %} {% endblock LoginSignupPage %}
     <!--  -->
     {% block Previews %}
-    <link rel="stylesheet" href="../static/CSS/LandingPagePreviews.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/CSS/Home/LandingPagePreviews.css') }}"
+    />
+    <link rel="stylesheet" href="/static/CSS/Home/LandingPagePreviews.css" />
     <section class="Preview-Area">
       <div class="Preview-Card Preview-Card__One">
         <div class="Album-Cover Card">
@@ -257,7 +279,7 @@
               onclick="SearchPreviewExpand()"
             >
               <img
-                src="../static/Assets/search-icon.svg"
+                src="{{ url_for('static', filename='/Assets/search-icon.svg') }}"
                 alt="Search"
                 class="Img"
               />
@@ -267,7 +289,7 @@
             <div class="Searched-Item-List">
               <div class="Searched-Items">
                 <img
-                  src="../static/Assets/LHG-P.jpg"
+                  src="{{ url_for('static', filename='/Assets/LHG-P.jpg') }}"
                   alt=""
                   class="Searched-Item-Image Img"
                 />
@@ -277,11 +299,7 @@
                 </div>
               </div>
               <div class="Searched-Items">
-                <img
-                  src="../static/Assets/LHG-TW.jpg"
-                  alt=""
-                  class="Searched-Item-Image Img"
-                />
+                <img src="" alt="" class="Searched-Item-Image Img" />
                 <div class="Searched-Item__Song-Info">
                   <div class="Searched-Item__Song-Name">Let Her Go</div>
                   <div class="Searched-Item__Artist-Name">Tyler Ward</div>
@@ -289,8 +307,9 @@
               </div>
               <div class="Searched-Items">
                 <img
-                  src="../static/Assets/LHG-GM.jpg"
-                  alt=""
+                  src="{{ url_for('static', filename='/Assets/LHG-GM.jpg')
+                }}"
+                  alt=" "
                   class="Searched-Item-Image Img"
                 />
                 <div class="Searched-Item__Song-Info">
@@ -356,7 +375,11 @@
     {% block Footer %}
     <section class="Footer">
       <!-- <div class="Logo-Box"> -->
-      <img src="../static/Assets/Logo.png" alt="Logo" class="Logo Img" />
+      <img
+        src="{{ url_for('static', filename='/Assets/Logo.png') }}"
+        alt="Logo"
+        class="Logo Img"
+      />
       <p class="Footer__Title">Find-Tune</p>
       <!-- </div> -->
     </section>

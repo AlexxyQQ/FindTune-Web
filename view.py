@@ -23,7 +23,7 @@ def home():
 
 @app.route("/offline.html")
 def offline():
-    return app.send_static_file("offline.html")
+    return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
 @app.route("/service-worker.js")

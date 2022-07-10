@@ -181,7 +181,7 @@
   float: right;
   background-color: transparent;
   background-size: fit;
-  content: url(../Assets/x-solid.svg);
+  content: url(../../Assets/x-solid.svg);
   filter: invert(100%);
 }
 .Hamburger-Content {
