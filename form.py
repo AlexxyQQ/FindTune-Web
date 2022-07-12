@@ -61,5 +61,6 @@ class UpdateAccountForm(FlaskForm):
 
 
 class LyricsForm(FlaskForm):
+    song_id = IntegerField("SongID", validators=[DataRequired()])
     lyrics = TextAreaField("Lyrics", validators=[])
     submit = SubmitField("Post")

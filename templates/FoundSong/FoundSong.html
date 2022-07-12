@@ -17,6 +17,12 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='/CSS/FoundSong/FoundSong.css') }}"
 />
+
+<script
+      type="text/javascript"
+      src="{{ url_for('static', filename='JS/FoundSong/FoundSong.js') }}"
+    ></script>
+
 <section class="SongDetailsArea">
   <div class="TitleArea">
     <div class="SongCover">
@@ -33,12 +39,25 @@
       <span class="LyricsLyrisc">Lyrics</span>
       {% if lyrics != None %}
       <!--  -->
+      <button type="button" onclick="DisplayUserLyrics()" class="DisplayEdit Button">
+        <img src="{{ url_for('static',
+        filename='Assets/edit.png') }}" alt="" class="Img">
+      </button>
+      <form method="POST" class="LyricsForm Hidden" id="UpdateLyrics"  action="/lyrics_display" enctype="multipart/form-data">
+      
+        <span class="Info Lyrics">Write your lyrics here.</span>
+        {{ lyrics_form.hidden_tag() }}
+        {{ lyrics_form.song_id(class="Hidden",value=song_id) }}
+        {{ lyrics_form.lyrics(class="TextArea-Lyrics",value = uplyric ) }}
+        {{ lyrics_form.submit(value="POST",class="Submit Form-Login Button") }}
+      </form>
       {% for line in lyrics %}
-      <p class="LyricsLines">
+      <p class="LyricsLines" id="LyricsLines">
         {{line.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
       </p>
       {% endfor %}
       </p>
+      
       <!--  -->
       {% else %}
       <!--  -->
@@ -47,6 +66,7 @@
       <form method="POST" class="LyricsForm"  action="/lyrics_display" enctype="multipart/form-data">
         <span class="Info Lyrics">Write your lyrics here.</span>
         {{ lyrics_form.hidden_tag() }}
+        {{ lyrics_form.song_id(class="Hidden",value=song_id) }}
         {{ lyrics_form.lyrics(class="TextArea-Lyrics") }}
         {{ lyrics_form.submit(value="POST",class="Submit Form-Login Button") }}
       </form>
