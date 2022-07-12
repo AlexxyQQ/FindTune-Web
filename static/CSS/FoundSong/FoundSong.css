@@ -50,6 +50,29 @@
 .Hidden {
   display: none !important;
 }
+
+.LyricsCard {
+  background-color: #09181342;
+  width: 95%;
+  border-radius: 15px;
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.HeadingDisplayBox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
 /* Small screen */
 @media (min-width: 100px) and (max-width: 640px) {
   .SongDetailsArea {

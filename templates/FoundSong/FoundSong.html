@@ -51,10 +51,38 @@
         {{ lyrics_form.lyrics(class="TextArea-Lyrics",value = uplyric ) }}
         {{ lyrics_form.submit(value="POST",class="Submit Form-Login Button") }}
       </form>
-      {% for line in lyrics %}
-      <p class="LyricsLines" id="LyricsLines">
-        {{line.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
-      </p>
+      {% for all in lyrics %}
+      <div class="LyricsCard">
+        <div class="HeadingDisplayBox">
+          <span class="UsernameOfPoster">{{all[0]}}</span>
+          <button class="ExpandCollapsLyrics">
+            <img src="" alt="V" class="ExpandColapsButton">Img
+          </button>
+          <form method="POST" class="VoteForm"  action="/voted" enctype="multipart/form-data">
+            {{ vote_form.hidden_tag() }}
+            {{vote_form.song_id(class="Hidden",value=song_id)}}
+            {{vote_form.user_id(class="Hidden",value=current_user.id)}}
+            {{vote_form.lyric_id(class="Hidden",value=all[2])}}
+            {%if all|length == 4%}
+            {{vote_form.vote(class="Hidden",value=all[3]+1)}}
+            {%else%}
+            {{vote_form.vote(class="Hidden",value=1)}}
+            {%endif%}
+            {{vote_form.submit(value="POST",class="Submit Form-Login Button")}}
+      
+          </form>
+          
+        </div>
+        {%for l in all[1]%}
+          <!--  -->
+          <p class="LyricsLines" id="LyricsLines{{username}}">
+            {{l.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
+  
+          </p>
+          <!--  -->
+        {%endfor%}
+      </div>
+
       {% endfor %}
       </p>
       

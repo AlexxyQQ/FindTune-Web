@@ -64,3 +64,11 @@ class LyricsForm(FlaskForm):
     song_id = IntegerField("SongID", validators=[DataRequired()])
     lyrics = TextAreaField("Lyrics", validators=[])
     submit = SubmitField("Post")
+
+
+class VoteForm(FlaskForm):
+    song_id = IntegerField("SongID", validators=[DataRequired()])
+    lyric_id = IntegerField("LyricID", validators=[DataRequired()])
+    user_id = IntegerField("UserID", validators=[DataRequired()])
+    vote = IntegerField("Vote", validators=[DataRequired()])
+    submit = SubmitField("Vote")

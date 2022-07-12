@@ -57,7 +57,9 @@ class Lyrics(db.Model):
 class Votes(db.Model):
     __tablename__ = "votes"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(
+        db.Integer, db.ForeignKey("user.id"), nullable=False, unique=True
+    )
     song_id = db.Column(
         db.Integer, db.ForeignKey("songs.id", ondelete="CASCADE"), nullable=False
     )
