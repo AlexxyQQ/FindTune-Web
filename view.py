@@ -1,6 +1,7 @@
 import os
 import secrets
 from flask import Blueprint, redirect, request, render_template, url_for
+from sqlalchemy import desc
 from Backend.utils import From_File
 from flask_login import current_user, login_required
 from form import UpdateAccountForm, LyricsForm, VoteForm
@@ -90,13 +91,17 @@ def song(songname):
             title=songname.split("-")[0], artist=songname.split("-")[1]
         ).first()
         if Song_details != None:
-            song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).first()
+            song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).all()
+            # print(song_lyrics[1].user_id)
             if current_user.is_authenticated:
                 if song_lyrics != None:
                     lyrics_username = []
                     vote_form = VoteForm()
                     song_all_lyrics = Lyrics.query.filter_by(
                         song_id=Song_details.id
+                    ).all()
+                    all_votes = Votes.query.filter_by(
+                        song_id=Song_details.id, user_id=current_user.id
                     ).all()
                     for lyrics_from_differnt_users in song_all_lyrics:
                         username = (
@@ -114,13 +119,23 @@ def song(songname):
                             for aa in aa.split('"')
                             if aa not in ("", ", ")
                         ]
-                        votes = Votes.query.filter_by(lyrics_id=song_lyrics.id).first()
+                        votes = (
+                            Votes.query.filter_by(
+                                lyrics_id=lyrics_from_differnt_users.id
+                            )
+                            .order_by(desc(Votes.vote))
+                            .first()
+                        )
                         if votes != None:
                             lyrics_username.append(
-                                [username, l, song_lyrics.id, votes.vote]
+                                [username, l, lyrics_from_differnt_users.id, votes.vote]
                             )
+                            lyrics_username.sort(key=lambda x: x[3], reverse=True)
+                            print(lyrics_username)
                         else:
-                            lyrics_username.append([username, l, song_lyrics.id])
+                            lyrics_username.append(
+                                [username, l, lyrics_from_differnt_users.id]
+                            )
 
                     return render_template(
                         "FoundSong/FoundSong.html",
@@ -136,6 +151,7 @@ def song(songname):
                         yt_link=Song_details.yt_link,
                         lyrics_form=lyrics_form,
                         vote_form=vote_form,
+                        all_votes=all_votes,
                     )
                 else:
                     return render_template(
@@ -269,11 +285,9 @@ def voted():
     vote_form = VoteForm()
     if request.method == "POST":
         if vote_form.validate_on_submit():
-            print(vote_form.vote.data)
             all_votes = Votes.query.filter_by(
                 song_id=vote_form.song_id.data, user_id=current_user.id
             ).all()
-            print(all_votes)
             if all_votes == []:
                 votes = Votes(
                     user_id=vote_form.user_id.data,

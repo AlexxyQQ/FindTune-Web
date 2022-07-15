@@ -54,9 +54,9 @@
       {% for all in lyrics %}
       <div class="LyricsCard">
         <div class="HeadingDisplayBox">
-          <span class="UsernameOfPoster">{{all[0]}}</span>
-          <button class="ExpandCollapsLyrics">
-            <img src="" alt="V" class="ExpandColapsButton">Img
+          <span class="UsernameOfPoster">{{all[0].upper()}}</span>
+          <button class="ExpandCollapsLyrics Button">
+            V
           </button>
           <form method="POST" class="VoteForm"  action="/voted" enctype="multipart/form-data">
             {{ vote_form.hidden_tag() }}
@@ -68,8 +68,9 @@
             {%else%}
             {{vote_form.vote(class="Hidden",value=1)}}
             {%endif%}
-            {{vote_form.submit(value="POST",class="Submit Form-Login Button")}}
-      
+            {% if all_votes == [] %}
+            {{vote_form.submit(value="⬆️",class="Submit Upvote Button")}}
+            {%endif%}
           </form>
           
         </div>
