@@ -22,6 +22,7 @@ window.addEventListener(
 window.onscroll = function () {
   var nav = document.getElementById("Nav-Bar");
   if (window.pageYOffset > 10) {
+    console.log(window.pageYOffset);
     nav.classList.add("Nav-Bar-Transform");
   } else {
     nav.classList.remove("Nav-Bar-Transform");

@@ -1,3 +1,8 @@
+$(document).ready(function () {
+  $("div.displaylyricsbox").slice(1).addClass("Hidden");
+  $("div.displaylyricsboxpartital").first().addClass("Hidden");
+});
+
 function DisplayUserLyrics() {
   // var lyrics = document.getElementById("LyricsLines");
   var lyricsupdateform = document.getElementById("UpdateLyrics");

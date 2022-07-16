@@ -107,6 +107,10 @@
   margin-top: 10px;
 }
 
+.ExpandCollapsLyrics {
+  margin: 0 10px;
+}
+
 /* Small screen */
 @media (min-width: 100px) and (max-width: 640px) {
   .SongDetailsArea {

@@ -16,6 +16,7 @@
 .Nav-Bar.Nav-Bar-Transform {
   background-color: white;
   color: black;
+  width: auto;
 }
 
 .Listening-Area {

@@ -7,7 +7,7 @@ from flask_login import current_user, login_required
 from form import UpdateAccountForm, LyricsForm, VoteForm
 from __init__ import db, bcrypt, app
 from PIL import Image
-from models import Songs, Votes, user as DBUser, Lyrics
+from models import Songs, Votes, user as DBUser, Lyrics, UserLibrary
 import urllib3
 import ast
 
@@ -94,6 +94,24 @@ def song(songname):
         if Song_details != None:
             song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).all()
             if current_user.is_authenticated:
+                all_user_library = UserLibrary.query.filter_by(
+                    user_id=current_user.id
+                ).all()
+                if all_user_library == []:
+                    user_library = UserLibrary(
+                        user_id=current_user.id, song_id=Song_details.id
+                    )
+                    db.session.add(user_library)
+                    db.session.commit()
+                else:
+                    for i in all_user_library:
+                        if i.song_id != Song_details.id:
+                            user_library = UserLibrary(
+                                user_id=current_user.id, song_id=Song_details.id
+                            )
+                            db.session.add(user_library)
+                            db.session.commit()
+                            break
                 if song_lyrics != None:
                     vote_form = VoteForm()
                     song_all_lyrics = Lyrics.query.filter_by(
@@ -213,7 +231,6 @@ def song(songname):
                     lyrics_form=lyrics_form,
                 )
             else:
-                print("a")
                 return render_template(
                     "FoundSong/FoundSong.html",
                     songname=Song_details.title,
