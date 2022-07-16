@@ -21,6 +21,3 @@ function HideLyrics(id) {
     fulllyrics.classList.remove("Hidden");
   }
 }
-
-var elements = document.getElementsByClassName("displaylyricsbox");
-console.log(elements);

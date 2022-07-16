@@ -149,6 +149,8 @@ def song(songname):
                         yt_thumbnail=Song_details.yt_thumbnail,
                         yt_link=Song_details.yt_link,
                         lyrics_form=lyrics_form,
+                        vote_form=vote_form,
+                        all_votes=all_votes,
                     )
                 else:
                     return render_template(
@@ -253,12 +255,16 @@ def lyrics_display():
                     ).first()
                     lyrics.lyrics = lyrics_form.lyrics.data
                     db.session.commit()
-                # vote = Votes(
-                #     user_id = current_user.id,
-                #     song_id = lyrics_form.song_id.data,
-                #     lyrics_id =
+
             else:
                 redirect(url_for("views.home"))
+        songname = Songs.query.filter_by(id=lyrics_form.song_id.data).first()
+        return redirect(
+            url_for(
+                "views.song",
+                songname=f"""{songname.title}-{songname.artist}""",
+            )
+        )
     return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
@@ -327,5 +333,12 @@ def voted():
                 )
                 db.session.add(votes)
                 db.session.commit()
+                songname = Songs.query.filter_by(id=vote_form.song_id.data).first()
+                return redirect(
+                    url_for(
+                        "views.song",
+                        songname=f"""{songname.title}-{songname.artist}""",
+                    )
+                )
 
     return render_template("404/pagenotfound.html", title="Pagenotfound")

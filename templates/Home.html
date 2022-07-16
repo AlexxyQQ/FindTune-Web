@@ -180,20 +180,20 @@
             class="Logo Img"
           />
         </div>
-        <a href="" class="Hamburger-Window-Close Button"></a>
       </div>
       {% if current_user.is_authenticated %}
       <div class="userDisplay">
         <img
           class="userImage Img"
           src="{{ url_for('static',
-      filename='Assets/userimage/' + current_user.image_file) }}"
+          filename='Assets/userimage/' + current_user.image_file) }}"
         />
         <a
           href="/@{{ current_user.username }}"
           class="UserProfile-Ham Hamburger-Items-List Button"
           >{{ current_user.username.upper() }}</a
         >
+        <a href="/Logout" class="HamburgerLogout">Logout</a>
       </div>
       {% endif %}
       <hr class="Line-Ham" />
