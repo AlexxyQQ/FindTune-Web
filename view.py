@@ -90,12 +90,11 @@ def song(songname):
         Song_details = Songs.query.filter_by(
             title=songname.split("-")[0], artist=songname.split("-")[1]
         ).first()
+        lyrics_username = []
         if Song_details != None:
             song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).all()
-            # print(song_lyrics[1].user_id)
             if current_user.is_authenticated:
                 if song_lyrics != None:
-                    lyrics_username = []
                     vote_form = VoteForm()
                     song_all_lyrics = Lyrics.query.filter_by(
                         song_id=Song_details.id
@@ -150,8 +149,6 @@ def song(songname):
                         yt_thumbnail=Song_details.yt_thumbnail,
                         yt_link=Song_details.yt_link,
                         lyrics_form=lyrics_form,
-                        vote_form=vote_form,
-                        all_votes=all_votes,
                     )
                 else:
                     return render_template(
@@ -162,15 +159,45 @@ def song(songname):
                         album=Song_details.album,
                         year=Song_details.year,
                         cover_image=Song_details.cover_image,
-                        lyrics=None,
+                        lyrics=[],
                         yt_thumbnail=Song_details.yt_thumbnail,
                         yt_link=Song_details.yt_link,
                         lyrics_form=lyrics_form,
                     )
 
-            if song_lyrics != None:
-                aa = song_lyrics.lyrics.replace("[", "").replace("]", "")
-                l = ['"{}"'.format(aa) for aa in aa.split('"') if aa not in ("", ", ")]
+            if song_lyrics != []:
+                song_all_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).all()
+
+                for lyrics_from_differnt_users in song_all_lyrics:
+                    username = (
+                        DBUser.query.filter_by(id=lyrics_from_differnt_users.user_id)
+                        .first()
+                        .username
+                    )
+                    aa = lyrics_from_differnt_users.lyrics.replace("[", "").replace(
+                        "]", ""
+                    )
+                    l = [
+                        '"{}"'.format(aa)
+                        for aa in aa.split('"')
+                        if aa not in ("", ", ")
+                    ]
+                    votes = (
+                        Votes.query.filter_by(lyrics_id=lyrics_from_differnt_users.id)
+                        .order_by(desc(Votes.vote))
+                        .first()
+                    )
+                    if votes != None:
+                        lyrics_username.append(
+                            [username, l, lyrics_from_differnt_users.id, votes.vote]
+                        )
+                        lyrics_username.sort(key=lambda x: x[3], reverse=True)
+                        print(lyrics_username)
+                    else:
+                        lyrics_username.append(
+                            [username, l, lyrics_from_differnt_users.id]
+                        )
+
                 return render_template(
                     "FoundSong/FoundSong.html",
                     songname=Song_details.title,
@@ -178,11 +205,13 @@ def song(songname):
                     album=Song_details.album,
                     year=Song_details.year,
                     cover_image=Song_details.cover_image,
-                    lyrics=l,
+                    lyrics=lyrics_username,
                     yt_thumbnail=Song_details.yt_thumbnail,
                     yt_link=Song_details.yt_link,
+                    lyrics_form=lyrics_form,
                 )
             else:
+                print("a")
                 return render_template(
                     "FoundSong/FoundSong.html",
                     songname=Song_details.title,
@@ -193,6 +222,7 @@ def song(songname):
                     lyrics=None,
                     yt_thumbnail=Song_details.yt_thumbnail,
                     yt_link=Song_details.yt_link,
+                    lyrics_form=lyrics_form,
                 )
     return render_template("404/pagenotfound.html", title="Pagenotfound")
 

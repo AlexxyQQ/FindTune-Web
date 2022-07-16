@@ -37,6 +37,7 @@
     <div class="LyricsArea">
       <hr class="Line" />
       <span class="LyricsLyrisc">Lyrics</span>
+      
       {% if lyrics != None %}
       <!--  -->
       <button type="button" onclick="DisplayUserLyrics()" class="DisplayEdit Button">
@@ -44,7 +45,6 @@
         filename='Assets/edit.png') }}" alt="" class="Img">
       </button>
       <form method="POST" class="LyricsForm Hidden" id="UpdateLyrics"  action="/lyrics_display" enctype="multipart/form-data">
-      
         <span class="Info Lyrics">Write your lyrics here.</span>
         {{ lyrics_form.hidden_tag() }}
         {{ lyrics_form.song_id(class="Hidden",value=song_id) }}
@@ -55,9 +55,10 @@
       <div class="LyricsCard">
         <div class="HeadingDisplayBox">
           <span class="UsernameOfPoster">{{all[0].upper()}}</span>
-          <button class="ExpandCollapsLyrics Button">
+          <button class="ExpandCollapsLyrics Button" id="{{all[0].upper()}}" onclick="HideLyrics(this.id)">
             V
           </button>
+          {%if current_user.is_authenticated%}
           <form method="POST" class="VoteForm"  action="/voted" enctype="multipart/form-data">
             {{ vote_form.hidden_tag() }}
             {{vote_form.song_id(class="Hidden",value=song_id)}}
@@ -72,16 +73,25 @@
             {{vote_form.submit(value="⬆️",class="Submit Upvote Button")}}
             {%endif%}
           </form>
-          
+          {% endif %}
         </div>
+        <div class="displaylyricsbox" id="lyricsbox{{all[0].upper()}}">
+
         {%for l in all[1]%}
           <!--  -->
-          <p class="LyricsLines" id="LyricsLines{{username}}">
-            {{l.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
-  
-          </p>
+            <p class="LyricsLines" >
+              {{l.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
+    
+            </p>
           <!--  -->
         {%endfor%}
+        </div>
+        <div class="displaylyricsboxpartital" id="displaylyricsboxpartital{{all[0].upper()}}">
+
+        
+          <span class="ReadMore">ReadMore........</span>
+
+        </div>
       </div>
 
       {% endfor %}
@@ -101,7 +111,7 @@
       </form>
       {% endif %}
       <!--  -->
-      {% endif %}
+    {% endif %}
     </div>
     <div class="SecondGridGroup">
       <div class="VideoArea">

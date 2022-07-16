@@ -90,6 +90,23 @@
   align-items: center;
 }
 
+.displaylyricsbox,
+.UserLyricsDisplay {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.displaylyricsboxpartital {
+  display: flex;
+  flex-direction: column;
+}
+.ReadMore {
+  font-size: 20px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
 /* Small screen */
 @media (min-width: 100px) and (max-width: 640px) {
   .SongDetailsArea {

@@ -20,7 +20,6 @@ window.addEventListener(
 
 // Navbar Transform on Scroll
 window.onscroll = function () {
-  console.log(window.pageYOffset);
   var nav = document.getElementById("Nav-Bar");
   if (window.pageYOffset > 10) {
     nav.classList.add("Nav-Bar-Transform");
