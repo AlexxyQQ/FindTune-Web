@@ -77,18 +77,7 @@
           </button>
         </div>
       </form>
-      <button
-        class="Toggle-Theme Button"
-        id="Toggle-Theme-Btn"
-        onclick="Themeing()"
-      >
-        <img
-          src="{{ url_for('static', filename='/Assets/moon-solid.svg') }}"
-          alt="Search"
-          class="Img"
-          id="Theme-Toggler-Icon"
-        />
-      </button>
+
       {% if current_user.is_authenticated %}
       <div class="action">
         <div class="profile" onclick="menuToggle();">
@@ -167,19 +156,27 @@
         onclick="Listening2()"
         id="Small-Record-Button"
       ></button>
+
+      <div class="SomeTextArea">
+        <span class="BigTextArea">Find Tune</span>
+        <span class="SmallTextArea"
+          >Find the exact music you are looking for.</span
+        >
+      </div>
     </section>
     {% endblock MusicListeningArea %}
     <!--  -->
     {% block HamburgerWindow %}
     <section class="Hamburger-Window" id="Hamburger-Window">
       <div class="Hamburger-Window-NavBar">
-        <div class="Logo-Box">
+        <a href="/" class="Logo-Box Button">
           <img
             src="{{ url_for('static', filename='/Assets/Logo.png') }}"
             alt="Logo"
             class="Logo Img"
           />
-        </div>
+        </a>
+        <a href="" class="Hamburger-Window-Close Button"></a>
       </div>
       {% if current_user.is_authenticated %}
       <div class="userDisplay">

@@ -173,8 +173,10 @@ def song(songname):
                                 user_id=current_user.id, song_id=Song_details.id
                             )
                             db.session.add(user_library)
-                            db.session.commit()
-                            break
+                            try:
+                                db.session.commit()
+                            except:
+                                break
                 if song_lyrics != None:
                     vote_form = VoteForm()
                     song_all_lyrics = Lyrics.query.filter_by(
