@@ -1,4 +1,5 @@
 from email.policy import default
+from enum import unique
 from flask_login import UserMixin
 from __init__ import db, login_manager
 
@@ -77,10 +78,15 @@ class UserLibrary(db.Model):
     __tablename__ = "library"
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(
-        db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False
+        db.Integer,
+        db.ForeignKey("user.id", ondelete="CASCADE"),
+        nullable=False,
     )
     song_id = db.Column(
-        db.Integer, db.ForeignKey("songs.id", ondelete="CASCADE"), nullable=False
+        db.Integer,
+        db.ForeignKey("songs.id", ondelete="CASCADE"),
+        nullable=False,
+        unique=True,
     )
 
     def __repr__(self):

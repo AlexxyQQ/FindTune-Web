@@ -161,7 +161,7 @@ const Listening = async () => {
     Circular_Recorder.classList.add("Static");
     document.getElementById("Circular-Recorder").disabled = true;
   }
-  await sleep(10000);
+  await sleep(8000);
   const audio = await recorder.stop();
   document.getElementById("Circular-Recorder").disabled = false;
   Ellipse_One.classList.remove("Listening");
@@ -169,7 +169,8 @@ const Listening = async () => {
   Ellipse_Three.classList.remove("Listening");
   Rotating_Logo.classList.remove("Listening");
   Circular_Recorder.classList.remove("Static");
-  await sleep(10000);
+  await sleep(8000);
+  recorder.stop();
 };
 
 const Listening2 = async () => {
@@ -189,7 +190,7 @@ const Listening2 = async () => {
     document.getElementById("Gooey").classList.add("Listening");
     document.getElementById("Small-Record-Button").disabled = true;
   }
-  await sleep(10000);
+  await sleep(8000);
   const audio = await recorder.stop();
   document.getElementById("Small-Record-Button").disabled = false;
   Bar_Recorder.classList = "Bar-Recorder";
@@ -202,7 +203,8 @@ const Listening2 = async () => {
   document.getElementById("RB-Seven").classList.remove("Listening");
   document.getElementById("RB-Eight").classList.remove("Listening");
   document.getElementById("Gooey").classList.remove("Listening");
-  await sleep(10000);
+  await sleep(8000);
+  recorder.stop();
 };
 
 function MovePillToSignup(params) {

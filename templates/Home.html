@@ -193,12 +193,14 @@
           class="UserProfile-Ham Hamburger-Items-List Button"
           >{{ current_user.username.upper() }}</a
         >
-        <a href="/Logout" class="HamburgerLogout">Logout</a>
+        <a href="/Logout" class="Hamburger-Items-List LogoutHamburger Button"
+          >Logout</a
+        >
       </div>
       {% endif %}
       <hr class="Line-Ham" />
       <div class="Hamburger-Content">
-        <a href="" class="Hamburger-Items-List Button">My Libraries</a>
+        <a href="/library" class="Hamburger-Items-List Button">My Libraries</a>
         <a href="" class="Hamburger-Items-List Button">About</a>
         <a href="" class="Hamburger-Items-List Button">Donate</a>
       </div>
@@ -366,6 +368,10 @@
     {% block UserProfile %} {% endblock UserProfile %}
     <!--  -->
     {% block SongInfo %} {% endblock SongInfo %}
+    <!--  -->
+    {% block SearchResult %} {% endblock SearchResult %}
+    <!--  -->
+    {% block UserLibrary %} {% endblock UserLibrary %}
     <!--  -->
     {% block Footer %}
     <section class="Footer">

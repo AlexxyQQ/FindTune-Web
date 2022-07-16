@@ -1,0 +1,55 @@
+{% extends "Home.html" %}
+<!--  -->
+{% block MusicListeningArea %} {%endblock MusicListeningArea%}
+<!--  -->
+{% block LoginSignupPage %} {% endblock LoginSignupPage %}
+<!--  -->
+{% block Previews %}{% endblock Previews %}
+<!--  -->
+{% block Footer %} {% endblock Footer %}
+<!--  -->
+{% block UserProfile %}{% endblock UserProfile %}
+<!--  -->
+{% block SongInfo %} {% endblock SongInfo %}
+<!--  -->
+{% block SearchResult %} {% endblock SearchResult %}
+<!--  -->
+<!--  -->
+{% block UserLibrary %}
+<!--  -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='CSS/UserLibrary/UserLibrary.css') }}"
+/>
+<section class="UserLibrary">
+  <div class="Heading">
+    <h1>
+      {{current_user.username[0].upper()+current_user.username[1:]}}'s Library
+    </h1>
+  </div>
+  <div class="SongCardsSection">
+    <!--  -->
+    {% for song in songs %}
+    <!--  -->
+
+    <a class="SongCard Button">
+      <span class="Numbering">{{ loop.index }}</span>
+      <div class="CoverImage">
+        <img
+          src="{{song[0].cover_image}}"
+          alt="{{song[0].album}}"
+          class="CoverImage Img"
+        />
+      </div>
+      <div class="SongInfo">
+        <span class="Title">{{song[0].title}}</span>
+        <span class="Artist">{{song[0].artist}}</span>
+      </div>
+    </a>
+    <hr class="Line" />
+
+    {% endfor %}
+  </div>
+</section>
+<!--  -->
+{% endblock UserLibrary %}

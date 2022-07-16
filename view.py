@@ -1,7 +1,9 @@
 import os
 import secrets
+from unittest import result
 from flask import Blueprint, redirect, request, render_template, url_for
-from sqlalchemy import desc
+from numpy import record
+from sqlalchemy import desc, or_
 from Backend.utils import From_File
 from flask_login import current_user, login_required
 from form import UpdateAccountForm, LyricsForm, VoteForm
@@ -32,10 +34,34 @@ def sw():
     return app.send_static_file("service-worker.js")
 
 
+@app.route("/None")
+def Notfound():
+    return render_template("404/pagenotfound.html", title="Pagenotfound")
+
+
+@app.route("/songnotfound")
+def SongNotFound():
+    return render_template("404/songnotfound.html", title="Song Not Found")
+
+
 @views.route("/search", methods=["GET", "POST"])
 def searchsong():
     if request.method == "POST":
-        return redirect(url_for("views.song", songname=request.form["Song"]))
+        searched = request.form.get("Song")
+        results = Songs.query.filter(
+            or_(
+                Songs.title.like("%" + searched + "%"),
+                Songs.artist.like("%" + searched + "%"),
+            )
+        ).all()
+        return render_template(
+            "SearchResult/SearchResult.html",
+            title=searched,
+            searched=searched,
+            results=results,
+        )
+
+    return render_template("SearchResult/SearchResult.html", title="Search")
 
 
 @views.route("/check", methods=["GET", "POST"])
@@ -44,42 +70,79 @@ def check():
     if request.method == "POST":
         request.files["file"].save("./audio.wav")
         b = From_File.main("./audio.wav")
-        get_youtube_uri = t.request(
-            "GET",
-            b.get("track").get("sections")[2].get("youtubeurl"),
-        )
-        dict_str = get_youtube_uri.data.decode("UTF-8")
-        youtubeDetail = ast.literal_eval(dict_str)
+        if b == None:
+            return "songnotfound"
         try:
-            details = Songs(
-                title=b.get("track").get("title"),
-                artist=b.get("track").get("subtitle"),
-                album=b.get("track").get("sections")[0].get("metadata")[0].get("text"),
-                year=b.get("track").get("sections")[0].get("metadata")[2].get("text"),
-                tagid=b.get("track").get("key"),
-                cover_image=b.get("track").get("images").get("coverart"),
-                yt_thumbnail=youtubeDetail.get("image").get("url"),
-                yt_link=youtubeDetail.get("actions")[0].get("uri"),
+            get_youtube_uri = t.request(
+                "GET",
+                b.get("track").get("sections")[2].get("youtubeurl"),
             )
+            dict_str = get_youtube_uri.data.decode("UTF-8")
+            youtubeDetail = ast.literal_eval(dict_str)
+            try:
+                details = Songs(
+                    title=b.get("track").get("title"),
+                    artist=b.get("track").get("subtitle"),
+                    album=b.get("track")
+                    .get("sections")[0]
+                    .get("metadata")[0]
+                    .get("text"),
+                    year=b.get("track")
+                    .get("sections")[0]
+                    .get("metadata")[2]
+                    .get("text"),
+                    tagid=b.get("track").get("key"),
+                    cover_image=b.get("track").get("images").get("coverart"),
+                    yt_thumbnail=youtubeDetail.get("image").get("url"),
+                    yt_link=youtubeDetail.get("actions")[0].get("uri"),
+                )
 
-            db.session.add(details)
-            db.session.commit()
-            Song_details = Songs.query.filter_by(
-                title=b.get("track").get("title"), artist=b.get("track").get("subtitle")
-            ).first()
-            # if Song_details != None:
-            #     print(Song_details.id)
-            #     lyrics = Lyrics(
-            #         lyrics=f"""{b.get("track").get("sections")[1].get("text")}""",
-            #         song_id=Song_details.id,
-            #         user_id=current_user.id,
-            #     )
-            #     db.session.add(lyrics)
-            #     db.session.commit()
+                db.session.add(details)
+                db.session.commit()
+                Song_details = Songs.query.filter_by(
+                    title=b.get("track").get("title"),
+                    artist=b.get("track").get("subtitle"),
+                ).first()
+                # if Song_details != None:
+                #     print(Song_details.id)
+                #     lyrics = Lyrics(
+                #         lyrics=f"""{b.get("track").get("sections")[1].get("text")}""",
+                #         song_id=Song_details.id,
+                #         user_id=current_user.id,
+                #     )
+                #     db.session.add(lyrics)
+                #     db.session.commit()
+            except:
+                pass
+            return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
         except:
-            pass
-        return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
 
+            try:
+                details = Songs(
+                    title=b.get("track").get("title"),
+                    artist=b.get("track").get("subtitle"),
+                    album=b.get("track")
+                    .get("sections")[0]
+                    .get("metadata")[0]
+                    .get("text"),
+                    year=b.get("track")
+                    .get("sections")[0]
+                    .get("metadata")[2]
+                    .get("text"),
+                    tagid=b.get("track").get("key"),
+                    cover_image=b.get("track").get("images").get("coverart"),
+                )
+
+                db.session.add(details)
+                db.session.commit()
+                Song_details = Songs.query.filter_by(
+                    title=b.get("track").get("title"),
+                    artist=b.get("track").get("subtitle"),
+                ).first()
+
+            except:
+                pass
+            return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
     return songname
 
 
@@ -148,7 +211,6 @@ def song(songname):
                                 [username, l, lyrics_from_differnt_users.id, votes.vote]
                             )
                             lyrics_username.sort(key=lambda x: x[3], reverse=True)
-                            print(lyrics_username)
                         else:
                             lyrics_username.append(
                                 [username, l, lyrics_from_differnt_users.id]
@@ -212,7 +274,6 @@ def song(songname):
                             [username, l, lyrics_from_differnt_users.id, votes.vote]
                         )
                         lyrics_username.sort(key=lambda x: x[3], reverse=True)
-                        print(lyrics_username)
                     else:
                         lyrics_username.append(
                             [username, l, lyrics_from_differnt_users.id]
@@ -329,7 +390,14 @@ def RecordedSearch():
 @views.route("/library", methods=["GET", "POST"])
 @login_required
 def Library():
-    pass
+    records = UserLibrary.query.filter_by(user_id=current_user.id).all()
+    if records != []:
+        all_songs = []
+        for item in records:
+            song = Songs.query.filter_by(id=item.song_id).all()
+            all_songs.append(song)
+        for song in all_songs:
+            return render_template("UserLibrary/UserLibrary.html", songs=all_songs)
 
 
 @views.route("/voted", methods=["GET", "POST"])

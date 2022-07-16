@@ -559,12 +559,16 @@
   }
   .userDisplay {
     display: flex;
+    flex-direction: column;
     margin: 0 20px;
     margin-top: 16%;
     margin-bottom: 10px;
-    flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+  }
+
+  .LogoutHamburger:hover {
+    color: #26c2ff;
   }
   .userImage {
     background-color: white;
