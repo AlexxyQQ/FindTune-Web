@@ -1,4 +1,5 @@
 from email.policy import default
+from enum import unique
 from flask_login import UserMixin
 from __init__ import db, login_manager
 
@@ -17,6 +18,9 @@ class user(db.Model, UserMixin):
     image_file = db.Column(db.String(120), nullable=False, default="default.png")
     password = db.Column(db.String(60), nullable=False)
     lyrics = db.relationship("Lyrics", backref="User", lazy=True)
+    library = db.relationship(
+        "UserLibrary", backref="author", cascade="all, delete-orphan", lazy=True
+    )
 
     def __repr__(self):
         return f"user('{self.username}','{self.email}','{self.password}')"
@@ -57,6 +61,33 @@ class Lyrics(db.Model):
 class Votes(db.Model):
     __tablename__ = "votes"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(
+        db.Integer, db.ForeignKey("user.id"), nullable=False, unique=True
+    )
+    song_id = db.Column(
+        db.Integer, db.ForeignKey("songs.id", ondelete="CASCADE"), nullable=False
+    )
     lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"), nullable=False)
-    vote = db.Column(db.Integer, nullable=True)
+    vote = db.Column(db.Integer, nullable=False, default=0)
+
+    def __repr__(self):
+        return f"Votes('{self.user_id}','{self.song_id}')"
+
+
+class UserLibrary(db.Model):
+    __tablename__ = "library"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("user.id", ondelete="CASCADE"),
+        nullable=False,
+    )
+    song_id = db.Column(
+        db.Integer,
+        db.ForeignKey("songs.id", ondelete="CASCADE"),
+        nullable=False,
+        unique=True,
+    )
+
+    def __repr__(self):
+        return f"Library('{self.user_id}','{self.song_id}')"

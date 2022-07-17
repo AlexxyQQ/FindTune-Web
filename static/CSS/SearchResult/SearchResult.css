@@ -1,0 +1,40 @@
+.ResultArea {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: 20px;
+}
+.ResultCard {
+  padding: 8px 16px;
+  width: 95%;
+  border-radius: 20px;
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.ResultImage {
+  width: 200px;
+  border-radius: 20px;
+}
+.ResultCard-info {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.Result-Text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  width: 80%;
+}

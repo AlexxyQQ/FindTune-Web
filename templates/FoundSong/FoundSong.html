@@ -17,6 +17,12 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='/CSS/FoundSong/FoundSong.css') }}"
 />
+
+<script
+      type="text/javascript"
+      src="{{ url_for('static', filename='JS/FoundSong/FoundSong.js') }}"
+    ></script>
+
 <section class="SongDetailsArea">
   <div class="TitleArea">
     <div class="SongCover">
@@ -27,53 +33,111 @@
       <span class="SingerName">{{artist}}</span>
     </div>
   </div>
-  <div class="LyricsArea">
-    <hr class="Line" />
-    <span class="LyricsLyrisc">Lyrics</span>
-    {% if lyrics != None %}
-    <!--  -->
-    {% for line in lyrics %}
-    <p class="LyricsLines">
-      {{line.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
-    </p>
-    {% endfor %}
-    </p>
-    <!--  -->
-    {% else %}
-    <!--  -->
-    <span class="NoLyrics">No Lyrics Found!!</span>
-    {%if current_user.is_authenticated%}
-    <form method="POST" class="LyricsForm"  action="/lyrics_display" enctype="multipart/form-data">
-      <span class="Info Lyrics">Write your lyrics here.</span>
-      {{ lyrics_form.hidden_tag() }}
-      {{ lyrics_form.lyrics(class="TextArea-Lyrics") }}
-      {{ lyrics_form.submit(value="POST",class="Submit Form-Login Button") }}
-    </form>
-    {% endif %}
-    <!--  -->
-    {% endif %}
-  </div>
-  <div class="VideoArea">
-    <span class="Video Title">Video</span>
-    <a href="{{yt_link}}" class="YoutubeRedirect Button">
-    <img src="{{yt_thumbnail}}" alt="" class="Thumbnail Img">
-    <img src="{{ url_for('static', filename='Assets/YTLogo.png') }}" alt="" class="YTLogo">
-  </a>
-  </div>
-  <div class="DetailsArea">
-    <span class="Details Title">Song Info</span>
-    <div class="AllInfo">
-      <div class="Performed DisArea">
-        <span class="PerformedBy TI">Performed By:</span>
-        <span class="PerformedBy Info">{{artist}}</span>
+  <div class="GridGroup">
+    <div class="LyricsArea">
+      <hr class="Line" />
+      <span class="LyricsLyrisc">Lyrics</span>
+      
+      {% if lyrics != None %}
+      <!--  -->
+      <button type="button" onclick="DisplayUserLyrics()" class="DisplayEdit Button">
+        <img src="{{ url_for('static',
+        filename='Assets/edit.png') }}" alt="" class="Img">
+      </button>
+      <form method="POST" class="LyricsForm Hidden" id="UpdateLyrics"  action="/lyrics_display" enctype="multipart/form-data">
+        <span class="Info Lyrics">Write your lyrics here.</span>
+        {{ lyrics_form.hidden_tag() }}
+        {{ lyrics_form.song_id(class="Hidden",value=song_id) }}
+        {{ lyrics_form.lyrics(class="TextArea-Lyrics",value = uplyric ) }}
+        {{ lyrics_form.submit(value="POST",class="Submit Form-Login Button") }}
+      </form>
+      {% for all in lyrics %}
+      <div class="LyricsCard">
+        <div class="HeadingDisplayBox">
+          <span class="UsernameOfPoster">{{all[0].upper()}}</span>
+          <button class="ExpandCollapsLyrics Button" id="{{all[0].upper()}}" onclick="HideLyrics(this.id)">
+            V
+          </button>
+          {%if current_user.is_authenticated%}
+          <form method="POST" class="VoteForm"  action="/voted" enctype="multipart/form-data">
+            {{ vote_form.hidden_tag() }}
+            {{vote_form.song_id(class="Hidden",value=song_id)}}
+            {{vote_form.user_id(class="Hidden",value=current_user.id)}}
+            {{vote_form.lyric_id(class="Hidden",value=all[2])}}
+            {%if all|length == 4%}
+            {{vote_form.vote(class="Hidden",value=all[3]+1)}}
+            {%else%}
+            {{vote_form.vote(class="Hidden",value=1)}}
+            {%endif%}
+            {% if all_votes == [] %}
+            {{vote_form.submit(value="⬆️",class="Submit Upvote Button")}}
+            {%endif%}
+          </form>
+          {% endif %}
+        </div>
+        <div class="displaylyricsbox" id="lyricsbox{{all[0].upper()}}">
+
+        {%for l in all[1]%}
+          <!--  -->
+            <p class="LyricsLines" >
+              {{l.replace('"', "").replace("'", "").replace(",", "").replace("\\", "'")}}
+    
+            </p>
+          <!--  -->
+        {%endfor%}
+        </div>
+        <div 
+        class="displaylyricsboxpartital" id="displaylyricsboxpartital{{all[0].upper()}}">
+
+        
+          <span class="ReadMore">ReadMore........</span>
+
+        </div>
       </div>
-      <div class="AlbumInfo DisArea">
-        <span class="AlbunNameis TI">Album Name:</span>
-        <span class="AlbumName Info">{{album}}</span>
+
+      {% endfor %}
+      </p>
+      
+      <!--  -->
+      {% else %}
+      <!--  -->
+      <span class="NoLyrics">No Lyrics Found!!</span>
+      {%if current_user.is_authenticated%}
+      <form method="POST" class="LyricsForm"  action="/lyrics_display" enctype="multipart/form-data">
+        <span class="Info Lyrics">Write your lyrics here.</span>
+        {{ lyrics_form.hidden_tag() }}
+        {{ lyrics_form.song_id(class="Hidden",value=song_id) }}
+        {{ lyrics_form.lyrics(class="TextArea-Lyrics") }}
+        {{ lyrics_form.submit(value="POST",class="Submit Form-Login Button") }}
+      </form>
+      {% endif %}
+      <!--  -->
+    {% endif %}
+    </div>
+    <div class="SecondGridGroup">
+      <div class="VideoArea">
+        <span class="Video Title">Video</span>
+        <a href="{{yt_link}}" class="YoutubeRedirect Button">
+        <img src="{{yt_thumbnail}}" alt="No Youtube video found" class="Thumbnail Img">
+        <img src="{{ url_for('static', filename='Assets/YTLogo.png') }}" alt="" class="YTLogo">
+      </a>
       </div>
-      <div class="Released DisArea">
-        <span class="ReleasedIn TI">Released In:</span>
-        <span class="ReleasedIn Info">{{year}}</span>
+      <div class="DetailsArea">
+        <span class="Details Title">Song Info</span>
+        <div class="AllInfo">
+          <div class="Performed DisArea">
+            <span class="PerformedBy TI">Performed By:</span>
+            <span class="PerformedBy Info">{{artist}}</span>
+          </div>
+          <div class="AlbumInfo DisArea">
+            <span class="AlbunNameis TI">Album Name:</span>
+            <span class="AlbumName Info">{{album}}</span>
+          </div>
+          <div class="Released DisArea">
+            <span class="ReleasedIn TI">Released In:</span>
+            <span class="ReleasedIn Info">{{year}}</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>

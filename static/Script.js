@@ -1,6 +1,6 @@
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("service-worker.js")
+    .register("/service-worker.js")
     .then(function (registration) {
       console.log("Service Worker Registered");
       return registration;
@@ -20,9 +20,9 @@ window.addEventListener(
 
 // Navbar Transform on Scroll
 window.onscroll = function () {
-  console.log(window.pageYOffset);
   var nav = document.getElementById("Nav-Bar");
   if (window.pageYOffset > 10) {
+    console.log(window.pageYOffset);
     nav.classList.add("Nav-Bar-Transform");
   } else {
     nav.classList.remove("Nav-Bar-Transform");
@@ -77,7 +77,7 @@ const recordAudio = () =>
               contentType: false,
             }).done(function (data) {
               console.log(data);
-              window.location.href = "http://127.0.0.1:8080/" + data;
+              window.location.href = "http://127.0.0.1:5558/" + data;
             });
           }
           submit(audioBlob);
@@ -151,7 +151,7 @@ const Listening = async () => {
   var Ellipse_Two = document.getElementById("Ellipse-Two");
   var Ellipse_Three = document.getElementById("Ellipse-Three");
   var Rotating_Logo = document.getElementById("Rotating-Logo");
-  const recorder = await recordAudio();
+  var recorder = await recordAudio();
   recorder.start();
   if (Circular_Recorder.className == "Circular-Recorder Button") {
     Ellipse_One.classList.add("Listening");
@@ -161,7 +161,7 @@ const Listening = async () => {
     Circular_Recorder.classList.add("Static");
     document.getElementById("Circular-Recorder").disabled = true;
   }
-  await sleep(10000);
+  await sleep(8000);
   const audio = await recorder.stop();
   document.getElementById("Circular-Recorder").disabled = false;
   Ellipse_One.classList.remove("Listening");
@@ -169,12 +169,13 @@ const Listening = async () => {
   Ellipse_Three.classList.remove("Listening");
   Rotating_Logo.classList.remove("Listening");
   Circular_Recorder.classList.remove("Static");
-  await sleep(10000);
+  await sleep(8000);
+  recorder.stop();
 };
 
 const Listening2 = async () => {
   var Bar_Recorder = document.getElementById("Bar-Recorder");
-  const recorder = await recordAudio();
+  var recorder = await recordAudio();
   recorder.start();
   if (Bar_Recorder.className == "Bar-Recorder") {
     Bar_Recorder.classList.add("Listening");
@@ -189,7 +190,7 @@ const Listening2 = async () => {
     document.getElementById("Gooey").classList.add("Listening");
     document.getElementById("Small-Record-Button").disabled = true;
   }
-  await sleep(10000);
+  await sleep(8000);
   const audio = await recorder.stop();
   document.getElementById("Small-Record-Button").disabled = false;
   Bar_Recorder.classList = "Bar-Recorder";
@@ -202,7 +203,8 @@ const Listening2 = async () => {
   document.getElementById("RB-Seven").classList.remove("Listening");
   document.getElementById("RB-Eight").classList.remove("Listening");
   document.getElementById("Gooey").classList.remove("Listening");
-  await sleep(10000);
+  await sleep(8000);
+  recorder.stop();
 };
 
 function MovePillToSignup(params) {

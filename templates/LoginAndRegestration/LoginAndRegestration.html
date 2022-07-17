@@ -1,5 +1,8 @@
 {% extends "Home.html" %} {% block LoginSignupPage %}
-<link rel="stylesheet" href="../static/CSS/LoginSignup.css" />
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='CSS/LoginAndRegestration/LoginAndRegestration.css')}}"
+/>
 <section class="LoginSignupPage" id="LoginSignupPage">
   <div class="LoginSignup__Form">
     <a

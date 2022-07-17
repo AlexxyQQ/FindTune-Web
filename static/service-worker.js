@@ -1,19 +1,40 @@
 const cacheName = "FindTune";
 const filesToCache = [
   "/",
+  // templates
+  "/templates/404/pagenotfound.html",
+  "/templates/FoundSong/FoundSong.html",
+  "/templates/LoginAndRegestration/LoginAndRegestration.html",
+  "/templates/UserProfile/Account.html",
+  "/templates/Home.html",
+  // Styles
   "/static/Script.js",
-  "/static/CSS/Home.css",
+  "/static/offline.html",
+  "/static/service-worker.js",
+  "/static/manifest.json",
+
+  "/static/JS/UserProfile/UserProfile.js",
+
+  "/static/CSS/404/style.css",
+  "/static/CSS/FoundSong/FoundSong.css",
+  "/static/CSS/Home/Home.css",
+  "/static/CSS/Home/LandingPagePreviews.css",
+  "/static/CSS/LoginAndRegestration/LoginAndRegestration.css",
   "/static/CSS/Main.css",
-  "/static/CSS/LoginSignup.css",
 ];
 
-self.addEventListener("install", function (e) {
-  console.log("[ServiceWorker] Install");
-  e.waitUntil(
-    caches.open(cacheName).then(function (cache) {
-      console.log("[ServiceWorker] Caching app shell");
-      return cache.addAll(filesToCache);
-    })
+self.addEventListener("install", (event) => {
+  console.log("Service Worker : Installed!");
+
+  event.waitUntil(
+    (async () => {
+      try {
+        cache_obj = await caches.open(cache);
+        cache_obj.addAll(caching_files);
+      } catch {
+        console.log("error occured while caching...");
+      }
+    })()
   );
 });
 

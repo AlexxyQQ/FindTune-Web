@@ -1,7 +1,7 @@
 .Preview-Area {
   height: auto;
   padding: 10px 0px;
-  background-color: #e2e22c;
+  background-color: #0f9ba1;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -27,7 +27,7 @@
 }
 
 .Album-Cover {
-  background-image: url(../Assets/FloweArrDee.jpg);
+  background-image: url(../../Assets/FloweArrDee.jpg);
   background-size: cover;
   z-index: 6;
   width: 80%;
