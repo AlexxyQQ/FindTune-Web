@@ -391,7 +391,7 @@ def RecordedSearch():
 
 @views.route("/library", methods=["GET", "POST"])
 @login_required
-def Library():
+def User_Library():
     records = UserLibrary.query.filter_by(user_id=current_user.id).all()
     if records != []:
         all_songs = []
@@ -400,6 +400,7 @@ def Library():
             all_songs.append(song)
         for song in all_songs:
             return render_template("UserLibrary/UserLibrary.html", songs=all_songs)
+    return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
 @views.route("/voted", methods=["GET", "POST"])

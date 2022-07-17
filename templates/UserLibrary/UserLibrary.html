@@ -32,7 +32,7 @@
     {% for song in songs %}
     <!--  -->
 
-    <a class="SongCard Button">
+    <a href="/{{song[0].title}}-{{song[0].artist}}" class="SongCard Button">
       <span class="Numbering">{{ loop.index }}</span>
       <div class="CoverImage">
         <img
