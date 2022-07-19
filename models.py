@@ -42,7 +42,7 @@ class Songs(db.Model):
     )
 
     def __repr__(self):
-        return f"Songs('{self.title}','{self.artist}','{self.album}','{self.year}','{self.tagid}','{self.cover_image}')"
+        return f"Songs('{self.title}','{self.artist}','{self.album}','{self.year}','{self.tagid}','{self.cover_image}','{self.yt_thumbnail}','{self.yt_link}')"
 
 
 class Lyrics(db.Model):

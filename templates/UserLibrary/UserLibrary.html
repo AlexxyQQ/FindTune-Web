@@ -21,34 +21,115 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='CSS/UserLibrary/UserLibrary.css') }}"
 />
+<link
+   rel="stylesheet"
+   href="{{ url_for('static', filename='/CSS/UserProfile/UserProfile.css') }}"
+   />
+<!--  -->
+<script
+      type="text/javascript"
+      src="{{ url_for('static', filename='JS/UserProfile/UserProfile.js') }}"
+    ></script>
 <section class="UserLibrary">
-  <div class="Heading">
-    <h1>
-      {{current_user.username[0].upper()+current_user.username[1:]}}'s Library
-    </h1>
+  <div class="UserProfileSection">
+    <section class="ProfileArea">
+      <form method="POST" action="" enctype="multipart/form-data">
+         {{ form.hidden_tag() }}
+         <div class="UserProfileBox">
+            <div class="upload-btn-wrapper">
+               <button class="Button UserImage">
+               <img
+                  src="{{ url_for('static',
+                  filename='Assets/userimage/' + current_user.image_file) }}"
+                  alt="{{ current_user.username.upper() }}"
+                  class="UserImage Img"
+                  />
+               </button>
+               {{ form.picture.label() }}
+               {{ form.picture(class="") }}
+               {% if form.picture.errors %}
+               {% for error in form.picture.errors %}
+               <span class="">{{ error }}</span></br>
+               {% endfor %}
+               {% endif %}
+            </div>
+            <div class="UsernameEditBox">
+               <div class="UsernameBox">
+                  <span span class="UserNameDisplay"
+                     >{{current_user.username.upper()}}</span
+                     >
+                  <button type="button" onclick="DisplayUserEdit()" class="DisplayEdit Button">
+                  <img src="{{ url_for('static',
+                  filename='Assets/edit.png') }}" alt="" class="Img">
+                  </button>
+               </div>
+               <div class="UserNameEdit Hidden" id="UsernameEditForm">
+                  
+                  <!--  -->
+                  {% if form.username.errors %}
+                  <!--  -->
+                  {{ form.username(class="Textbox Username ",placeholder=current_user.username,value=current_user.username) }}
+                  <div class="invalid-feedback">
+                     {% for error in form_signup.username.errors %}
+                     <span class="Error-Message">{{ error }}</span>
+                     {% endfor %}
+                  </div>
+                  {% else %}
+                  <!--  -->
+                  {{ form.username(class="Textbox Username",placeholder=current_user.username,value=current_user.username) }}
+                  <!--  -->
+                  {% endif %}
+               </div>
+               {{ form.submit(value="UPDATE",class="Submit Form-Login Button") }}
+
+            </div>
+         </div>
+      </form>
+   </section>
   </div>
-  <div class="SongCardsSection">
-    <!--  -->
-    {% for song in songs %}
-    <!--  -->
+  <div class="UserLibrarySection">
+    <div class="Heading">
+      <h1>
+        {{current_user.username[0].upper()+current_user.username[1:]}}'s Library
+      </h1>
+    </div>
+    <div class="SongCardsSection">
+      <!--  -->
+      {%if songs !=[]%}
+      <!--  -->
+      {% for song in songs %}
+      <!--  -->
 
-    <a href="/{{song[0].title}}-{{song[0].artist}}" class="SongCard Button">
-      <span class="Numbering">{{ loop.index }}</span>
-      <div class="CoverImage">
-        <img
-          src="{{song[0].cover_image}}"
-          alt="{{song[0].album}}"
-          class="CoverImage Img"
-        />
+      <div class="SongCard Button">
+        <span class="Numbering">{{ loop.index }}</span>
+        <div class="CoverImage">
+          <img
+            src="{{song[0].cover_image}}"
+            alt="{{song[0].album}}"
+            class="CoverImage Img"
+          />
+        </div>
+        <div class="SongInfo">
+          <a href="/{{song[0].title}}-{{song[0].artist}}" class="Title Button">{{song[0].title}}</a>
+          <span class="Artist">{{song[0].artist}}</span>
+        </div>
+        <form action="" , method="POST">
+          {{delete_song.hidden_tag()}}
+          {{delete_song.song_id(class='Hidden',value=song[0].id)}}
+          {{delete_song.submit(class="Delete_Song Button",value="🗑️")}}
+        </form>
       </div>
-      <div class="SongInfo">
-        <span class="Title">{{song[0].title}}</span>
-        <span class="Artist">{{song[0].artist}}</span>
-      </div>
-    </a>
-    <hr class="Line" />
+      <hr class="Line" />
 
-    {% endfor %}
+      {% endfor %}
+      <!--  -->
+      {% else %}
+      <!--  -->
+      <div class="NoSongs">
+        <h1>No Songs in Library</h1>
+      </div>
+    <!--  -->
+    {% endif %}
   </div>
 </section>
 <!--  -->

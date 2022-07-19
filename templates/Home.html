@@ -54,9 +54,11 @@
         />
       </a>
       <div class="Navbar Nav-Items">
-        <a href="/library" class="Nav-Items-List Button">My Library</a>
-        <a href="" class="Nav-Items-List Button">About</a>
-        <a href="" class="Nav-Items-List Button">Donate</a>
+        <a href="/@{{ current_user.username }}" class="Nav-Items-List Button"
+          >My Library</a
+        >
+        <!-- <a href="" class="Nav-Items-List Button">About</a>
+        <a href="" class="Nav-Items-List Button">Donate</a> -->
       </div>
       <form action="/search" method="POST">
         <div class="Search-Area">
@@ -197,9 +199,13 @@
       {% endif %}
       <hr class="Line-Ham" />
       <div class="Hamburger-Content">
-        <a href="/library" class="Hamburger-Items-List Button">My Libraries</a>
-        <a href="" class="Hamburger-Items-List Button">About</a>
-        <a href="" class="Hamburger-Items-List Button">Donate</a>
+        <a
+          href="/@{{ current_user.username }}"
+          class="Hamburger-Items-List Button"
+          >My Libraries</a
+        >
+        <!-- <a href="" class="Hamburger-Items-List Button">About</a>
+        <a href="" class="Hamburger-Items-List Button">Donate</a> -->
       </div>
       <div class="Signin-Box">
         <div class="Hamburger-Signin-Description">

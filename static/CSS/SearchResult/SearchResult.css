@@ -1,12 +1,12 @@
 .ResultArea {
-  margin: 0 auto;
   display: flex;
+  margin: 0 auto;
+  margin-top: 80px;
+  width: 100%;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   align-content: center;
-  flex-wrap: nowrap;
-  width: max-content;
-  gap: 20px;
 }
 .ResultCard {
   padding: 8px 16px;

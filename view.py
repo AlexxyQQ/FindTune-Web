@@ -6,7 +6,7 @@ from numpy import record
 from sqlalchemy import desc, or_
 from Backend.utils import From_File
 from flask_login import current_user, login_required
-from form import UpdateAccountForm, LyricsForm, VoteForm
+from form import DeleteLyrics, DeleteSong, UpdateAccountForm, LyricsForm, VoteForm
 from __init__ import db, bcrypt, app
 from PIL import Image
 from models import Songs, Votes, user as DBUser, Lyrics, UserLibrary
@@ -70,6 +70,30 @@ def check():
     if request.method == "POST":
         request.files["file"].save("./audio.wav")
         b = From_File.main("./audio.wav")
+        try:
+            title = b.get("track").get("title")
+        except:
+            title = None
+        try:
+            artist = b.get("track").get("subtitle")
+        except:
+            artist = None
+        try:
+            album = b.get("track").get("sections")[0].get("metadata")[0].get("text")
+        except:
+            album = None
+        try:
+            year = b.get("track").get("sections")[0].get("metadata")[2].get("text")
+        except:
+            year = None
+        try:
+            tagid = b.get("track").get("key")
+        except:
+            tagid = None
+        try:
+            cover_image = b.get("track").get("images").get("coverart")
+        except:
+            cover_image = None
         if b == None:
             return "songnotfound"
         try:
@@ -116,39 +140,35 @@ def check():
                 pass
             return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
         except:
+            print(b)
+            details = Songs(
+                title=title,
+                artist=artist,
+                album=album,
+                year=year,
+                tagid=tagid,
+                cover_image=cover_image,
+            )
 
-            try:
-                details = Songs(
-                    title=b.get("track").get("title"),
-                    artist=b.get("track").get("subtitle"),
-                    album=b.get("track")
-                    .get("sections")[0]
-                    .get("metadata")[0]
-                    .get("text"),
-                    year=b.get("track")
-                    .get("sections")[0]
-                    .get("metadata")[2]
-                    .get("text"),
-                    tagid=b.get("track").get("key"),
-                    cover_image=b.get("track").get("images").get("coverart"),
-                )
-
-                db.session.add(details)
-                db.session.commit()
-                Song_details = Songs.query.filter_by(
-                    title=b.get("track").get("title"),
-                    artist=b.get("track").get("subtitle"),
-                ).first()
-
-            except:
-                pass
+            db.session.add(details)
+            db.session.commit()
+            Song_details = Songs.query.filter_by(
+                title=b.get("track").get("title"),
+                artist=b.get("track").get("subtitle"),
+            ).first()
             return f'{b.get("track").get("title")}-{b.get("track").get("subtitle")}'
     return songname
 
 
-@views.route("<string:songname>", methods=["GET", "POST"])
+@views.route("/@", methods=["GET", "POST"])
+def ass():
+    return redirect(url_for("auth.LoginSignup"))
+
+
+@views.route("/<string:songname>", methods=["GET", "POST"])
 def song(songname):
     lyrics_form = LyricsForm()
+    delte_lyrics_form = DeleteLyrics()
     if songname != "service-worker.js" and songname != "favicon.ico":
         Song_details = Songs.query.filter_by(
             title=songname.split("-")[0], artist=songname.split("-")[1]
@@ -158,27 +178,42 @@ def song(songname):
             song_lyrics = Lyrics.query.filter_by(song_id=Song_details.id).all()
             if current_user.is_authenticated:
                 all_user_library = UserLibrary.query.filter_by(
-                    user_id=current_user.id
+                    user_id=current_user.id, song_id=Song_details.id
                 ).all()
+                print(all_user_library)
                 if all_user_library == []:
-                    user_library = UserLibrary(
-                        user_id=current_user.id, song_id=Song_details.id
-                    )
-                    db.session.add(user_library)
-                    db.session.commit()
+                    try:
+                        user_library = UserLibrary(
+                            user_id=current_user.id, song_id=Song_details.id
+                        )
+
+                        db.session.add(user_library)
+                        db.session.commit()
+                    except:
+                        pass
                 else:
-                    for i in all_user_library:
-                        if i.song_id != Song_details.id:
-                            user_library = UserLibrary(
-                                user_id=current_user.id, song_id=Song_details.id
-                            )
-                            db.session.add(user_library)
-                            try:
-                                db.session.commit()
-                            except:
-                                break
-                if song_lyrics != None:
+                    pass
+                    # for i in all_user_library:
+                    #     if i.song_id != Song_details.id:
+                    #         try:
+                    #             user_library = UserLibrary(
+                    #                 user_id=current_user.id, song_id=Song_details.id
+                    #             )
+
+                    #             db.session.add(user_library)
+                    #             db.session.commit()
+                    #         except:
+                    #             pass
+                if song_lyrics != []:
                     vote_form = VoteForm()
+                    if delte_lyrics_form.validate_on_submit():
+                        lyrics_id = delte_lyrics_form.lyrics_id.data
+                        lyrics = Lyrics.query.filter_by(
+                            id=lyrics_id, user_id=current_user.id
+                        ).first()
+                        db.session.delete(lyrics)
+                        db.session.commit()
+                        return redirect(url_for("views.song", songname=songname))
                     song_all_lyrics = Lyrics.query.filter_by(
                         song_id=Song_details.id
                     ).all()
@@ -210,7 +245,12 @@ def song(songname):
                         )
                         if votes != None:
                             lyrics_username.append(
-                                [username, l, lyrics_from_differnt_users.id, votes.vote]
+                                [
+                                    username,
+                                    l,
+                                    lyrics_from_differnt_users.id,
+                                    votes.vote,
+                                ]
                             )
                             lyrics_username.sort(key=lambda x: x[3], reverse=True)
                         else:
@@ -233,6 +273,7 @@ def song(songname):
                         lyrics_form=lyrics_form,
                         vote_form=vote_form,
                         all_votes=all_votes,
+                        delte_lyrics_form=delte_lyrics_form,
                     )
                 else:
                     return render_template(
@@ -361,46 +402,64 @@ def save_pic(pic):
     return pic_fn
 
 
+@views.route("/Song")
+def RecordedSearch():
+    return render_template("FoundSong/FoundSong.html")
+
+
 @views.route("/@<string:username>", methods=["GET", "POST"])
 @login_required
-def account(username):
+def User_Library(username):
+    if not current_user.is_authenticated:
+        return redirect(url_for("auth.LoginSignup"))
+    delete_song = DeleteSong()
     form = UpdateAccountForm()
+    records = UserLibrary.query.filter_by(user_id=current_user.id).all()
+    all_songs = []
+
+    if records != []:
+        for item in records:
+            song = Songs.query.filter_by(id=item.song_id).all()
+            all_songs.append(song)
     if request.method == "POST":
+        if delete_song.validate_on_submit():
+            print("ass")
+            song_id = delete_song.song_id.data
+            user_id = current_user.id
+            user_library = UserLibrary.query.filter_by(
+                song_id=song_id, user_id=user_id
+            ).first()
+            db.session.delete(user_library)
+            db.session.commit()
+            return redirect(url_for("views.User_Library", username=username))
+
         if form.validate_on_submit():
             if form.picture.data:
                 picture_file = save_pic(form.picture.data)
                 current_user.image_file = picture_file
             current_user.username = form.username.data
             db.session.commit()
-            return redirect(url_for("views.home"))
         elif request.method == "GET":
             form.username.data = current_user.username
-
-    if DBUser.query.filter_by(username=username).first():
-        return render_template(
-            "UserProfile/Account.html", title=current_user.username, form=form
-        )
+    if DBUser.query.filter_by(username=current_user.username).first():
+        if all_songs != []:
+            for song in all_songs:
+                return render_template(
+                    "UserLibrary/UserLibrary.html",
+                    title=current_user.username,
+                    form=form,
+                    songs=all_songs,
+                    delete_song=delete_song,
+                )
+        else:
+            return render_template(
+                "UserLibrary/UserLibrary.html",
+                title=current_user.username,
+                form=form,
+                songs=[],
+            )
     else:
         return render_template("404/pagenotfound.html", title="Pagenotfound")
-
-
-@views.route("/Song")
-def RecordedSearch():
-    return render_template("FoundSong/FoundSong.html")
-
-
-@views.route("/library", methods=["GET", "POST"])
-@login_required
-def User_Library():
-    records = UserLibrary.query.filter_by(user_id=current_user.id).all()
-    if records != []:
-        all_songs = []
-        for item in records:
-            song = Songs.query.filter_by(id=item.song_id).all()
-            all_songs.append(song)
-        for song in all_songs:
-            return render_template("UserLibrary/UserLibrary.html", songs=all_songs)
-    return render_template("404/pagenotfound.html", title="Pagenotfound")
 
 
 @views.route("/voted", methods=["GET", "POST"])

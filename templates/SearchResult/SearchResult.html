@@ -18,25 +18,53 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='CSS/SearchResult/SearchResult.css') }}"
 />
-
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='CSS/UserLibrary/UserLibrary.css') }}"
+/>
 <section class="ResultArea">
   <!--  -->
-  {% for result in results %}
-  <!--  -->
-  <a class="ResultCard Button" href="/{{result.title}}-{{result.artist}}">
-    <div class="ResultCard-image">
-      <img class="ResultImage" src="{{result.cover_image}}" alt="" />
+  {% if results != [] %}
+    {% for result in results %}
+    <!--  -->
+    <!-- <a class="ResultCard Button" href="/{{result.title}}-{{result.artist}}">
+      <div class="ResultCard-image">
+        <img class="ResultImage" src="{{result.cover_image}}" alt="" />
+      </div>
+      <div class="ResultCard-info">
+        <h1 class="Result-Text">{{result.title}}</h1>
+        <h1 class="Result-Text">{{result.artist}}</h1>
+        <h1 class="Result-Text">{{result.album}}</h1>
+        <h1 class="Result-Text">{{result.year}}</h1>
+      </div>
+    </a> -->
+    <div class="SongCard Button">
+      <span class="Numbering">{{ loop.index }}</span>
+      <div class="CoverImage">
+        <img
+          src="{{result.cover_image}}"
+          alt="{{result.album}}"
+          class="CoverImage Img"
+        />
+      </div>
+      <div class="SongInfo">
+        <a href="/{{result.title}}-{{result.artist}}" class="Title Button"
+          >{{result.title}}</a
+        >
+        <span class="Artist">{{result.artist}}</span>
+      </div>
     </div>
-    <div class="ResultCard-info">
-      <h1 class="Result-Text">{{result.title}}</h1>
-      <h1 class="Result-Text">{{result.artist}}</h1>
-      <h1 class="Result-Text">{{result.album}}</h1>
-      <h1 class="Result-Text">{{result.year}}</h1>
+    <hr class="Line" />
+    <!--  -->
+    {% endfor %}
+    <!--  -->
+  {% else %}
+    <!--  -->
+    <div class="NoSongs">
+      <h1>No Songs Found</h1>
     </div>
-  </a>
-  <!--  -->
-  {% endfor %}
-  <!--  -->
+    <!--  -->
+  {% endif %}
 </section>
 
 {% endblock SearchResult %}

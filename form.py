@@ -72,3 +72,15 @@ class VoteForm(FlaskForm):
     user_id = IntegerField("UserID", validators=[DataRequired()])
     vote = IntegerField("Vote", validators=[DataRequired()])
     submit = SubmitField("Vote")
+
+
+class DeleteSong(FlaskForm):
+    song_id = IntegerField("SongID", validators=[DataRequired()])
+    submit = SubmitField("Delete")
+
+
+class DeleteLyrics(FlaskForm):
+    lyrics_id = IntegerField("LyricsID", validators=[DataRequired()])
+    song_id = IntegerField("LyricsID", validators=[DataRequired()])
+
+    submit = SubmitField("Delete")

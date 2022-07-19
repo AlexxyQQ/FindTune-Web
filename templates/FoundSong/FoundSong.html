@@ -26,10 +26,10 @@
 <section class="SongDetailsArea">
   <div class="TitleArea">
     <div class="SongCover">
-      <img src="{{cover_image}}" alt="" class="SongCoverImg Img" />
+      <img src="{{cover_image}}" alt="Cover Image not Found" class="SongCoverImg Img" />
     </div>
     <div class="SongTitle">
-      <span class="SongName">{{songname}}</span>
+      <a href="https://www.google.com/search?q={{artist}} {{songname}} " target="_blank" class="SongName Button">{{songname}}</a>
       <span class="SingerName">{{artist}}</span>
     </div>
   </div>
@@ -55,7 +55,7 @@
       <div class="LyricsCard">
         <div class="HeadingDisplayBox">
           <span class="UsernameOfPoster">{{all[0].upper()}}</span>
-          <button class="ExpandCollapsLyrics Button" id="{{all[0].upper()}}" onclick="HideLyrics(this.id)">
+          <button class="Submit Button ExpandCollapsLyrics" id="{{all[0].upper()}}" onclick="HideLyrics(this.id)">
             V
           </button>
           {%if current_user.is_authenticated%}
@@ -72,6 +72,12 @@
             {% if all_votes == [] %}
             {{vote_form.submit(value="⬆️",class="Submit Upvote Button")}}
             {%endif%}
+          </form>
+          <form method="POST" class="VoteForm"  action="/" enctype="multipart/form-data">
+            {{delte_lyrics_form.hidden_tag()}}
+            {{delte_lyrics_form.song_id(class="Hidden",value=song_id)}}
+            {{delte_lyrics_form.lyrics_id(class="Hidden",value=all[2])}}
+            {{delte_lyrics_form.submit(value="🗑️",class="Submit Downvote Button")}}
           </form>
           {% endif %}
         </div>
@@ -117,7 +123,7 @@
     <div class="SecondGridGroup">
       <div class="VideoArea">
         <span class="Video Title">Video</span>
-        <a href="{{yt_link}}" class="YoutubeRedirect Button">
+        <a href="{{yt_link}}"  target="_blank" class="YoutubeRedirect Button">
         <img src="{{yt_thumbnail}}" alt="No Youtube video found" class="Thumbnail Img">
         <img src="{{ url_for('static', filename='Assets/YTLogo.png') }}" alt="" class="YTLogo">
       </a>
