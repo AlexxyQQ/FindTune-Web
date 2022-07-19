@@ -111,7 +111,11 @@
         </script>
       </div>
       {% else %}
-      <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
+      <a
+        href="{{url_for('auth.LoginSignup',type='signup')}}"
+        class="Nav-Bar-Signup Button"
+        >SIGNUP</a
+      >
       {% endif %}
       <a href="#Hamburger-Window" class="Hamburger Button">
         <img
@@ -214,7 +218,11 @@
           cumque blanditiis error nihil amet quo ipsum itaque eveniet ducimus
           maiores!
         </div>
-        <a href="/LoginSignup" class="Nav-Bar-Signup Button">SIGNUP</a>
+        <a
+          href="{{ url_for('auth.LoginSignup',type='login') }}"
+          class="Nav-Bar-Signup Button"
+          >SIGNUP</a
+        >
       </div>
     </section>
     <!--  -->

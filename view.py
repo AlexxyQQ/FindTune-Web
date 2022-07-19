@@ -167,6 +167,8 @@ def ass():
 
 @views.route("/<string:songname>", methods=["GET", "POST"])
 def song(songname):
+    if songname == "FT":
+        return redirect(url_for("auth.LoginSignup", type="login"))
     lyrics_form = LyricsForm()
     delte_lyrics_form = DeleteLyrics()
     if songname != "service-worker.js" and songname != "favicon.ico":

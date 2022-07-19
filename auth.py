@@ -7,47 +7,74 @@ from __init__ import db, bcrypt
 auth = Blueprint("auth", __name__)
 
 
-@auth.route("/LoginSignup", methods=["GET", "POST"])
-def LoginSignup():
+@auth.route("/FT<string:type>", methods=["GET", "POST"])
+def LoginSignup(type):
     form_signup = RegistrationForm()
     form_login = LoginForm()
     if current_user.is_authenticated:
         return redirect(url_for("views.home"))
     if request.method == "POST":
+        if type == "signup":
+            if form_signup.validate_on_submit():
+                if User.query.filter_by(username=form_signup.username.data).first():
+                    flash("Username is already taken ", "Username-Used")
+                elif User.query.filter_by(email=form_signup.email.data).first():
+                    flash("Email is already taken ", "Email-Taken")
 
-        if form_signup.validate_on_submit():
-            hashed_password = bcrypt.generate_password_hash(
-                form_signup.password.data
-            ).decode("utf-8")
-            user = User(
-                fullname=form_signup.fullname.data,
-                username=form_signup.username.data,
-                email=form_signup.email.data,
-                password=hashed_password,
-            )
-            print(user)
-            db.session.add(user)
-            db.session.commit()
-            flash(
-                "Your account has been created! You are now able to log in",
-                "success",
-            )
-            return redirect(url_for("auth.LoginSignup"))
+                else:
+                    hashed_password = bcrypt.generate_password_hash(
+                        form_signup.password.data
+                    ).decode("utf-8")
+                    user = User(
+                        fullname=form_signup.fullname.data,
+                        username=form_signup.username.data,
+                        email=form_signup.email.data,
+                        password=hashed_password,
+                    )
+                    db.session.add(user)
+                    db.session.commit()
+                    flash(
+                        "Your account has been created! You are now able to log in",
+                        "success",
+                    )
+                    return redirect(url_for("auth.LoginSignup", type="login"))
 
-        if form_login.validate_on_submit():
-            user = User.query.filter_by(email=form_login.email.data).first()
-            if user and bcrypt.check_password_hash(
-                user.password, form_login.password.data
-            ):
-                login_user(user, remember=True)
-                next_page = request.args.get("next")
-                return (
-                    redirect(next_page)
-                    if next_page
-                    else redirect(url_for("views.home"))
-                )
-            else:
-                flash("Login Unsuccessful. Please check email and password", "danger")
+        if type == "login":
+            if form_login.validate_on_submit():
+                user = User.query.filter_by(email=form_login.email.data).first()
+                Users = User.query.filter_by(email=form_login.email.data).first()
+
+                if not Users:
+                    flash("Email not found", "Username-Not-Found")
+                    return redirect(url_for("auth.LoginSignup", type="login"))
+                elif not bcrypt.check_password_hash(
+                    Users.password, form_login.password.data
+                ):
+                    flash("Incorrect password", "Incorrect-Password")
+                    return redirect(url_for("auth.LoginSignup", type="login"))
+                if not Users:
+                    flash("Email not found", "Username-Not-Found")
+                    return redirect(url_for("auth.LoginSignup", type="login"))
+                elif not bcrypt.check_password_hash(
+                    Users.password, form_login.password.data
+                ):
+                    flash("Incorrect password", "Incorrect-Password")
+                    return redirect(url_for("auth.LoginSignup", type="login"))
+
+                elif user and bcrypt.check_password_hash(
+                    user.password, form_login.password.data
+                ):
+                    login_user(user, remember=True)
+                    next_page = request.args.get("next")
+                    return (
+                        redirect(next_page)
+                        if next_page
+                        else redirect(url_for("views.home"))
+                    )
+                else:
+                    flash(
+                        "Login Unsuccessful. Please check email and password", "danger"
+                    )
     return render_template(
         "LoginAndRegestration/LoginAndRegestration.html",
         title="LoginSignup",
