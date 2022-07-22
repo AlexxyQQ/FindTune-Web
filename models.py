@@ -33,7 +33,7 @@ class Songs(db.Model):
     artist = db.Column(db.String(100), nullable=True)
     album = db.Column(db.String(100), nullable=True)
     year = db.Column(db.String(100), nullable=True)
-    tagid = db.Column(db.String(100), nullable=False, unique=True)
+    tagid = db.Column(db.String(100), nullable=True, unique=True)
     cover_image = db.Column(db.String(5000), nullable=False, default="NotFound.png")
     yt_thumbnail = db.Column(db.String(100), nullable=False, default="NotFound.png")
     yt_link = db.Column(db.String(10000), nullable=True)

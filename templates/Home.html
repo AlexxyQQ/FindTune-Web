@@ -54,9 +54,13 @@
         />
       </a>
       <div class="Navbar Nav-Items">
+        {% if current_user.username != 'admin' %}
         <a href="/@{{ current_user.username }}" class="Nav-Items-List Button"
           >My Library</a
         >
+        {% else %}
+        <a href="/admin" class="Nav-Items-List Button">Admin</a>
+        {% endif %}
         <!-- <a href="" class="Nav-Items-List Button">About</a>
         <a href="" class="Nav-Items-List Button">Donate</a> -->
       </div>
@@ -203,11 +207,16 @@
       {% endif %}
       <hr class="Line-Ham" />
       <div class="Hamburger-Content">
+        {% if current_user.username != 'admin' %}
         <a
           href="/@{{ current_user.username }}"
           class="Hamburger-Items-List Button"
           >My Libraries</a
         >
+        {% else %}
+        <a href="/admin" class="Hamburger-Items-List Button">Admin</a>
+        {% endif %}
+
         <!-- <a href="" class="Hamburger-Items-List Button">About</a>
         <a href="" class="Hamburger-Items-List Button">Donate</a> -->
       </div>

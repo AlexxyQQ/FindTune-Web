@@ -168,7 +168,7 @@
   }
   .SingerName {
     color: #ddf7f6;
-    font-weight: 800;
+    font-weight: 500;
     font-size: 15px;
     display: flex;
     align-items: center;
@@ -339,7 +339,7 @@
     color: #ddf7f6;
   }
   .SingerName {
-    font-weight: 800;
+    font-weight: 500;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -507,7 +507,7 @@
     color: #ddf7f6;
   }
   .SingerName {
-    font-weight: 800;
+    font-weight: 500;
     font-size: 40px;
     display: flex;
     align-items: center;
@@ -667,5 +667,13 @@
     font-weight: 800;
     font-size: 20px;
     color: #091813;
+  }
+
+  .SingerName {
+    font-weight: 500;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    color: #ddf7f6;
   }
 }

@@ -161,14 +161,16 @@ def check():
 
 
 @views.route("/@", methods=["GET", "POST"])
-def ass():
-    return redirect(url_for("auth.LoginSignup"))
+def redirectLogin():
+    return redirect(url_for("auth.LoginSignup", type="signup"))
 
 
 @views.route("/<string:songname>", methods=["GET", "POST"])
 def song(songname):
     if songname == "FT":
         return redirect(url_for("auth.LoginSignup", type="login"))
+    if songname == "admin":
+        return redirect(url_for("admin.admin_page"))
     lyrics_form = LyricsForm()
     delte_lyrics_form = DeleteLyrics()
     if songname != "service-worker.js" and songname != "favicon.ico":
@@ -425,7 +427,6 @@ def User_Library(username):
             all_songs.append(song)
     if request.method == "POST":
         if delete_song.validate_on_submit():
-            print("ass")
             song_id = delete_song.song_id.data
             user_id = current_user.id
             user_library = UserLibrary.query.filter_by(
@@ -437,6 +438,7 @@ def User_Library(username):
 
         if form.validate_on_submit():
             if form.picture.data:
+                print(form.picture.data)
                 picture_file = save_pic(form.picture.data)
                 current_user.image_file = picture_file
             current_user.username = form.username.data

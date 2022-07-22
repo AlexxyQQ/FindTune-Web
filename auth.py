@@ -52,20 +52,14 @@ def LoginSignup(type):
                 ):
                     flash("Incorrect password", "Incorrect-Password")
                     return redirect(url_for("auth.LoginSignup", type="login"))
-                if not Users:
-                    flash("Email not found", "Username-Not-Found")
-                    return redirect(url_for("auth.LoginSignup", type="login"))
-                elif not bcrypt.check_password_hash(
-                    Users.password, form_login.password.data
-                ):
-                    flash("Incorrect password", "Incorrect-Password")
-                    return redirect(url_for("auth.LoginSignup", type="login"))
 
                 elif user and bcrypt.check_password_hash(
                     user.password, form_login.password.data
                 ):
                     login_user(user, remember=True)
                     next_page = request.args.get("next")
+                    if current_user.username == "admin":
+                        return redirect(url_for("admin.admin_page"))
                     return (
                         redirect(next_page)
                         if next_page

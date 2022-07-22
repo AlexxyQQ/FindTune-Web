@@ -84,3 +84,14 @@ class DeleteLyrics(FlaskForm):
     song_id = IntegerField("LyricsID", validators=[DataRequired()])
 
     submit = SubmitField("Delete")
+
+
+class AdminForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    artist = StringField("Artist", validators=[DataRequired()])
+    album = StringField("Album", validators=[DataRequired()])
+    year = IntegerField("Year", validators=[DataRequired()])
+    tagid = IntegerField("TagID", validators=[DataRequired()])
+
+    lyrics = TextAreaField("Lyrics", validators=[])
+    submit = SubmitField("Post")

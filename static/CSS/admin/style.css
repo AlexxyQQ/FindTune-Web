@@ -1,0 +1,12 @@
+.Form {
+  width: 80%;
+  border-radius: 12px;
+  margin: 20px auto;
+  background-color: antiquewhite;
+  padding: 16px;
+}
+
+.InputArea {
+  display: flex;
+  background-color: red;
+}
