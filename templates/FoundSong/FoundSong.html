@@ -73,12 +73,19 @@
             {{vote_form.submit(value="⬆️",class="Submit Upvote Button")}}
             {%endif%}
           </form>
-          <form method="POST" class="VoteForm"  action="/" enctype="multipart/form-data">
+          <form method="POST" class="VoteForm"  action="" >
             {{delte_lyrics_form.hidden_tag()}}
             {{delte_lyrics_form.song_id(class="Hidden",value=song_id)}}
             {{delte_lyrics_form.lyrics_id(class="Hidden",value=all[2])}}
             {{delte_lyrics_form.submit(value="🗑️",class="Submit Downvote Button")}}
           </form>
+          <button class="Submit Downvote Button" 
+          type="button" 
+          style="margin-right: 5px;" 
+          id="D{{all[0].upper()}}" 
+          onclick="downloadTxtFile(this.id,'{{songname}}')" >
+          📃
+          </button>
           {% endif %}
         </div>
         <div class="displaylyricsbox" id="lyricsbox{{all[0].upper()}}">

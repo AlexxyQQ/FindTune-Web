@@ -53,6 +53,9 @@ class Lyrics(db.Model):
     song_id = db.Column(
         db.Integer, db.ForeignKey("songs.id", ondelete="CASCADE"), nullable=False
     )
+    votes = db.relationship(
+        "Votes", backref="author2", cascade="all, delete-orphan", lazy=True
+    )
 
     def __repr__(self):
         return f"Lyrics('{self.lyrics}')"
@@ -67,7 +70,9 @@ class Votes(db.Model):
     song_id = db.Column(
         db.Integer, db.ForeignKey("songs.id", ondelete="CASCADE"), nullable=False
     )
-    lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"), nullable=False)
+    lyrics_id = db.Column(
+        db.Integer, db.ForeignKey("lyrics.id", ondelete="CASCADE"), nullable=False
+    )
     vote = db.Column(db.Integer, nullable=False, default=0)
 
     def __repr__(self):

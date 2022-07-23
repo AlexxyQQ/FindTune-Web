@@ -128,7 +128,7 @@ def check():
                     artist=b.get("track").get("subtitle"),
                 ).first()
                 # if Song_details != None:
-                #     print(Song_details.id)
+                #     print({b.get("track").get("sections")[1].get("text")})
                 #     lyrics = Lyrics(
                 #         lyrics=f"""{b.get("track").get("sections")[1].get("text")}""",
                 #         song_id=Song_details.id,
@@ -184,7 +184,6 @@ def song(songname):
                 all_user_library = UserLibrary.query.filter_by(
                     user_id=current_user.id, song_id=Song_details.id
                 ).all()
-                print(all_user_library)
                 if all_user_library == []:
                     try:
                         user_library = UserLibrary(

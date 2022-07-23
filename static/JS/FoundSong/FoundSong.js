@@ -26,3 +26,23 @@ function HideLyrics(id) {
     fulllyrics.classList.remove("Hidden");
   }
 }
+
+function downloadTxtFile(id, songname) {
+  var element = document.createElement("a");
+  var elements = document.getElementsByClassName("LyricsLines");
+  var text = "";
+  for (var i = 0, len = elements.length; i < len; i++) {
+    text += elements[i].innerText + "\n";
+  }
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+  );
+  element.setAttribute("download", songname);
+
+  element.style.display = "none";
+
+  element.click();
+
+  document.body.removeChild(element);
+}
