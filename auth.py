@@ -17,9 +17,11 @@ def LoginSignup(type):
         if type == "signup":
             if form_signup.validate_on_submit():
                 if User.query.filter_by(username=form_signup.username.data).first():
-                    flash("Username is already taken ", "Username-Used")
+                    flash("Username is already taken ", "Username-Used"),
+                    return 400
                 elif User.query.filter_by(email=form_signup.email.data).first():
-                    flash("Email is already taken ", "Email-Taken")
+                    flash("Email is already taken ", "Email-Taken"),
+                    return 400
 
                 else:
                     hashed_password = bcrypt.generate_password_hash(
@@ -46,12 +48,12 @@ def LoginSignup(type):
 
                 if not Users:
                     flash("Email not found", "Username-Not-Found")
-                    return redirect(url_for("auth.LoginSignup", type="login"))
+                    return redirect(url_for("auth.LoginSignup", type="login")), 400
                 elif not bcrypt.check_password_hash(
                     Users.password, form_login.password.data
                 ):
                     flash("Incorrect password", "Incorrect-Password")
-                    return redirect(url_for("auth.LoginSignup", type="login"))
+                    return redirect(url_for("auth.LoginSignup", type="login")), 400
 
                 elif user and bcrypt.check_password_hash(
                     user.password, form_login.password.data
@@ -64,16 +66,19 @@ def LoginSignup(type):
                         redirect(next_page)
                         if next_page
                         else redirect(url_for("views.home"))
-                    )
+                    ), 200
                 else:
                     flash(
                         "Login Unsuccessful. Please check email and password", "danger"
                     )
-    return render_template(
-        "LoginAndRegestration/LoginAndRegestration.html",
-        title="LoginSignup",
-        form_signup=form_signup,
-        form_login=form_login,
+    return (
+        render_template(
+            "LoginAndRegestration/LoginAndRegestration.html",
+            title="LoginSignup",
+            form_signup=form_signup,
+            form_login=form_login,
+        ),
+        200,
     )
 
 
